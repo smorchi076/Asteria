@@ -2,10 +2,13 @@ package GameplayElements;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
 
 import javax.swing.ImageIcon;
+
+
 
 public class MovingImage extends Rectangle2D.Double {
 	
@@ -43,6 +46,10 @@ private Image image;
 	
 	public void draw(Graphics g, ImageObserver io) {
 		g.drawImage(image,(int)x,(int)y,(int)width,(int)height,io);
+	}
+	
+	public void rotate(int degrees){
+		
 	}
 	
 	

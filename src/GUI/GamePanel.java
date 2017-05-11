@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import GameplayElements.Ship;
 
+
 import java.util.*;
 
 
@@ -81,10 +82,14 @@ public class GamePanel extends JPanel implements Runnable
 		
 		if (keyControl.isPressed(KeyEvent.VK_LEFT))
 	  		ship.moveHorizontally(-1);
+			
 		if (keyControl.isPressed(KeyEvent.VK_RIGHT))
 	  		ship.moveHorizontally(1);
+			
+			
 		if (keyControl.isPressed(KeyEvent.VK_UP))
 	  		ship.moveVertically(1);
+		
 		if(keyControl.isPressed(KeyEvent.VK_DOWN))
 			ship.moveVertically(-1);
 	
