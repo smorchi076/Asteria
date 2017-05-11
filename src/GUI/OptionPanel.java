@@ -24,16 +24,19 @@ public class OptionPanel extends JPanel implements ActionListener {
 		
 		
 		BufferedImage buttonIcon = null;
+		/*
 		try {
 			buttonIcon = ImageIO.read(new File("myImage.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	    button = new JButton(new ImageIcon(buttonIcon));
 	    button.setBorderPainted(false);
 	    button.setFocusPainted(false);
 	    button.setContentAreaFilled(false);
+	    */
 	}
 	
 	public void actionPerformed(ActionEvent e) {
