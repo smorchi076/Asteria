@@ -10,10 +10,12 @@ import javax.swing.ImageIcon;
 public class MovingImage extends Rectangle2D.Double {
 	
 private Image image;
-	
+private double dir;
+
 	// CONSTRUCTORS
 	public MovingImage(String filename, int x, int y, int w, int h) {
 		this((new ImageIcon(filename)).getImage(),x,y,w,h);
+		dir = 0;
 	}
 	
 	public MovingImage(Image img, int x, int y, int w, int h) {
@@ -45,6 +47,25 @@ private Image image;
 		g.drawImage(image,(int)x,(int)y,(int)width,(int)height,io);
 	}
 	
+	public boolean isPointInImage(double mouseX, double mouseY) {
+		if (mouseX >= x && mouseY >= y && mouseX <= x + width && mouseY <= y + height)
+			return true;
+		return false;
+	}
+	
+	public void turn(double dir) {
+		this.dir = dir;
+	}
+	
+	public void turnToward(int x, int y) {
+		dir = Math.atan(((double)this.y-y)/(this.x-x));
+		if (this.x > x)
+			dir += Math.PI;
+	}
+	
+	public double getDirection() {
+		return dir;
+	}
 	
 }
 
