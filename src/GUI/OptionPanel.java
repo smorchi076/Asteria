@@ -28,13 +28,6 @@ public class OptionPanel extends JPanel implements ActionListener {
 	    JButton button2 = new JButton(warnIcon);
 	    add(button2);
 	    button2.setContentAreaFilled(false);
-	    
-	 
-	   
-	   
-	    
-
-		
 		
 	}
 	
