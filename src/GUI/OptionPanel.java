@@ -24,7 +24,6 @@ public class OptionPanel extends JPanel implements ActionListener {
 		
 		
 		BufferedImage buttonIcon = null;
-		/*
 		try {
 			buttonIcon = ImageIO.read(new File("myImage.png"));
 		} catch (IOException e) {
@@ -36,7 +35,6 @@ public class OptionPanel extends JPanel implements ActionListener {
 	    button.setBorderPainted(false);
 	    button.setFocusPainted(false);
 	    button.setContentAreaFilled(false);
-	    */
 	}
 	
 	public void actionPerformed(ActionEvent e) {
