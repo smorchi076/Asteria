@@ -30,11 +30,11 @@ public class GamePanel extends JPanel implements Runnable
 	  setBackground(Color.CYAN);
 	  screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 	  obstacles = new ArrayList<Shape>();
-	  obstacles.add(new Rectangle(200,400,400,50));
-	  obstacles.add(new Rectangle(0,250,100,50));
-	  obstacles.add(new Rectangle(700,250,100,50));
-	  obstacles.add(new Rectangle(375,300,50,100));
-	  obstacles.add(new Rectangle(300,250,200,50));
+	  //obstacles.add(new Rectangle(200,400,400,50));
+	  //obstacles.add(new Rectangle(0,250,100,50));
+	  //obstacles.add(new Rectangle(700,250,100,50));
+	  //obstacles.add(new Rectangle(375,300,50,100));
+	  //obstacles.add(new Rectangle(300,250,200,50));
 	  spawnNewship();
 	  new Thread(this).start();
   }
@@ -67,7 +67,7 @@ public class GamePanel extends JPanel implements Runnable
 
   
   public void spawnNewship() {
-	  ship = new Ship(DRAWING_WIDTH/2-ship.SHIP_WIDTH/2,50);
+	  ship = new Ship(DRAWING_WIDTH/2-Ship.SHIP_WIDTH/2,50);
   }
   
   public KeyHandler getKeyHandler() {
@@ -80,11 +80,13 @@ public class GamePanel extends JPanel implements Runnable
 		long startTime = System.currentTimeMillis();
 		
 		if (keyControl.isPressed(KeyEvent.VK_LEFT))
-	  		ship.walk(-1);
+	  		ship.moveHorizontally(-1);
 		if (keyControl.isPressed(KeyEvent.VK_RIGHT))
-	  		ship.walk(1);
+	  		ship.moveHorizontally(1);
 		if (keyControl.isPressed(KeyEvent.VK_UP))
-	  		ship.jump();
+	  		ship.moveVertically(1);
+		if(keyControl.isPressed(KeyEvent.VK_DOWN))
+			ship.moveVertically(-1);
 	
 	  	ship.act(obstacles);
 	  	

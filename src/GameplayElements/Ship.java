@@ -13,21 +13,25 @@ public class Ship extends MovingImage {
 	}
 
 	// METHODS
-	public void walk(int dir) {
+	public void moveHorizontally(int dir) {
 		// WALK!\
 		super.x += dir*5;
 	}
 
-	public void jump() {
+	public void moveVertically(int dir) {
 		// JUMP!
-		super.y++;
-		y--;
+		
+		super.y -= dir*5;
+		
+			
+		
+		
 		
 	}
 
 	public void act(ArrayList<Shape> obstacles) {
 		// FINISH ME!
-		super.y++;
+		//super.y++;
 	}
 	
 	public void turn(){
