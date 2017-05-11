@@ -2,6 +2,7 @@ package GUI;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
@@ -22,12 +23,13 @@ public class GamePanel extends JPanel implements Runnable
   
   private KeyHandler keyControl;
 
-
   public GamePanel () {
 	  super();
 	  
-	  keyControl = new KeyHandler();
-	  setBackground(Color.CYAN);
+	  keyControl = new KeyHandler(); 
+	  //JLabel thumb = new JLabel();
+	  //thumb.setIcon(icon);
+	  //setBackground(Color.CYAN);
 	  screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 	  obstacles = new ArrayList<Shape>();
 	  //obstacles.add(new Rectangle(200,400,400,50));
@@ -42,9 +44,10 @@ public class GamePanel extends JPanel implements Runnable
   public void paintComponent(Graphics g)
   {
     super.paintComponent(g);  // Call JPanel's paintComponent method to paint the background
-
-	Graphics2D g2 = (Graphics2D)g;
-
+    g.drawImage(new ImageIcon("/Asteria/resources/background.png").getImage(), 0, 0, this);
+    
+	Graphics2D g2 = (Graphics2D) g;
+	
     int width = getWidth();
     int height = getHeight();
     

@@ -14,23 +14,14 @@ public class Ship extends MovingImage {
 
 	// METHODS
 	public void moveHorizontally(int dir) {
-		// WALK!\
 		super.x += dir*5;
 	}
 
 	public void moveVertically(int dir) {
-		// JUMP!
-		
 		super.y -= dir*5;
-		
-			
-		
-		
-		
 	}
 
 	public void act(ArrayList<Shape> obstacles) {
-		// FINISH ME!
 		//super.y++;
 	}
 	
