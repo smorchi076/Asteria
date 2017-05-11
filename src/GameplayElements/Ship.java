@@ -1,6 +1,10 @@
 package GameplayElements;
 
+import java.awt.Graphics;
 import java.awt.Shape;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 
 public class Ship extends MovingImage {
@@ -17,19 +21,17 @@ public class Ship extends MovingImage {
 	}
 
 	// METHODS
-
 	public void move(int dir) {
 		// JUMP!
 		if(dir < 0 && vY > -5)
 			vY -= dir*.1;
 		if(dir > 0 && vY < 5)
 			vY -= dir*.1;
-		
+	}
 			
 		
 		
 		
-	}
 
 	public void act(ArrayList<Shape> obstacles) {
 		double dir = getDirection();
@@ -51,7 +53,7 @@ public class Ship extends MovingImage {
 		}
 	}
 	
-	public void turn(){
+	public void turn(Graphics g, ImageObserver io){
 		
 	}
 

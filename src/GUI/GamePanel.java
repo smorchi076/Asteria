@@ -2,10 +2,12 @@ package GUI;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
 import GameplayElements.Ship;
+
 
 import java.util.*;
 
@@ -22,12 +24,10 @@ public class GamePanel extends JPanel implements Runnable
   
   private KeyHandler keyControl;
 
-
   public GamePanel () {
 	  super();
 	  
-	  keyControl = new KeyHandler();
-	  setBackground(Color.CYAN);
+	  keyControl = new KeyHandler(); 
 	  screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 	  obstacles = new ArrayList<Shape>();
 	  //obstacles.add(new Rectangle(200,400,400,50));
@@ -42,9 +42,10 @@ public class GamePanel extends JPanel implements Runnable
   public void paintComponent(Graphics g)
   {
     super.paintComponent(g);  // Call JPanel's paintComponent method to paint the background
-
-	Graphics2D g2 = (Graphics2D)g;
-
+    
+    
+	Graphics2D g2 = (Graphics2D) g;
+	
     int width = getWidth();
     int height = getHeight();
     
@@ -59,6 +60,7 @@ public class GamePanel extends JPanel implements Runnable
     	g2.fill(s);
     }
     ship.draw(g2,this);
+    g2.drawImage(new ImageIcon("/Asteria/resources/background.png").getImage(), 0, 0, null);
     
     g2.setTransform(at);
 
