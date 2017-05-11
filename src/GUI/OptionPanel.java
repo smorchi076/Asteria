@@ -26,6 +26,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 
 		Icon warnIcon = new ImageIcon("resources/play.png");
 	    JButton button2 = new JButton(warnIcon);
+	    button2.addActionListener(this);
 	    add(button2);
 	    button2.setContentAreaFilled(false);
 		
@@ -35,7 +36,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		game.changePanel("2");
 	}
 	
-	
+	/*
 	public void paintComponent(Graphics page)
 	{
 		
@@ -71,4 +72,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 	    // Draw it
 	    page.drawImage( img, x, y, null );
 	}
+	*/
+	
+	
 }
