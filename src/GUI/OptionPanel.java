@@ -23,6 +23,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		button.addActionListener(this);
 		add(button);
 		
+<<<<<<< HEAD
 		Icon warnIcon = new ImageIcon("resources/play.png");
 	    JButton button2 = new JButton(warnIcon);
 	    add(button2);
@@ -32,6 +33,23 @@ public class OptionPanel extends JPanel implements ActionListener {
 	   
 	   
 	    
+=======
+		
+		BufferedImage buttonIcon = null;
+		/*
+		try {
+			buttonIcon = ImageIO.read(new File("myImage.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	    button = new JButton(new ImageIcon(buttonIcon));
+	    button.setBorderPainted(false);
+	    button.setFocusPainted(false);
+	    button.setContentAreaFilled(false);
+	    */
+>>>>>>> branch 'master' of https://github.com/smorchi076/Asteria.git
 	}
 	
 	public void actionPerformed(ActionEvent e) {

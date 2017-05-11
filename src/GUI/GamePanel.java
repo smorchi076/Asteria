@@ -28,9 +28,6 @@ public class GamePanel extends JPanel implements Runnable
 	  super();
 	  
 	  keyControl = new KeyHandler(); 
-	  //JLabel thumb = new JLabel();
-	  //thumb.setIcon(icon);
-	  //setBackground(Color.CYAN);
 	  screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 	  obstacles = new ArrayList<Shape>();
 	  //obstacles.add(new Rectangle(200,400,400,50));
@@ -45,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable
   public void paintComponent(Graphics g)
   {
     super.paintComponent(g);  // Call JPanel's paintComponent method to paint the background
-    g.drawImage(new ImageIcon("/Asteria/resources/background.png").getImage(), 0, 0, this);
+    
     
 	Graphics2D g2 = (Graphics2D) g;
 	
@@ -63,6 +60,7 @@ public class GamePanel extends JPanel implements Runnable
     	g2.fill(s);
     }
     ship.draw(g2,this);
+    g2.drawImage(new ImageIcon("/Asteria/resources/background.png").getImage(), 0, 0, null);
     
     g2.setTransform(at);
 
