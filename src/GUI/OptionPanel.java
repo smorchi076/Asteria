@@ -34,9 +34,6 @@ public class OptionPanel extends JPanel implements ActionListener {
 		button.setBorderPainted(false);
 
 
-
-
-
 		Icon playbutton = new ImageIcon("resources/playbutton.png");
 		button2 = new JButton(playbutton);
 		button2.addActionListener(this);
