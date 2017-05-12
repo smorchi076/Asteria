@@ -5,8 +5,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import Main.Asteria;
-import javafx.scene.image.ImageView;
-import javafx.stage.Screen;
 
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -51,7 +49,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		game.changePanel("2");
+		game.changePanel("3");
 	}
 	
 	 public void paintComponent(Graphics g)
