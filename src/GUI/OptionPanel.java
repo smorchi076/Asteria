@@ -26,11 +26,13 @@ public class OptionPanel extends JPanel implements ActionListener {
 		Icon instructions = new ImageIcon("resources/instructions.png");
 	    button = new JButton(instructions);
 	    button.addActionListener(this);
+	    setLayout(null);
+	    button.setLocation(100, 100);
 	    add(button);
 	    button.setContentAreaFilled(false);
 	    button.setOpaque(false);
 	    button.setBorderPainted(false);
-	   
+	    
 		
 		
 		
@@ -38,10 +40,12 @@ public class OptionPanel extends JPanel implements ActionListener {
 		Icon playbutton = new ImageIcon("resources/playbutton.png");
 	    button2 = new JButton(playbutton);
 	    button2.addActionListener(this);
+	    button2.setLocation(400,300);
 	    add(button2);
 	    button2.setContentAreaFilled(false);
 	    button2.setOpaque(false);
 	    button2.setBorderPainted(false);
+	   
 	    
 	   // JLabel pic = new JLabel(new ImageIcon("resources/homeBackground.png"));
 		//add(pic);
@@ -49,7 +53,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		game.changePanel("3");
+		game.changePanel("2");
 	}
 	
 	 public void paintComponent(Graphics g)
