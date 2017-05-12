@@ -19,6 +19,16 @@ public class OptionPanel extends JPanel implements ActionListener {
 	
 	public OptionPanel(Asteria game) {
 		
+		BufferedImage myPicture = null;
+		try {
+			myPicture = ImageIO.read(new File("resources/Asteria.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+		add(picLabel);
+		
 		//JLabel pic = new JLabel(new ImageIcon("resources/homeBackground.png"));
 		//add(pic);
 		
