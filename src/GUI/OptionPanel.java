@@ -18,7 +18,6 @@ public class OptionPanel extends JPanel implements ActionListener {
 	JButton button, button2;
 
 	public OptionPanel(Asteria game) {
-
 		//JLabel pic = new JLabel(new ImageIcon("resources/homeBackground.png"));
 		//add(pic);
 
