@@ -5,6 +5,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import Main.Asteria;
+import javafx.scene.image.ImageView;
+import javafx.stage.Screen;
 
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -15,22 +17,36 @@ import java.io.IOException;
 public class OptionPanel extends JPanel implements ActionListener {
 	
 	Asteria game;
+	JButton button, button2;
 	
 	public OptionPanel(Asteria game) {
 		
+		//JLabel pic = new JLabel(new ImageIcon("resources/homeBackground.png"));
+		//add(pic);
+		
 		this.game = game;
-		JButton button = new JButton("Press me!");
-		button.addActionListener(this);
-		add(button);
+		Icon instructions = new ImageIcon("resources/instructions.png");
+	    button = new JButton(instructions);
+	    button.addActionListener(this);
+	    add(button);
+	    button.setContentAreaFilled(false);
+	    button.setOpaque(false);
+	    button.setBorderPainted(false);
+	   
+		
+		
 		
 
-		Icon warnIcon = new ImageIcon("resources/playbutton.png");
-	    JButton button2 = new JButton(warnIcon);
+		Icon playbutton = new ImageIcon("resources/playbutton.png");
+	    button2 = new JButton(playbutton);
 	    button2.addActionListener(this);
 	    add(button2);
 	    button2.setContentAreaFilled(false);
 	    button2.setOpaque(false);
 	    button2.setBorderPainted(false);
+	    
+	    JLabel pic = new JLabel(new ImageIcon("resources/homeBackground.png"));
+		add(pic);
 		
 	}
 	
