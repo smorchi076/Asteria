@@ -45,8 +45,8 @@ public class OptionPanel extends JPanel implements ActionListener {
 	    button2.setOpaque(false);
 	    button2.setBorderPainted(false);
 	    
-	    JLabel pic = new JLabel(new ImageIcon("resources/homeBackground.png"));
-		add(pic);
+	   // JLabel pic = new JLabel(new ImageIcon("resources/homeBackground.png"));
+		//add(pic);
 		
 	}
 	
@@ -54,43 +54,22 @@ public class OptionPanel extends JPanel implements ActionListener {
 		game.changePanel("2");
 	}
 	
-	/*
-	public void paintComponent(Graphics page)
-	{
-		
-		BufferedImage img = null;
-		try {
-			img = ImageIO.read(new File("resources/homeBackground.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	 public void paintComponent(Graphics g)
+	    {
+		 	BufferedImage scaledImage = getScaledImage();
+		    super.paintComponent(g);
+		    g.drawImage(scaledImage, 0, 0, null);
+	    }
+	 
+	 private BufferedImage getScaledImage(){
+		 	ImageIcon backImage = new ImageIcon("resources/homeBackground.png");
+		    BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
+		    Graphics2D g2d = (Graphics2D) image.createGraphics();
+		    g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY));
+		    g2d.drawImage(backImage.getImage(), 0, 0,getWidth(),getHeight(), null);
+
+		    return image;
 		}
-	    super.paintComponent(page);
-
-	    int h = img.getHeight(null);
-	    int w = img.getWidth(null);
-	    
-	    // Scale Horizontally:
-	    if ( w > this.getWidth() )
-	    {
-	        img = (BufferedImage) img.getScaledInstance( getWidth(), -1, Image.SCALE_DEFAULT );
-	        h = img.getHeight(null);
-	    }
-
-	    // Scale Vertically:
-	    if ( h > this.getHeight() )
-	    {
-	        img = (BufferedImage) img.getScaledInstance( -1, getHeight(), Image.SCALE_DEFAULT );
-	    }
-
-	    // Center Images
-	    int x = (getWidth() - img.getWidth(null)) / 2;
-	    int y = (getHeight() - img.getHeight(null)) / 2;
-
-	    // Draw it
-	    page.drawImage( img, x, y, null );
-	}
-	*/
 	
 	
 }
