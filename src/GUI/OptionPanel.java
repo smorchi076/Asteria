@@ -27,7 +27,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 	    button = new JButton(instructions);
 	    button.addActionListener(this);
 	    setLayout(null);
-	    button.setLocation(100, 100);
+	   
 	    add(button);
 	    button.setContentAreaFilled(false);
 	    button.setOpaque(false);
@@ -40,7 +40,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		Icon playbutton = new ImageIcon("resources/playbutton.png");
 	    button2 = new JButton(playbutton);
 	    button2.addActionListener(this);
-	    button2.setLocation(400,300);
+	    
 	    add(button2);
 	    button2.setContentAreaFilled(false);
 	    button2.setOpaque(false);
