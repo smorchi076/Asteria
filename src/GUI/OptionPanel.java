@@ -27,6 +27,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 	    button = new JButton(instructions);
 	    button.addActionListener(this);
 	    setLayout(null);
+	    button.setBounds(150, 250, 100, 100);
 	   
 	    add(button);
 	    button.setContentAreaFilled(false);
@@ -45,6 +46,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 	    button2.setContentAreaFilled(false);
 	    button2.setOpaque(false);
 	    button2.setBorderPainted(false);
+	    button2.setBounds(300, 200, 200, 200);
 	   
 	    
 	   // JLabel pic = new JLabel(new ImageIcon("resources/homeBackground.png"));
