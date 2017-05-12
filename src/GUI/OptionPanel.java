@@ -49,7 +49,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		game.changePanel("3");
+		game.changePanel("2");
 	}
 	
 	 public void paintComponent(Graphics g)
