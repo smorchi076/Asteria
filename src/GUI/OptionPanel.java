@@ -24,11 +24,13 @@ public class OptionPanel extends JPanel implements ActionListener {
 		add(button);
 		
 
-		Icon warnIcon = new ImageIcon("resources/play.png");
+		Icon warnIcon = new ImageIcon("resources/playbutton.png");
 	    JButton button2 = new JButton(warnIcon);
 	    button2.addActionListener(this);
 	    add(button2);
 	    button2.setContentAreaFilled(false);
+	    button2.setOpaque(false);
+	    button2.setBorderPainted(false);
 		
 	}
 	
