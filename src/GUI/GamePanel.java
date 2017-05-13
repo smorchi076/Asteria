@@ -44,6 +44,9 @@ public class GamePanel extends JPanel implements Runnable
     super.paintComponent(g);  // Call JPanel's paintComponent method to paint the background
     
     
+    BufferedImage scaledImage = getScaledImage();
+    g.drawImage(scaledImage,0,0,null);
+    
 	Graphics2D g2 = (Graphics2D) g;
 	
     int width = getWidth();
@@ -60,9 +63,14 @@ public class GamePanel extends JPanel implements Runnable
     	g2.fill(s);
     }
     ship.draw(g2,this);
-    g2.drawImage(new ImageIcon("/Asteria/resources/background.png").getImage(), 0, 0, null);
+    
     
     g2.setTransform(at);
+    
+   
+    
+    
+    
 
 	// TODO Add any custom drawings here
   }
@@ -135,6 +143,16 @@ public class GamePanel extends JPanel implements Runnable
 		  return keys.contains(code);
 	  }
   }
+  
+	private BufferedImage getScaledImage(){
+		ImageIcon backImage = new ImageIcon("resources/background.png");
+		BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2d = (Graphics2D) image.createGraphics();
+		g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY));
+		g2d.drawImage(backImage.getImage(), 0, 0,getWidth(),getHeight(), null);
+
+		return image;
+	}
 
 
 }
