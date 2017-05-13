@@ -64,7 +64,7 @@ public class HomePanel extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == button) game.changePanel("3");
-		if(e.getSource() == button2) game.changePanel("2");
+		if(e.getSource() == button2) game.changePanel("5");
 		if(e.getSource() == button3) game.changePanel("4");
 	}
 

@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import GUI.GamePanel;
 import GUI.InstructionPanel;
+import GUI.ModePanel;
 import GUI.ShopPanel;
 import GUI.HomePanel;
 
@@ -27,6 +28,7 @@ JPanel cardPanel;
 	    GamePanel panel2 = new GamePanel();
 	    InstructionPanel panel3 = new InstructionPanel(this);
 	    ShopPanel panel4 = new ShopPanel(this);
+	    ModePanel panel5 = new ModePanel(this);
 	    
 	    addKeyListener(panel2.getKeyHandler());
 	
@@ -34,6 +36,7 @@ JPanel cardPanel;
 	    cardPanel.add(panel2,"2");
 	    cardPanel.add(panel3, "3");
 	    cardPanel.add(panel4, "4");
+	    cardPanel.add(panel5, "5");
 	    add(cardPanel);
 	
 	    setVisible(true);
