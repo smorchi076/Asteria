@@ -16,7 +16,7 @@ Co-op
 
 
 Instructions:
-Run the program and select one of the game modes. You will use the arrows keys to navigate the map and the ship will turn using the mouse,the spacebar to shoot down enemies, and 8-9-0 for the special abilities in single player. When playing multiplayer, player 1 will use the single player controls, and player 2 will use W-A-S-D to navigate, q to shoot, and 1-2-3 on the numpad for special abilities. In addition, in the versus and co-op game mode, turning will be disabled. 
+Run the program and select one of the game modes. In single player campaign mode, you will use the arrow keys to navigate the ship. The up key is moving in the current direction, the left and right keys turn the ship, and the down key activates the break (which stops the ship). Use the spacebar to shoot down enemies, and 8-9-0 for the special abilities in single player. When playing multiplayer (team co-op and versus modes), player 1 will use the single player controls, and player 2 will use W-A-S-D to navigate, 1 to shoot, and 2-3-4 for special abilities.
 
 Feature List:
 Must Have:
