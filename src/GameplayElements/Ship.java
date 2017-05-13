@@ -14,20 +14,24 @@ public class Ship extends MovingImage {
 	private double vY;
 	private int shootClock, hp;
 	private Projectile[] blasts = new Projectile[20];
+	private int shouldSlow, willSlow;
 	
 	public Ship(int x, int y) {
 		super("resources/spaceship.png", x, y, SHIP_WIDTH, SHIP_HEIGHT);
 		vY = 0;
-		
+		shouldSlow = 0;
+		willSlow = 0;
 	}
 
 	// METHODS
-	public void move(int dir) {
+	public void move(double dir) {
 		// JUMP!
-		if(dir < 0 && vY > -5)
-			vY -= dir*.1;
-		if(dir > 0 && vY < 5)
-			vY -= dir*.1;
+		if(vY > -5 && vY < 5) {
+			if(dir < 0)
+				vY -= dir*.1;
+			if(dir > 0)
+				vY -= dir*.1;
+		}
 	}
 			
 		
@@ -36,7 +40,7 @@ public class Ship extends MovingImage {
 
 	public void act(ArrayList<Shape> obstacles) {
 		double dir = getDirection();
-		moveByAmount(50*vY*Math.cos(dir),50*vY*Math.sin(dir));
+		moveByAmount(1*vY*Math.cos(dir),1*vY*Math.sin(dir));
 		if(shootClock>0)
 			shootClock--;
 		for(int i = 0; i<blasts.length; i++){
@@ -44,14 +48,18 @@ public class Ship extends MovingImage {
 				blasts[i].act(null);
 			}
 		}
-		if(vY > 3) {
-			vY -= (1.0/vY);
-		}
-		else if(vY < -3) {
-			vY -= (1.0/vY);
-		} else {
+		if(vY > .2 && willSlow == 0) {
+			vY -= vY/5.0 + .1;
+		} else if(vY < -.1 && willSlow == 0) {
+			vY -= vY/5.0 - .1;
+		} else if(vY<.1 && vY>-.1) {
 			vY = 0;
+			System.out.println("test");
 		}
+		System.out.println(vY);
+		if(willSlow == 0)
+			willSlow = 50;
+		willSlow--;
 	}
 	
 	public void turn(Graphics g, ImageObserver io){
