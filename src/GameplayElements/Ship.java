@@ -18,6 +18,7 @@ public class Ship extends MovingImage {
 	public Ship(int x, int y) {
 		super("resources/spaceship.png", x, y, SHIP_WIDTH, SHIP_HEIGHT);
 		vY = 0;
+		
 	}
 
 	// METHODS
