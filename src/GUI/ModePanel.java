@@ -38,11 +38,11 @@ public class ModePanel extends JPanel implements ActionListener {
 		button.setOpaque(false);
 		button.setBorderPainted(false);
 		
-		Icon d = new ImageIcon("resources/campaignButton.png");
+		Icon d = new ImageIcon("resources/campaign.png");
 		button2 = new JButton(d);
 		button2.addActionListener(this);
 		setLayout(null);
-		button2.setBounds(250, 100, 325, 100);
+		button2.setBounds(250, 100, 370, 100);
 
 		add(button2);
 		button2.setContentAreaFilled(false);
@@ -56,14 +56,14 @@ public class ModePanel extends JPanel implements ActionListener {
 		BufferedImage scaledImage = getScaledImage();
 		BufferedImage s = null;
 		try {
-			s = ImageIO.read(new File("resources/selectModeText.png"));
+			s = ImageIO.read(new File("resources/mode.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		super.paintComponent(g);
 		g.drawImage(scaledImage, 0, 0, null);
-		g.drawImage(s, 255, -20, null);
+		g.drawImage(s, 245, -20, null);
 
 	}
 
