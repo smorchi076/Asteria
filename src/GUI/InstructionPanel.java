@@ -53,7 +53,7 @@ public class InstructionPanel extends JPanel implements ActionListener {
 		}
 		super.paintComponent(g);
 		g.drawImage(i, 190, 60, null);
-		g.drawImage(t, 300, 380, null);
+		g.drawImage(t, 305, 380, null);
 		g.drawImage(s, 255, -20, null);
 
 	}
