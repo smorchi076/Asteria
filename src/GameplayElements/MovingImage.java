@@ -15,19 +15,24 @@ public class MovingImage extends Rectangle2D.Double {
 	
 private Image image;
 private double dir;
+private boolean isVisible;
 
 	// CONSTRUCTORS
 	public MovingImage(String filename, int x, int y, int w, int h) {
 		this((new ImageIcon(filename)).getImage(),x,y,w,h);
 		dir = 0;
+		isVisible = true;
 	}
 	
 	public MovingImage(Image img, int x, int y, int w, int h) {
 		super(x,y,w,h);
 		image = img;
+		isVisible = true;
 	}
 	
-	
+	public void toggleVisibility() {
+		isVisible = !isVisible;
+	}
 	// METHODS	
 	public void moveToLocation(double x, double y) {
 		super.x = x;
@@ -48,12 +53,14 @@ private double dir;
 	
 	
 	public void draw(Graphics g, ImageObserver io) {
-		Graphics2D g2 = (Graphics2D)g;
-		AffineTransform at = g2.getTransform();
-		g2.translate(x+width/2, y+height/2);
-		g2.rotate(dir-Math.PI/2);
-		g.drawImage(image,(int)(-width/2),(int)(-height/2),(int)width,(int)height,io);
-		g2.setTransform(at);
+		if(isVisible) {
+			Graphics2D g2 = (Graphics2D)g;
+			AffineTransform at = g2.getTransform();
+			g2.translate(x+width/2, y+height/2);
+			g2.rotate(dir-Math.PI/2);
+			g.drawImage(image,(int)(-width/2),(int)(-height/2),(int)width,(int)height,io);
+			g2.setTransform(at);
+		}
 	}
 	
 	public boolean isPointInImage(double mouseX, double mouseY) {
@@ -74,6 +81,10 @@ private double dir;
 	
 	public double getDirection() {
 		return dir;
+	}
+	
+	public boolean isVisible() {
+		return isVisible;
 	}
 	
 }

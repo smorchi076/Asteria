@@ -14,12 +14,11 @@ public class Ship extends MovingImage {
 	private double vY;
 	private int shootClock, hp;
 	private Projectile[] blasts = new Projectile[20];
-	private int shouldSlow, willSlow;
+	private int willSlow;
 	
 	public Ship(int x, int y) {
 		super("resources/spaceship.png", x, y, SHIP_WIDTH, SHIP_HEIGHT);
 		vY = 0;
-		shouldSlow = 0;
 		willSlow = 0;
 	}
 
@@ -34,7 +33,14 @@ public class Ship extends MovingImage {
 		}
 	}
 			
-		
+	public void draw(Graphics g, ImageObserver io) {
+		super.draw(g, io);
+		for(int i = 0; i<blasts.length; i++){
+			if(blasts[i]!=null){
+				blasts[i].draw(g, io);
+			}
+		}
+	}
 		
 		
 
@@ -54,9 +60,7 @@ public class Ship extends MovingImage {
 			vY -= vY/5.0 - .1;
 		} else if(vY<.1 && vY>-.1) {
 			vY = 0;
-			System.out.println("test");
 		}
-		System.out.println(vY);
 		if(willSlow == 0)
 			willSlow = 50;
 		willSlow--;
@@ -64,6 +68,24 @@ public class Ship extends MovingImage {
 	
 	public void turn(Graphics g, ImageObserver io){
 		
+	}
+	
+	public void shoot(){
+		if(shootClock==0){
+			for(int i=0; i<blasts.length; i++){
+				if(blasts[i]==null || blasts[i].isFizzled()){
+					blasts[i] = new Projectile((int)(getX()), (int)(getY()+getHeight()/2 - 5), super.getDirection());
+					shootClock = 20;
+					break;
+				}
+			}
+		}
+		
+	}
+	
+	public void dropHp(int amount)
+	{
+		hp -= amount;
 	}
 
 }

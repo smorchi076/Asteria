@@ -97,6 +97,8 @@ public class GamePanel extends JPanel implements Runnable
 	  		ship.move(1);
 		if(keyControl.isPressed(KeyEvent.VK_DOWN))
 			ship.move(-1);
+		if(keyControl.isPressed(KeyEvent.VK_P))
+			ship.shoot();
 	
 	  	ship.act(obstacles);
 	  	

@@ -1,28 +1,31 @@
 package GameplayElements;
 
+import GUI.GamePanel;
 
 public class Projectile extends MovingImage {
 
 		private boolean isFizzled;
-		private int dir;
+		private double dir;
 		
-		public Projectile(int x, int y, int dir) {
-			super("lightingbolt.png", x, y, 40, 30);
+		public Projectile(int x, int y, double dir) {
+			super("resources/bullet.png", x, y, 20, 15);
 			// TODO Auto-generated constructor stub
 			isFizzled = false;
 			this.dir = dir;
 		}
 		public void act(Ship enemy) {
 			// FALL!
-			moveByAmount((int)12*dir, 0);
-			if(enemy.isPointInImage(getX()+4, getY()+3)){
+			moveByAmount(15*Math.cos(dir-Math.PI),15*Math.sin(dir-Math.PI));
+			//if(enemy.isPointInImage(getX()+4, getY()+3)){
 				//enemy.dropHp();
-			}
-			//if (getX() < 0 || getX() > GamePanel.DRAWING_WIDTH || getY() < 0 || getY() > Asteria.DRAWING_HEIGHT)
+			//}
+			System.out.println("test");
+			if (getX() < 0 || getX() > GamePanel.DRAWING_WIDTH || getY() < 0 || getY() > GamePanel.DRAWING_HEIGHT)
 				fizzle();
 		}
 		private void fizzle(){
-			//this = null;
+			toggleVisibility();
+			isFizzled = true;
 		}
 		
 		public boolean isFizzled(){
