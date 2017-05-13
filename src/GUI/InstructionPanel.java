@@ -19,7 +19,7 @@ Asteria game;
 		
 		this.game = game;
 		
-		JLabel label = new JLabel("Instructions" + "\n");
+		JLabel label = new JLabel("Instructions");
 
 		add(label);
 
