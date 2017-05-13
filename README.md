@@ -22,7 +22,7 @@ Feature List:
 Must Have:
 -Intro screens + menus
 -Working enemy and boss spawn
--Working spaceship with different abilities
+-Working spaceship with abilities
 -10 level campaign
 -Versus game mode
 -Ability to upgrade spaceship
@@ -34,6 +34,7 @@ Want to Have:
 -More ship upgrades
 -Ship skins
 -2-player team co-op game mode
+-Save game in a file using serializable
 
 Stretch features:
 -Network play
