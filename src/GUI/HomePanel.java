@@ -42,7 +42,7 @@ public class HomePanel extends JPanel implements ActionListener {
 		button2.setOpaque(false);
 		button2.setBorderPainted(false);
 		
-		Icon shopbutton = new ImageIcon("resources/shop.png");
+		Icon shopbutton = new ImageIcon("resources/shopButton.png");
 		button3 = new JButton(shopbutton);
 		button3.addActionListener(this);
 		button3.setBounds(540, 290, 150, 150);
