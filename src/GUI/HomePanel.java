@@ -12,21 +12,19 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class OptionPanel extends JPanel implements ActionListener {
+public class HomePanel extends JPanel implements ActionListener {
 
 	Asteria game;
 	JButton button, button2;
 
-	public OptionPanel(Asteria game) {
-		//JLabel pic = new JLabel(new ImageIcon("resources/homeBackground.png"));
-		//add(pic);
-
+	public HomePanel(Asteria game) {
+		
 		this.game = game;
 		Icon instructions = new ImageIcon("resources/instructions.png");
 		button = new JButton(instructions);
 		button.addActionListener(this);
 		setLayout(null);
-		button.setBounds(150, 250, 100, 100);
+		button.setBounds(150, 300, 100, 100);
 
 		add(button);
 		button.setContentAreaFilled(false);
@@ -42,7 +40,11 @@ public class OptionPanel extends JPanel implements ActionListener {
 		button2.setContentAreaFilled(false);
 		button2.setOpaque(false);
 		button2.setBorderPainted(false);
-		button2.setBounds(300, 200, 200, 200);
+		button2.setBounds(300, 250, 200, 200);
+		
+		JLabel pic = new JLabel(new ImageIcon("resources/asteriaship.png"));
+		add(pic);
+
 
 
 		// JLabel pic = new JLabel(new ImageIcon("resources/homeBackground.png"));
@@ -58,8 +60,22 @@ public class OptionPanel extends JPanel implements ActionListener {
 	public void paintComponent(Graphics g)
 	{
 		BufferedImage scaledImage = getScaledImage();
+		BufferedImage gameLogo = null;
+		BufferedImage word = null;
+		try {
+			 gameLogo = ImageIO.read(new File("resources/afterburner.png"));
+			 //gameLogo = resize(gameLogo, 150,150);
+			 word = ImageIO.read(new File("resources/asteriaword.png"));
+			 
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		super.paintComponent(g);
 		g.drawImage(scaledImage, 0, 0, null);
+		g.drawImage(gameLogo,300,0,null);
+		g.drawImage(word,265,100,null);
+		
 	}
 
 	private BufferedImage getScaledImage(){
@@ -71,6 +87,17 @@ public class OptionPanel extends JPanel implements ActionListener {
 
 		return image;
 	}
+	
+	private BufferedImage resize(BufferedImage img, int newW, int newH) { 
+	    Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+	    BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
+
+	    Graphics2D g2d = dimg.createGraphics();
+	    g2d.drawImage(tmp, 0, 0, null);
+	    g2d.dispose();
+
+	    return dimg;
+	}  
 
 
 }

@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 import GUI.GamePanel;
 import GUI.InstructionPanel;
-import GUI.OptionPanel;
+import GUI.HomePanel;
 
 public class Asteria extends JFrame {
 
@@ -22,7 +22,7 @@ JPanel cardPanel;
 	    CardLayout cl = new CardLayout();
 	    cardPanel.setLayout(cl);
 	    
-		OptionPanel panel1 = new OptionPanel(this);    
+		HomePanel panel1 = new HomePanel(this);    
 	    GamePanel panel2 = new GamePanel();
 	    InstructionPanel panel3 = new InstructionPanel(this);
 	    
