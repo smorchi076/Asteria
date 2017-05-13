@@ -1,6 +1,8 @@
 package GUI;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -40,6 +42,7 @@ public class InstructionPanel extends JPanel implements ActionListener {
 
 	public void paintComponent(Graphics g)
 	{
+		BufferedImage scaledImage = getScaledImage();
 		BufferedImage i = null;
 		BufferedImage s = null;
 		BufferedImage t = null;
@@ -52,6 +55,7 @@ public class InstructionPanel extends JPanel implements ActionListener {
 			e.printStackTrace();
 		}
 		super.paintComponent(g);
+		g.drawImage(scaledImage, 0, 0, null);
 		g.drawImage(i, 190, 60, null);
 		g.drawImage(t, 305, 380, null);
 		g.drawImage(s, 255, -20, null);
@@ -62,5 +66,14 @@ public class InstructionPanel extends JPanel implements ActionListener {
 		game.changePanel("1");
 	}
 
+	private BufferedImage getScaledImage(){
+		ImageIcon backImage = new ImageIcon("resources/homeBackground.png");
+		BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2d = (Graphics2D) image.createGraphics();
+		g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY));
+		g2d.drawImage(backImage.getImage(), 0, 0,getWidth(),getHeight(), null);
+
+		return image;
+	}
 
 }
