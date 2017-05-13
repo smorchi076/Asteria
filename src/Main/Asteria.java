@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import GUI.GamePanel;
 import GUI.InstructionPanel;
+import GUI.ShopPanel;
 import GUI.HomePanel;
 
 public class Asteria extends JFrame {
@@ -25,12 +26,14 @@ JPanel cardPanel;
 		HomePanel panel1 = new HomePanel(this);    
 	    GamePanel panel2 = new GamePanel();
 	    InstructionPanel panel3 = new InstructionPanel(this);
+	    ShopPanel panel4 = new ShopPanel(this);
 	    
 	    addKeyListener(panel2.getKeyHandler());
 	
 	    cardPanel.add(panel1,"1");
 	    cardPanel.add(panel2,"2");
 	    cardPanel.add(panel3, "3");
+	    cardPanel.add(panel4, "4");
 	    add(cardPanel);
 	
 	    setVisible(true);

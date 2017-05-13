@@ -17,12 +17,12 @@ import javax.swing.JPanel;
 
 import Main.Asteria;
 
-public class InstructionPanel extends JPanel implements ActionListener {
+public class ShopPanel extends JPanel implements ActionListener {
 
 	Asteria game;
 	JButton button;
 
-	public InstructionPanel(Asteria game) {
+	public ShopPanel(Asteria game) {
 
 		this.game = game;
 
@@ -42,23 +42,8 @@ public class InstructionPanel extends JPanel implements ActionListener {
 	public void paintComponent(Graphics g)
 	{
 		BufferedImage scaledImage = getScaledImage();
-		BufferedImage i = null;
-		BufferedImage s = null;
-		BufferedImage t = null;
-		try {
-			i = ImageIO.read(new File("resources/instructionsText.png"));
-			s = ImageIO.read(new File("resources/asteriaword.png"));
-			t = ImageIO.read(new File("resources/asteriaship.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		super.paintComponent(g);
 		g.drawImage(scaledImage, 0, 0, null);
-		g.drawImage(i, 190, 60, null);
-		g.drawImage(t, 305, 380, null);
-		g.drawImage(s, 255, -20, null);
-
 	}
 
 	public void actionPerformed(ActionEvent e) {

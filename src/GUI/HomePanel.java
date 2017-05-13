@@ -15,7 +15,7 @@ import java.io.IOException;
 public class HomePanel extends JPanel implements ActionListener {
 
 	Asteria game;
-	JButton button, button2;
+	JButton button, button2, button3;
 
 	public HomePanel(Asteria game) {
 		
@@ -35,12 +35,22 @@ public class HomePanel extends JPanel implements ActionListener {
 		Icon playbutton = new ImageIcon("resources/playbutton.png");
 		button2 = new JButton(playbutton);
 		button2.addActionListener(this);
+		button2.setBounds(300, 250, 200, 200);
 
 		add(button2);
 		button2.setContentAreaFilled(false);
 		button2.setOpaque(false);
 		button2.setBorderPainted(false);
-		button2.setBounds(300, 250, 200, 200);
+		
+		Icon shopbutton = new ImageIcon("resources/shopbutton.png");
+		button3 = new JButton(shopbutton);
+		button3.addActionListener(this);
+		button3.setBounds(525, 300, 200, 100);
+
+		add(button3);
+		button3.setContentAreaFilled(false);
+		button3.setOpaque(false);
+		button3.setBorderPainted(false);
 		
 		JLabel pic = new JLabel(new ImageIcon("resources/asteriaship.png"));
 		add(pic);
@@ -55,6 +65,7 @@ public class HomePanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == button) game.changePanel("3");
 		if(e.getSource() == button2) game.changePanel("2");
+		if(e.getSource() == button3) game.changePanel("4");
 	}
 
 	public void paintComponent(Graphics g)
