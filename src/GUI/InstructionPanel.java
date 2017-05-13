@@ -31,7 +31,7 @@ public class InstructionPanel extends JPanel implements ActionListener {
 		button = new JButton(r);
 		button.addActionListener(this);
 		setLayout(null);
-		button.setBounds(0, -25, 100, 100);
+		button.setBounds(0, -5, 100, 50);
 
 		add(button);
 		button.setContentAreaFilled(false);
