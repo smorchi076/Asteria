@@ -56,14 +56,14 @@ public class ModePanel extends JPanel implements ActionListener {
 		BufferedImage scaledImage = getScaledImage();
 		BufferedImage s = null;
 		try {
-			s = ImageIO.read(new File("resources/mode.png"));
+			s = ImageIO.read(new File("resources/selectModeText.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		super.paintComponent(g);
 		g.drawImage(scaledImage, 0, 0, null);
-		g.drawImage(s, 245, -20, null);
+		g.drawImage(s, 225, -20, null);
 
 	}
 
