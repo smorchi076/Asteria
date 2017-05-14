@@ -19,7 +19,7 @@ public class Projectile extends MovingImage {
 			//if(enemy.isPointInImage(getX()+4, getY()+3)){
 				//enemy.dropHp();
 			//}
-			System.out.println("test");
+			
 			if (getX() < 0 || getX() > GamePanel.DRAWING_WIDTH || getY() < 0 || getY() > GamePanel.DRAWING_HEIGHT)
 				fizzle();
 		}
