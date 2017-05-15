@@ -9,15 +9,13 @@ import java.util.ArrayList;
 
 public class Ship extends MovingImage {
 	
-	public static final int SHIP_WIDTH = 40;
-	public static final int SHIP_HEIGHT = 60;
 	private double vY;
 	private int shootClock, hp;
 	private Projectile[] blasts = new Projectile[20];
 	private int willSlow;
 	
-	public Ship(int x, int y, String img) {
-		super(img, x, y, SHIP_WIDTH, SHIP_HEIGHT, 0);
+	public Ship(int x, int y, String img, int width, int height) {
+		super(img, x, y, width, height, 0);
 		vY = 0;
 		willSlow = 0;
 	}
