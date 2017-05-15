@@ -28,9 +28,13 @@ public class Ship extends MovingImage {
 		if(vY > -5 && vY < 5) {
 			if(dir < 0)
 				vY -= dir*.1;
+				
+				
 			if(dir > 0)
 				vY -= dir*.1;
+			
 		}
+		
 	}
 			
 	public void draw(Graphics g, ImageObserver io) {
