@@ -88,17 +88,18 @@ public class GamePanel extends JPanel implements Runnable
   public void run() {
 	while (true) { // Modify this to allow quitting
 		long startTime = System.currentTimeMillis();
+		if(keyControl.isPressed(KeyEvent.VK_SPACE))
+			ship.shoot();
 		
-		if (keyControl.isPressed(KeyEvent.VK_LEFT))
-			ship.turn(ship.getDirection()-.1);
 		if (keyControl.isPressed(KeyEvent.VK_RIGHT))
 			ship.turn(ship.getDirection()+.1);
+		if (keyControl.isPressed(KeyEvent.VK_LEFT))
+			ship.turn(ship.getDirection()-.1);
 		if (keyControl.isPressed(KeyEvent.VK_UP))
 	  		ship.move(1);
 		if(keyControl.isPressed(KeyEvent.VK_DOWN))
 			ship.move(-1);
-		if(keyControl.isPressed(KeyEvent.VK_SPACE))
-			ship.shoot();
+		
 	
 	  	ship.act(obstacles);
 	  	
