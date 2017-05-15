@@ -40,7 +40,7 @@ public class Ship extends MovingImage {
 	public void draw(Graphics g, ImageObserver io) {
 		super.draw(g, io);
 		for(int i = 0; i<blasts.length; i++){
-			if(blasts[i]!=null){
+			if(blasts[i]!=null && !blasts[i].isFizzled()){
 				blasts[i].draw(g, io);
 			}
 		}
