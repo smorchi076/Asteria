@@ -37,9 +37,11 @@ public class GamePanel extends JPanel implements Runnable
 	  //obstacles.add(new Rectangle(700,250,100,50));
 	  //obstacles.add(new Rectangle(375,300,50,100));
 	  //obstacles.add(new Rectangle(300,250,200,50));
+	  enemies.add(new Ship(DRAWING_WIDTH/2-20,50, "resources/spacestation.png", 40,40, 1));
 	  spawnNewship();
+	  
 	  new Thread(this).start();
-	  enemies.add(new Ship(DRAWING_WIDTH/2-20,50, "resources/spacestation.png", 40,40));
+
   }
 
   public void paintComponent(Graphics g)
@@ -66,6 +68,10 @@ public class GamePanel extends JPanel implements Runnable
     	g2.fill(s);
     }
     ship.draw(g2,this);
+    g.setColor(Color.RED);
+	g.fillRect(10, 10, 100, 10);
+	g.setColor(Color.GREEN);
+	g.fillRect(10, 10, ship.getHp(), 10);
     for(Ship e : enemies) {
 		e.draw(g2, this);
 		
@@ -83,7 +89,7 @@ public class GamePanel extends JPanel implements Runnable
 
   
   public void spawnNewship() {
-	  ship = new Ship(DRAWING_WIDTH/2-20,DRAWING_HEIGHT/2-30, "resources/spaceship.png", 40, 60);
+	  ship = new Ship(DRAWING_WIDTH/2-20,DRAWING_HEIGHT/2-30, "resources/spaceship.png", 40, 60, 100);
   }
   
   public KeyHandler getKeyHandler() {
@@ -111,17 +117,25 @@ public class GamePanel extends JPanel implements Runnable
 			enemies.get(i).shoot();
 			enemies.get(i).turnToward((int)(ship.getX()), (int)(ship.getY()));
 			enemies.get(i).turn(enemies.get(i).getDirection() + Math.PI);
-			enemies.get(i).move(1);
+			enemies.get(i).move(.5);
 			enemies.get(i).act(ship);
-			if(enemies.get(i).intersects(ship)) {
+			if(enemies.get(i).getHp() == 0) {
+				enemies.remove(i);
+			}
+			else if(enemies.get(i).intersects(ship)) {
 				ship.dropHp(1);
 				enemies.remove(i);
 			}
+			
 		}
 	  	ship.act(null);
 	  	
 	  	if (!screenRect.intersects(ship))
 	  		spawnNewship();
+	  	
+	  	if(ship.getHp() == 0) {
+	  		//INSERT ENDING HERE!!!!!!!!!
+	  	}
 	  	
 	  	repaint();
 	  	
