@@ -14,18 +14,20 @@ public class Ship extends MovingImage {
 	private int shootClock, hp;
 	private Projectile[] blasts = new Projectile[20];
 	private int willSlow;
+	private int speed;
 	
-	public Ship(int x, int y, String img, int width, int height, int hp) {
+	public Ship(int x, int y, String img, int width, int height, int hp, int maxSpeed) {
 		super(img, x, y, width, height, 0);
 		vY = 0;
 		willSlow = 0;
 		this.hp = hp;
+		speed = maxSpeed;
 	}
 
 	// METHODS
 	public void move(double dir) {
 		// JUMP!
-		if(vY > -5 && vY < 5) {
+		if(vY > -speed && vY < speed) {
 			if(dir < 0)
 				vY -= dir*.1;
 				
@@ -58,6 +60,13 @@ public class Ship extends MovingImage {
 		for(int i = 0; i<blasts.length; i++){
 			if(blasts[i]!=null){
 				blasts[i].act(ship);
+			}
+		}
+		if(ship != null) {
+			for(Projectile p : ship.getBullets()) {
+				if(p!=null && p.intersects(this)) {
+					dropHp(1);
+				}
 			}
 		}
 		if(vY > .2 && willSlow == 0) {
