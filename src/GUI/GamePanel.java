@@ -107,12 +107,16 @@ public class GamePanel extends JPanel implements Runnable
 		if(keyControl.isPressed(KeyEvent.VK_DOWN))
 			ship.move(-1);
 		
-		for(Ship e : enemies) {
-			e.shoot();
-			e.turnToward((int)(ship.getX()), (int)(ship.getY()));
-			e.turn(e.getDirection() + Math.PI);
-			e.move(.1);
-			e.act(obstacles);
+		for(int i = 0; i < enemies.size(); i++) {
+			enemies.get(i).shoot();
+			enemies.get(i).turnToward((int)(ship.getX()), (int)(ship.getY()));
+			enemies.get(i).turn(enemies.get(i).getDirection() + Math.PI);
+			enemies.get(i).move(1);
+			enemies.get(i).act(obstacles);
+			if(enemies.get(i).intersects(ship)) {
+				ship.dropHp(1);
+				enemies.remove(i);
+			}
 		}
 	  	ship.act(obstacles);
 	  	

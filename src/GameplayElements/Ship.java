@@ -1,5 +1,6 @@
 package GameplayElements;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
@@ -18,6 +19,7 @@ public class Ship extends MovingImage {
 		super(img, x, y, width, height, 0);
 		vY = 0;
 		willSlow = 0;
+		hp = 100;
 	}
 
 	// METHODS
@@ -37,6 +39,10 @@ public class Ship extends MovingImage {
 			
 	public void draw(Graphics g, ImageObserver io) {
 		super.draw(g, io);
+		g.setColor(Color.RED);
+		g.fillRect(10, 10, 100, 10);
+		g.setColor(Color.GREEN);
+		g.fillRect(10, 10, hp, 10);
 		for(int i = 0; i<blasts.length; i++){
 			if(blasts[i]!=null && !blasts[i].isFizzled()){
 				blasts[i].draw(g, io);
@@ -46,7 +52,7 @@ public class Ship extends MovingImage {
 		
 		
 
-	public void act(ArrayList<Shape> obstacles) {
+	public void act(Ship ship) {
 		double dir = getDirection();
 		moveByAmount(1*vY*Math.cos(dir),1*vY*Math.sin(dir));
 		if(shootClock>0)
@@ -88,6 +94,14 @@ public class Ship extends MovingImage {
 	public void dropHp(int amount)
 	{
 		hp -= amount;
+	}
+	
+	public int getHp() {
+		return hp;
+	}
+	
+	public Projectile[] getBullets() {
+		return blasts;
 	}
 
 }
