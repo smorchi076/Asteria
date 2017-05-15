@@ -112,13 +112,13 @@ public class GamePanel extends JPanel implements Runnable
 			enemies.get(i).turnToward((int)(ship.getX()), (int)(ship.getY()));
 			enemies.get(i).turn(enemies.get(i).getDirection() + Math.PI);
 			enemies.get(i).move(1);
-			enemies.get(i).act(obstacles);
+			enemies.get(i).act(ship);
 			if(enemies.get(i).intersects(ship)) {
 				ship.dropHp(1);
 				enemies.remove(i);
 			}
 		}
-	  	ship.act(obstacles);
+	  	ship.act(null);
 	  	
 	  	if (!screenRect.intersects(ship))
 	  		spawnNewship();
