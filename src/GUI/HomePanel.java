@@ -74,7 +74,7 @@ public class HomePanel extends JPanel implements ActionListener {
 		BufferedImage gameLogo = null;
 		BufferedImage word = null;
 		try {
-			 gameLogo = ImageIO.read(new File("resources/afterburner.png"));
+			 gameLogo = ImageIO.read(new File("resources/homeScreenLogo.png"));
 			 //gameLogo = resize(gameLogo, 150,150);
 			 word = ImageIO.read(new File("resources/asteriaword.png"));
 			 
