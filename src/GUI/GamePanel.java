@@ -39,7 +39,7 @@ public class GamePanel extends JPanel implements Runnable
 	  //obstacles.add(new Rectangle(300,250,200,50));
 	  spawnNewship();
 	  new Thread(this).start();
-	  enemies.add(new Ship(DRAWING_WIDTH/2-Ship.SHIP_WIDTH/2,50));
+	  enemies.add(new Ship(DRAWING_WIDTH/2-Ship.SHIP_WIDTH/2,50, "resources/spaceship.png"));
   }
 
   public void paintComponent(Graphics g)
@@ -83,7 +83,7 @@ public class GamePanel extends JPanel implements Runnable
 
   
   public void spawnNewship() {
-	  ship = new Ship(DRAWING_WIDTH/2-Ship.SHIP_WIDTH/2,DRAWING_HEIGHT/2-Ship.SHIP_HEIGHT/2);
+	  ship = new Ship(DRAWING_WIDTH/2-Ship.SHIP_WIDTH/2,DRAWING_HEIGHT/2-Ship.SHIP_HEIGHT/2, "resources/spaceship.png");
   }
   
   public KeyHandler getKeyHandler() {

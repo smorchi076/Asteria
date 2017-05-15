@@ -16,8 +16,8 @@ public class Ship extends MovingImage {
 	private Projectile[] blasts = new Projectile[20];
 	private int willSlow;
 	
-	public Ship(int x, int y) {
-		super("resources/spaceship.png", x, y, SHIP_WIDTH, SHIP_HEIGHT, 0);
+	public Ship(int x, int y, String img) {
+		super(img, x, y, SHIP_WIDTH, SHIP_HEIGHT, 0);
 		vY = 0;
 		willSlow = 0;
 	}
