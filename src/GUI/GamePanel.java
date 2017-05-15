@@ -21,6 +21,7 @@ public class GamePanel extends JPanel implements Runnable
 	
   private Ship ship;
   private ArrayList<Shape> obstacles;
+  private ArrayList<Ship> enemies;
   
   private KeyHandler keyControl;
 
@@ -30,6 +31,7 @@ public class GamePanel extends JPanel implements Runnable
 	  keyControl = new KeyHandler(); 
 	  screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 	  obstacles = new ArrayList<Shape>();
+	  enemies = new ArrayList<Ship>();
 	  //obstacles.add(new Rectangle(200,400,400,50));
 	  //obstacles.add(new Rectangle(0,250,100,50));
 	  //obstacles.add(new Rectangle(700,250,100,50));
@@ -37,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable
 	  //obstacles.add(new Rectangle(300,250,200,50));
 	  spawnNewship();
 	  new Thread(this).start();
+	  enemies.add(new Ship(DRAWING_WIDTH/2-Ship.SHIP_WIDTH/2,50));
   }
 
   public void paintComponent(Graphics g)
@@ -63,7 +66,10 @@ public class GamePanel extends JPanel implements Runnable
     	g2.fill(s);
     }
     ship.draw(g2,this);
-    
+    for(Ship e : enemies) {
+		e.draw(g2, this);
+		
+	}
     
     g2.setTransform(at);
     
@@ -77,7 +83,7 @@ public class GamePanel extends JPanel implements Runnable
 
   
   public void spawnNewship() {
-	  ship = new Ship(DRAWING_WIDTH/2-Ship.SHIP_WIDTH/2,50);
+	  ship = new Ship(DRAWING_WIDTH/2-Ship.SHIP_WIDTH/2,DRAWING_HEIGHT/2-Ship.SHIP_HEIGHT/2);
   }
   
   public KeyHandler getKeyHandler() {
@@ -101,7 +107,13 @@ public class GamePanel extends JPanel implements Runnable
 		if(keyControl.isPressed(KeyEvent.VK_DOWN))
 			ship.move(-1);
 		
-	
+		for(Ship e : enemies) {
+			e.shoot();
+			e.turnToward((int)(ship.getX()), (int)(ship.getY()));
+			e.turn(e.getDirection() + Math.PI);
+			e.move(.1);
+			e.act(obstacles);
+		}
 	  	ship.act(obstacles);
 	  	
 	  	if (!screenRect.intersects(ship))
@@ -119,6 +131,9 @@ public class GamePanel extends JPanel implements Runnable
 	}
   }
   
+  public void addEnemy(Ship e) {
+		enemies.add(e);
+  }
 
 
   public class KeyHandler implements KeyListener {
@@ -158,5 +173,5 @@ public class GamePanel extends JPanel implements Runnable
 		return image;
 	}
 
-
+	
 }
