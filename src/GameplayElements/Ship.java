@@ -17,7 +17,7 @@ public class Ship extends MovingImage {
 	private int willSlow;
 	
 	public Ship(int x, int y) {
-		super("resources/spaceship.png", x, y, SHIP_WIDTH, SHIP_HEIGHT);
+		super("resources/spaceship.png", x, y, SHIP_WIDTH, SHIP_HEIGHT, 0);
 		vY = 0;
 		willSlow = 0;
 	}

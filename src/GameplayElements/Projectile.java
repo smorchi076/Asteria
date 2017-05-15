@@ -1,21 +1,22 @@
 package GameplayElements;
 
+import java.awt.Graphics;
+import java.awt.image.ImageObserver;
+
 import GUI.GamePanel;
 
 public class Projectile extends MovingImage {
 
 		private boolean isFizzled;
-		private double dir;
 		
 		public Projectile(int x, int y, double dir) {
-			super("resources/bullet.png", x, y, 20, 15);
+			super("resources/bullet.png", x, y, 20, 15, dir);
 			// TODO Auto-generated constructor stub
 			isFizzled = false;
-			this.dir = dir;
 		}
 		public void act(Ship enemy) {
 			// FALL!
-			moveByAmount(15*Math.cos(dir-Math.PI),15*Math.sin(dir-Math.PI));
+			moveByAmount(15*Math.cos(getDirection()-Math.PI),15*Math.sin(getDirection()-Math.PI));
 			//if(enemy.isPointInImage(getX()+4, getY()+3)){
 				//enemy.dropHp();
 			//}
@@ -30,5 +31,9 @@ public class Projectile extends MovingImage {
 		
 		public boolean isFizzled(){
 			return isFizzled;
+		}
+		
+		public void draw(Graphics g, ImageObserver io) {
+			super.draw(g, io);
 		}
 }

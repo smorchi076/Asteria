@@ -18,9 +18,9 @@ private double dir;
 private boolean isVisible;
 
 	// CONSTRUCTORS
-	public MovingImage(String filename, int x, int y, int w, int h) {
+	public MovingImage(String filename, int x, int y, int w, int h, double dir) {
 		this((new ImageIcon(filename)).getImage(),x,y,w,h);
-		dir = 0;
+		this.dir = dir;
 		isVisible = true;
 	}
 	
