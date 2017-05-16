@@ -159,7 +159,7 @@ public class GamePanel extends JPanel implements Runnable
 				enemies.remove(i);
 			}
 			else if(enemies.get(i).intersects(ship)) {
-				ship.dropHp(1);
+				ship.dropHp(enemies.get(i).getHp());
 				enemies.remove(i);
 			}
 		}

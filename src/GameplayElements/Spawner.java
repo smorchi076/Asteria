@@ -48,7 +48,7 @@ public class Spawner extends MovingImage {
 				ships.remove(j);
 			}
 			else if(ships.get(j).intersects(ship)) {
-				ship.dropHp(1);
+				ship.dropHp(ships.get(j).getHp());
 				ships.remove(j);
 			}
 		}
