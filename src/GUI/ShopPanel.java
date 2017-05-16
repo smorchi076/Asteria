@@ -71,7 +71,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 		g.drawImage(damage, 50, 270, null);
 		g.drawImage(shield, 50, 370, null);
 		g.drawImage(rof, 50, 470, null);
-		g.drawImage(upgradesWord, 0, 200, null);
+		g.drawImage(upgradesWord, 240, -20, null);
 		
 		
 	}
