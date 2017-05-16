@@ -29,8 +29,8 @@ public class Ship extends MovingImage {
 	// METHODS
 	public void move(double dir) {
 		// JUMP!
-		if(vY > -speed && vY < speed) {
-			if(dir < 0)
+		if(vY > -speed && vY <= 0) {
+			if(dir < 0 && vY <= .1)
 				vY -= dir*.1;
 				
 				
@@ -77,6 +77,8 @@ public class Ship extends MovingImage {
 		} else if(vY < -.1 && willSlow == 0) {
 			vY -= vY/5.0 - .1;
 		} else if(vY<.1 && vY>-.1) {
+			vY = 0;
+		} else if(vY >= 0) {
 			vY = 0;
 		}
 		if(willSlow == 0)
