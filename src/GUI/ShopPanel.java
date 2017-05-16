@@ -22,7 +22,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 
 	Asteria game;
 	JButton button;
-	JButton[] upgrades = new JButton[5];
+	JButton[] upgradeButtons = new JButton[5];
 	JProgressBar progressBar;
 
 	public ShopPanel(Asteria game) {
@@ -40,54 +40,54 @@ public class ShopPanel extends JPanel implements ActionListener {
 		button.setBorderPainted(false);
 
 		Icon a = new ImageIcon("resources/upgradePlusSign.png");
-		upgrades[0] = new JButton(a);
-		upgrades[0].addActionListener(this);
+		upgradeButtons[0] = new JButton(a);
+		upgradeButtons[0].addActionListener(this);
 		setLayout(null);
-		upgrades[0].setBounds(700, 77, 60, 60);
-		add(upgrades[0]);
-		upgrades[0].setContentAreaFilled(false);
-		upgrades[0].setOpaque(false);
-		upgrades[0].setBorderPainted(false);
+		upgradeButtons[0].setBounds(700, 77, 60, 60);
+		add(upgradeButtons[0]);
+		upgradeButtons[0].setContentAreaFilled(false);
+		upgradeButtons[0].setOpaque(false);
+		upgradeButtons[0].setBorderPainted(false);
 		
 		Icon b = new ImageIcon("resources/upgradePlusSign.png");
-		upgrades[1] = new JButton(b);
-		upgrades[1].addActionListener(this);
+		upgradeButtons[1] = new JButton(b);
+		upgradeButtons[1].addActionListener(this);
 		setLayout(null);
-		upgrades[1].setBounds(700, 177, 60, 60);
-		add(upgrades[1]);
-		upgrades[1].setContentAreaFilled(false);
-		upgrades[1].setOpaque(false);
-		upgrades[1].setBorderPainted(false);
+		upgradeButtons[1].setBounds(700, 177, 60, 60);
+		add(upgradeButtons[1]);
+		upgradeButtons[1].setContentAreaFilled(false);
+		upgradeButtons[1].setOpaque(false);
+		upgradeButtons[1].setBorderPainted(false);
 
 		Icon c = new ImageIcon("resources/upgradePlusSign.png");
-		upgrades[2] = new JButton(c);
-		upgrades[2].addActionListener(this);
+		upgradeButtons[2] = new JButton(c);
+		upgradeButtons[2].addActionListener(this);
 		setLayout(null);
-		upgrades[2].setBounds(700, 277, 60, 60);
-		add(upgrades[2]);
-		upgrades[2].setContentAreaFilled(false);
-		upgrades[2].setOpaque(false);
-		upgrades[2].setBorderPainted(false);
+		upgradeButtons[2].setBounds(700, 277, 60, 60);
+		add(upgradeButtons[2]);
+		upgradeButtons[2].setContentAreaFilled(false);
+		upgradeButtons[2].setOpaque(false);
+		upgradeButtons[2].setBorderPainted(false);
 
 		Icon d = new ImageIcon("resources/upgradePlusSign.png");
-		upgrades[3] = new JButton(d);
-		upgrades[3].addActionListener(this);
+		upgradeButtons[3] = new JButton(d);
+		upgradeButtons[3].addActionListener(this);
 		setLayout(null);
-		upgrades[3].setBounds(700, 377, 60, 60);
-		add(upgrades[3]);
-		upgrades[3].setContentAreaFilled(false);
-		upgrades[3].setOpaque(false);
-		upgrades[3].setBorderPainted(false);
+		upgradeButtons[3].setBounds(700, 377, 60, 60);
+		add(upgradeButtons[3]);
+		upgradeButtons[3].setContentAreaFilled(false);
+		upgradeButtons[3].setOpaque(false);
+		upgradeButtons[3].setBorderPainted(false);
 
 		Icon e = new ImageIcon("resources/upgradePlusSign.png");
-		upgrades[4] = new JButton(e);
-		upgrades[4].addActionListener(this);
+		upgradeButtons[4] = new JButton(e);
+		upgradeButtons[4].addActionListener(this);
 		setLayout(null);
-		upgrades[4].setBounds(700, 477, 60, 60);
-		add(upgrades[4]);
-		upgrades[4].setContentAreaFilled(false);
-		upgrades[4].setOpaque(false);
-		upgrades[4].setBorderPainted(false);
+		upgradeButtons[4].setBounds(700, 477, 60, 60);
+		add(upgradeButtons[4]);
+		upgradeButtons[4].setContentAreaFilled(false);
+		upgradeButtons[4].setOpaque(false);
+		upgradeButtons[4].setBorderPainted(false);
 
 
 	}
