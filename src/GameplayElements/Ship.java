@@ -15,6 +15,7 @@ public class Ship extends MovingImage {
 	private Projectile[] blasts = new Projectile[20];
 	private int willSlow;
 	private int speed;
+	private int sj;
 	
 	public Ship(int x, int y, String img, int width, int height, int hp, int maxSpeed, double dir) {
 		super(img, x, y, width, height, 0);
@@ -22,6 +23,7 @@ public class Ship extends MovingImage {
 		willSlow = 0;
 		this.hp = hp;
 		speed = maxSpeed;
+		sj = 0;
 	}
 
 	// METHODS
@@ -115,5 +117,12 @@ public class Ship extends MovingImage {
 	public Projectile[] getBullets() {
 		return blasts;
 	}
-
+	
+	public void addSpaceJunk() {
+		sj++;
+	}
+	
+	public int getSpaceJunk() {
+		return sj;
+	}
 }
