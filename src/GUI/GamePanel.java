@@ -27,11 +27,6 @@ public class GamePanel extends JPanel implements Runnable
   private ArrayList<Shape> obstacles;
   private ArrayList<Spawner> enemies;
   
-  private Rectangle2D.Double visibleSpace;
-  private Rectangle2D.Double characterSpace;
-  
-  private double ratioX;
-  private double ratioY;
   
   private KeyHandler keyControl;
 
@@ -41,11 +36,7 @@ public class GamePanel extends JPanel implements Runnable
 	  keyControl = new KeyHandler(); 
 	  screenRect = new Rectangle(0,0,400,400);
 	  obstacles = new ArrayList<Shape>();
-	  visibleSpace = new Rectangle2D.Double(0,this.getHeight()-400,400,400);
-	  characterSpace = new Rectangle2D.Double(visibleSpace.getX()+visibleSpace.getWidth()/5,visibleSpace.getY()+visibleSpace.getHeight()/5,visibleSpace.getWidth()*3/5,visibleSpace.getHeight()*3/5);
 	  
-	  //ratioX = (double)getWidth()/DRAWING_WIDTH;
-	  //ratioY = (double)getHeight()/DRAWING_HEIGHT;
 	  
 	  enemies = new ArrayList<Spawner>();
 	  //obstacles.add(new Rectangle(200,400,400,50));
@@ -56,11 +47,6 @@ public class GamePanel extends JPanel implements Runnable
 	  enemies.add(new Spawner(DRAWING_WIDTH/2-20,50, "resources/spacestation.png", 80,80, 10, 200));
 	  spawnNewship();
 	  
-	  
-	  addComponentListener(new ComponentAdapter() {
-		  	public void componentResized(ComponentEvent e) {ratioX = (double)e.getComponent().getWidth()/400;
-		  	ratioY = (double)e.getComponent().getHeight()/1000;}	  	
-		  	});
 	  
 	  new Thread(this).start();
 
@@ -77,12 +63,13 @@ public class GamePanel extends JPanel implements Runnable
 	Graphics2D g2 = (Graphics2D) g;
     int width = getWidth();
     int height = getHeight();
-    
+    double ratioX = width/DRAWING_WIDTH;
+	double ratioY = height/DRAWING_HEIGHT;
     
     
     AffineTransform at = g2.getTransform();
     g2.scale(ratioX, ratioY);
-    g2.translate(-visibleSpace.getX(),-visibleSpace.getY());
+    //g2.translate(-visibleSpace.getX(),-visibleSpace.getY());
 
     g.setColor(new Color(205,102,29));
     for (Shape s : obstacles) {
@@ -109,33 +96,7 @@ public class GamePanel extends JPanel implements Runnable
   }
 
   
-  public void slideWorldToImage(MovingImage img) {
-	  	Point2D.Double center = new Point2D.Double(img.getCenterX(), img.getCenterY());
-		if (!characterSpace.contains(center)) {
-			double newX = visibleSpace.getX();
-			double newY = visibleSpace.getY();
-			
-		  	if (center.getX() < characterSpace.getX()) {
-		  		newX -= (characterSpace.getX() - center.getX());
-		  	} else if (center.getX() > characterSpace.getX() + characterSpace.getWidth()) {
-		  		newX += (center.getX() - (characterSpace.getX() + characterSpace.getWidth()));
-		  	}
-		  	
-		  	if (center.getY() < characterSpace.getY()) {
-		  		newY -= (characterSpace.getY() - center.getY());
-		  	} else if (center.getY() > characterSpace.getY() + characterSpace.getHeight()) {
-		  		newY += (center.getY() - characterSpace.getY() - characterSpace.getHeight());
-		  	}
-		  	newX = Math.max(newX,0);
-		  	newY = Math.max(newY,0);
-		  	newX = Math.min(newX,this.getWidth()-visibleSpace.getWidth());
-		  	newY = Math.min(newY,this.getHeight()-visibleSpace.getHeight());
-		  	
-		  	visibleSpace.setRect(newX,newY,visibleSpace.getWidth(),visibleSpace.getHeight());
-		  	
-		  	characterSpace.setRect(visibleSpace.getX()+visibleSpace.getWidth()/5,visibleSpace.getY()+visibleSpace.getHeight()/5,visibleSpace.getWidth()*3/5,visibleSpace.getHeight()*3/5);
-		}
-	  }
+  
   
   public void spawnNewship() {
 	  ship = new Ship(DRAWING_WIDTH/2-20,DRAWING_HEIGHT/2-30, "resources/spaceship.png", 40, 60, 100, 5, 0);
@@ -176,14 +137,11 @@ public class GamePanel extends JPanel implements Runnable
 		}
 	  	ship.act(null);
 	  	
-	  	if (!screenRect.intersects(ship))
-	  		spawnNewship();
 	  	
 	  	if(ship.getHp() == 0) {
 	  		//INSERT ENDING HERE!!!!!!!!!
 	  	}
 	  	
-	  	slideWorldToImage(ship);
 	  	
 	  	repaint();
 	  	
@@ -198,14 +156,6 @@ public class GamePanel extends JPanel implements Runnable
 	
 	
   }
-  
-  public Point assumedCoordinatesToActual(Point assumed) {
-	    return new Point((int)((assumed.getX() - visibleSpace.getX())*ratioX), (int)((assumed.getY() - visibleSpace.getY())*ratioY));
-  }
-  
-  public Point actualCoordinatesToAssumed(Point actual) {
-	    return new Point((int)(actual.getX()/ratioX + visibleSpace.getX()), (int)(actual.getY()/ratioY + visibleSpace.getY()));
-	  }
 
 
 
