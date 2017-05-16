@@ -42,7 +42,7 @@ public class ModePanel extends JPanel implements ActionListener {
 		button2 = new JButton(d);
 		button2.addActionListener(this);
 		setLayout(null);
-		button2.setBounds(250, 100, 370, 100);
+		button2.setBounds(225, 100, 370, 100);
 
 		add(button2);
 		button2.setContentAreaFilled(false);
@@ -63,7 +63,7 @@ public class ModePanel extends JPanel implements ActionListener {
 		}
 		super.paintComponent(g);
 		g.drawImage(scaledImage, 0, 0, null);
-		g.drawImage(s, 225, -20, null);
+		g.drawImage(s, 200, -20, null);
 
 	}
 
