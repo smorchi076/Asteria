@@ -49,6 +49,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 		BufferedImage damage = null;
 		BufferedImage shield = null;
 		BufferedImage rof = null;
+		BufferedImage upgradesWord = null;
 		
 		 try {
 			hp = ImageIO.read(new File("resources/hpIcon.png"));
@@ -56,6 +57,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 			damage = ImageIO.read(new File("resources/damageIcon.png"));
 			shield = ImageIO.read(new File("resources/shieldIcon.png"));
 			rof = ImageIO.read(new File("resources/rofIcon.png"));
+			upgradesWord = ImageIO.read(new File("resources/upgradesWord.png"));
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -69,6 +71,8 @@ public class ShopPanel extends JPanel implements ActionListener {
 		g.drawImage(damage, 50, 270, null);
 		g.drawImage(shield, 50, 370, null);
 		g.drawImage(rof, 50, 470, null);
+		g.drawImage(upgradesWord, 0, 200, null);
+		
 		
 	}
 
