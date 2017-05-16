@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -22,7 +23,8 @@ public class ShopPanel extends JPanel implements ActionListener {
 	Asteria game;
 	JButton button;
 	JButton[] upgradeButtons = new JButton[5];
-	
+	int[] upgrades = {0, 0, 0, 0, 0};
+
 	public ShopPanel(Asteria game) {
 
 		this.game = game;
@@ -46,7 +48,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 		upgradeButtons[0].setContentAreaFilled(false);
 		upgradeButtons[0].setOpaque(false);
 		upgradeButtons[0].setBorderPainted(false);
-		
+
 		upgradeButtons[1] = new JButton(a);
 		upgradeButtons[1].addActionListener(this);
 		setLayout(null);
@@ -116,11 +118,28 @@ public class ShopPanel extends JPanel implements ActionListener {
 		g.drawImage(damage, 50, 270, null);
 		g.drawImage(shield, 50, 370, null);
 		g.drawImage(rof, 50, 470, null);
-		g.drawImage(upgradesWord, 240, -20, null);		
+		g.drawImage(upgradesWord, 240, -20, null);
+
+		for(int i=0; i<5; i++){
+			for(int j=0; j<5; j++){
+				if(upgrades[i]>j){
+					g.setColor(Color.green);
+					g.fillRect(135 + j*110, 70 + i*100, 110, 75);
+				}
+				else{
+					g.setColor(Color.DARK_GRAY);
+					g.drawRect(135 + j*110, 70 + i*100, 110, 75);
+				}
+			}
+		}
+		repaint();
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == button) game.changePanel("1");
+		for(int i=0; i<upgradeButtons.length; i++){
+			if(e.getSource() == upgradeButtons[i] && upgrades[i]<5) upgrades[i]++;
+		}
 	}
 
 	private BufferedImage getScaledImage(){
