@@ -39,13 +39,13 @@ public class GamePanel extends JPanel implements Runnable
 	  super();
 	  
 	  keyControl = new KeyHandler(); 
-	  screenRect = new Rectangle(0,0,400,400);
+	  screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 	  obstacles = new ArrayList<Shape>();
-	  visibleSpace = new Rectangle2D.Double(0,this.getHeight()-400,400,400);
+	  visibleSpace = new Rectangle2D.Double(0,this.getHeight()-DRAWING_HEIGHT,DRAWING_WIDTH,DRAWING_HEIGHT);
 	  characterSpace = new Rectangle2D.Double(visibleSpace.getX()+visibleSpace.getWidth()/5,visibleSpace.getY()+visibleSpace.getHeight()/5,visibleSpace.getWidth()*3/5,visibleSpace.getHeight()*3/5);
 	  
-	  //ratioX = (double)getWidth()/DRAWING_WIDTH;
-	  //ratioY = (double)getHeight()/DRAWING_HEIGHT;
+	  ratioX = (double)getWidth()/DRAWING_WIDTH;
+	  ratioY = (double)getHeight()/DRAWING_HEIGHT;
 	  
 	  enemies = new ArrayList<Spawner>();
 	  //obstacles.add(new Rectangle(200,400,400,50));
@@ -58,8 +58,8 @@ public class GamePanel extends JPanel implements Runnable
 	  
 	  
 	  addComponentListener(new ComponentAdapter() {
-		  	public void componentResized(ComponentEvent e) {ratioX = (double)e.getComponent().getWidth()/400;
-		  	ratioY = (double)e.getComponent().getHeight()/1000;}	  	
+		  	public void componentResized(ComponentEvent e) {ratioX = (double)e.getComponent().getWidth()/DRAWING_WIDTH;
+		  	ratioY = (double)e.getComponent().getHeight()/DRAWING_HEIGHT;}	  	
 		  	});
 	  
 	  new Thread(this).start();
@@ -185,6 +185,7 @@ public class GamePanel extends JPanel implements Runnable
 	  	
 	  	slideWorldToImage(ship);
 	  	
+	  	
 	  	repaint();
 	  	
 	  	long waitTime = 17 - (System.currentTimeMillis()-startTime);
@@ -199,13 +200,7 @@ public class GamePanel extends JPanel implements Runnable
 	
   }
   
-  public Point assumedCoordinatesToActual(Point assumed) {
-	    return new Point((int)((assumed.getX() - visibleSpace.getX())*ratioX), (int)((assumed.getY() - visibleSpace.getY())*ratioY));
-  }
   
-  public Point actualCoordinatesToAssumed(Point actual) {
-	    return new Point((int)(actual.getX()/ratioX + visibleSpace.getX()), (int)(actual.getY()/ratioY + visibleSpace.getY()));
-	  }
 
 
 
