@@ -36,14 +36,40 @@ public class ShopPanel extends JPanel implements ActionListener {
 		button.setContentAreaFilled(false);
 		button.setOpaque(false);
 		button.setBorderPainted(false);
+		
+		
 
 	}
 
 	public void paintComponent(Graphics g)
 	{
 		BufferedImage scaledImage = getScaledImage();
+		BufferedImage hp = null;
+		BufferedImage speed = null;
+		BufferedImage damage = null;
+		BufferedImage shield = null;
+		BufferedImage rof = null;
+		
+		 try {
+			hp = ImageIO.read(new File("resources/hpIcon.png"));
+			speed = ImageIO.read(new File("resources/speedIcon.png"));
+			damage = ImageIO.read(new File("resources/damageIcon.png"));
+			shield = ImageIO.read(new File("resources/shieldIcon.png"));
+			rof = ImageIO.read(new File("resources/rofIcon.png"));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		super.paintComponent(g);
 		g.drawImage(scaledImage, 0, 0, null);
+		g.drawImage(hp, 50, 100, null);
+		g.drawImage(speed, 50, 150, null);
+		g.drawImage(damage, 50, 200, null);
+		g.drawImage(shield, 50, 250, null);
+		g.drawImage(rof, 50, 300, null);
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
