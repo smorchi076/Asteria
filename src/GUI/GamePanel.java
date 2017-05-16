@@ -185,6 +185,7 @@ public class GamePanel extends JPanel implements Runnable
 	  	
 	  	slideWorldToImage(ship);
 	  	
+	  	
 	  	repaint();
 	  	
 	  	long waitTime = 17 - (System.currentTimeMillis()-startTime);
