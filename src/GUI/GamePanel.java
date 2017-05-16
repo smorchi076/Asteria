@@ -17,6 +17,7 @@ public class GamePanel extends JPanel implements Runnable
   public static final int DRAWING_WIDTH = 800;
   public static final int DRAWING_HEIGHT = 600;
   
+  
   private Rectangle screenRect;
 	
   private Ship ship;
@@ -53,7 +54,6 @@ public class GamePanel extends JPanel implements Runnable
     g.drawImage(scaledImage,0,0,null);
     
 	Graphics2D g2 = (Graphics2D) g;
-	
     int width = getWidth();
     int height = getHeight();
     
@@ -69,16 +69,16 @@ public class GamePanel extends JPanel implements Runnable
     }
     ship.draw(g2,this);
     g.setColor(Color.RED);
-	g.fillRect(10, 10, 100, 10);
+	g.fillRect((int)ship.getCenterX() - DRAWING_WIDTH/2 + 10, (int)ship.getCenterY() - DRAWING_HEIGHT/2 + 10, 100, 10);
 	g.setColor(Color.GREEN);
-	g.fillRect(10, 10, ship.getHp(), 10);
+	g.fillRect((int)ship.getCenterX() - DRAWING_WIDTH/2 + 10, (int)ship.getCenterY() - DRAWING_HEIGHT/2 + 10, ship.getHp(), 10);
     for(Spawner e : enemies) {
-		e.draw(g2, this);
-		
+		e.draw(g2, this);	
 	}
     
     g2.setTransform(at);
     
+
    
     
     
