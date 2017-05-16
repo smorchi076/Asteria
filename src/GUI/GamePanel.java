@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements Runnable
 	  //obstacles.add(new Rectangle(700,250,100,50));
 	  //obstacles.add(new Rectangle(375,300,50,100));
 	  //obstacles.add(new Rectangle(300,250,200,50));
-	  enemies.add(new Spawner(DRAWING_WIDTH/2-20,50, "resources/spacestation.png", 80,80, 10, 10));
+	  enemies.add(new Spawner(DRAWING_WIDTH/2-20,50, "resources/spacestation.png", 80,80, 10, 200));
 	  spawnNewship();
 	  
 	  new Thread(this).start();
@@ -114,19 +114,6 @@ public class GamePanel extends JPanel implements Runnable
 			ship.move(-1);
 		
 		for(int i = 0; i < enemies.size(); i++) {
-			for(int j = 0; j < enemies.get(i).getShips().size(); j++){
-				enemies.get(i).getShips().get(j).shoot();
-				enemies.get(i).getShips().get(j).turnToward((int)(ship.getX()), (int)(ship.getY()));
-				enemies.get(i).getShips().get(j).turn(enemies.get(i).getDirection() + Math.PI);
-				enemies.get(i).getShips().get(j).move(1);
-				if(enemies.get(i).getShips().get(j).getHp() == 0) {
-					enemies.get(i).remove(j);
-				}
-				else if(enemies.get(i).getShips().get(j).intersects(ship)) {
-					ship.dropHp(1);
-					enemies.get(i).remove(j);
-				}
-			}
 			enemies.get(i).act(ship);
 			if(enemies.get(i).getHp() == 0) {
 				enemies.remove(i);

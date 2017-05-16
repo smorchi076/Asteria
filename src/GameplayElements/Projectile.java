@@ -26,7 +26,7 @@ public class Projectile extends MovingImage {
 			if (getX() < 0 || getX() > GamePanel.DRAWING_WIDTH || getY() < 0 || getY() > GamePanel.DRAWING_HEIGHT)
 				fizzle();
 		}
-		private void fizzle(){
+		public void fizzle(){
 			toggleVisibility();
 			isFizzled = true;
 		}
