@@ -89,7 +89,7 @@ public class GamePanel extends JPanel implements Runnable
 
   
   public void spawnNewship() {
-	  ship = new Ship(DRAWING_WIDTH/2-20,DRAWING_HEIGHT/2-30, "resources/spaceship.png", 40, 60, 100, 5);
+	  ship = new Ship(DRAWING_WIDTH/2-20,DRAWING_HEIGHT/2-30, "resources/spaceship.png", 40, 60, 100, 5, 0);
   }
   
   public KeyHandler getKeyHandler() {

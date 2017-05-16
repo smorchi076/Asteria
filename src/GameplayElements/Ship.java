@@ -16,7 +16,7 @@ public class Ship extends MovingImage {
 	private int willSlow;
 	private int speed;
 	
-	public Ship(int x, int y, String img, int width, int height, int hp, int maxSpeed) {
+	public Ship(int x, int y, String img, int width, int height, int hp, int maxSpeed, double dir) {
 		super(img, x, y, width, height, 0);
 		vY = 0;
 		willSlow = 0;
