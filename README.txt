@@ -71,8 +71,6 @@ FileIO - stores game to text file and saves current state using Serializable
 Package:GUI
 GameFrame - Represents the overall layout of the game screens
 HomePanel- Holds graphics for the intro screen
-PanelListener - Recognizes actions between screens
-BankPanel - Panel representing a BankAccount and button to enter shop
 BuyablePanel - A single item in the shop with an image and option to purchase
 InstructionPanel - Contains the instructions for the game	
 GameModePanel - Contains the game modes for the game
@@ -85,5 +83,5 @@ MissionFinishPanel (constructor takes in # representing amount of space junk col
 
 Responsibilities List:
 Garrett: Gameplay elements
-Sahil: Map,GUI
-Gilbert: FileIO, GUI,controls
+Sahil: Map,GUI(HomePanel, ShopPanel, ModePanel, MissionFinishPanel)
+Gilbert: FileIO, GUI(InstructionPanel, ShopPanel, AbilityPanel, ModePanel),controls
