@@ -180,7 +180,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == button) game.changePanel("1");
 		for(int i=0; i<upgradeButtons.length; i++){
-			if(e.getSource() == upgradeButtons[i] && upgrades[i]<5){
+			if(e.getSource() == upgradeButtons[i] && upgrades[i]<=5){
 				if(money > 0){
 				removeMoney(100);
 				upgrades[i]++;
@@ -217,7 +217,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 	public int removeMoney(int amount){
 		if(money > 0){
 		return money-=amount;
-		}
+		} 
 		return 0;
 	}
 
