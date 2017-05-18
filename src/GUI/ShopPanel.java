@@ -18,6 +18,10 @@ import javax.swing.JPanel;
 
 import Main.Asteria;
 
+/**
+ * This class represents the Shop screen.
+ *
+ */
 public class ShopPanel extends JPanel implements ActionListener {
 
 	Asteria game;
@@ -25,6 +29,10 @@ public class ShopPanel extends JPanel implements ActionListener {
 	JButton[] upgradeButtons = new JButton[5];
 	int[] upgrades = {0, 0, 0, 0, 0};
 
+	/**
+	 * Creates an instance of the Shop screen with purchasable upgrades
+	 * @param game the game that this panel is corresponding to.
+	 */
 	public ShopPanel(Asteria game) {
 
 		this.game = game;
@@ -88,6 +96,11 @@ public class ShopPanel extends JPanel implements ActionListener {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * Draws the images and repaints continuously 
+	 * @param g the Graphics object used to draw the images.
+	 */
 	public void paintComponent(Graphics g)
 	{
 		BufferedImage scaledImage = getScaledImage();
@@ -135,6 +148,11 @@ public class ShopPanel extends JPanel implements ActionListener {
 		repaint();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * Checks to see if user wants to go back to home screen, 
+	 * or wants to upgrade his ship
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == button) game.changePanel("1");
 		for(int i=0; i<upgradeButtons.length; i++){
