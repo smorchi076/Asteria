@@ -4,13 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 
-public class Boss1 extends MovingImage{
+public class Boss3 extends MovingImage{
 
 	private Projectile[] blasts = new Projectile[40];
 	private int shootClock;
 	private int hp;
 	
-	public Boss1(int x, int y, String img, int width, int height) {
+	public Boss3(int x, int y, String img, int width, int height) {
 		super(img, x, y, width, height, 0);
 		hp = 30;
 	}

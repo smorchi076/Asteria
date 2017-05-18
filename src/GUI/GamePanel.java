@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
-import GameplayElements.Boss1;
+import GameplayElements.Boss3;
 import GameplayElements.MovingImage;
 import GameplayElements.Ship;
 import GameplayElements.Spawner;
@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements Runnable
   private Ship ship;
   private ArrayList<Shape> obstacles;
   private ArrayList<Spawner> enemies;
-  private Boss1 boss;
+  private Boss3 boss;
   
   
   private Rectangle2D.Double visibleSpace;
@@ -59,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable
 	  ratioY = (double)getHeight()/DRAWING_HEIGHT;
 	  
 	  enemies = new ArrayList<Spawner>();
-	  boss = new Boss1(DRAWING_WIDTH/2-20,50,"resources/Boss1.png",100, 100);
+	  boss = new Boss3(DRAWING_WIDTH/2-20,50,"resources/Boss1.png",100, 100);
 	  //obstacles.add(new Rectangle(200,400,400,50));
 	  //obstacles.add(new Rectangle(0,250,100,50));
 	  //obstacles.add(new Rectangle(700,250,100,50));
