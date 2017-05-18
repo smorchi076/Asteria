@@ -34,7 +34,7 @@ public class Boss3 extends MovingImage{
 		if(shootClock==0){
 			for(int i=0; i<blasts.length; i++){
 				if(blasts[i]==null || blasts[i].isFizzled()){
-					blasts[i] = new Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + Math.PI, "resources/Boss1Projectile.png");
+					blasts[i] = new Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + Math.PI, "resources/Boss3Projectile.png");
 					shootClock = 1;
 					break;
 				}
@@ -50,8 +50,6 @@ public class Boss3 extends MovingImage{
 		if(Math.abs(dir1-dir2) > .01) {
 			super.turn(dir1 - dir2);
 		}
-		double dir3 = super.getDirection();
-		System.out.println(dir1 + " " + dir2 + " " + dir3);
 		if(shootClock>0)
 			shootClock--;
 		for(int i = 0; i<blasts.length; i++){
