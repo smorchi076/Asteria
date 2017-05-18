@@ -17,11 +17,20 @@ import javax.swing.JPanel;
 
 import Main.Asteria;
 
+/**
+ * This class represents the Instructions screen.
+ * @author Feng
+ *
+ */
 public class InstructionPanel extends JPanel implements ActionListener {
 
 	Asteria game;
 	JButton button;
-
+	
+	/**
+	 * Creates an instance of the Instructions screen
+	 * @param game the game that this panel is corresponding to.
+	 */
 	public InstructionPanel(Asteria game) {
 
 		this.game = game;
@@ -39,6 +48,11 @@ public class InstructionPanel extends JPanel implements ActionListener {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * Draws the images
+	 * @param g the Graphics object used to draw the images.
+	 */
 	public void paintComponent(Graphics g)
 	{
 		BufferedImage scaledImage = getScaledImage();
@@ -61,6 +75,10 @@ public class InstructionPanel extends JPanel implements ActionListener {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * Checks to see if user wants to go back to home screen
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == button) game.changePanel("1");
 	}
