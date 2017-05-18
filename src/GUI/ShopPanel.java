@@ -208,15 +208,39 @@ public class ShopPanel extends JPanel implements ActionListener {
 		return image;
 	}
 	
+	/**
+	 * Adds money
+	 * @param amount amount to be added
+	 * @return new sum of money
+	 */
 	public int addMoney(int amount){
 		return money+=amount;
 	}
 	
+	/**
+	 * Removes money if money is greater than or equal to 100
+	 * @param amount amount to be removed
+	 * @return new sum of money
+	 */
 	public int removeMoney(int amount){
-		if(money > 0){
+		if(money >= 100){
 		return money-=amount;
 		} 
 		return 0;
+	}
+	/**
+	 * Gets your current amount of money
+	 * @return
+	 */
+	public int getMoney(){
+		return money;
+	}
+	/**
+	 * Sets the current upgrades to the ship
+	 * @param arr
+	 */
+	public void setUpgrades(int[] arr){
+		
 	}
 
 }
