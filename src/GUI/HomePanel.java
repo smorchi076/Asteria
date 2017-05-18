@@ -11,12 +11,19 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-
+/**
+ * Represents the main menu of the game
+ * @author sahil
+ *
+ */
 public class HomePanel extends JPanel implements ActionListener {
 
 	Asteria game;
 	JButton button, button2, button3;
-
+/**
+ * Creates an instance of the main menu
+ * @param game
+ */
 	public HomePanel(Asteria game) {
 		
 		this.game = game;
@@ -61,13 +68,19 @@ public class HomePanel extends JPanel implements ActionListener {
 		//add(pic);
 
 	}
-
+/**
+ * {@inheritDoc}
+ * Checks to see what page to go to after a button is clicked
+ */
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == button) game.changePanel("3");
 		if(e.getSource() == button2) game.changePanel("5");
 		if(e.getSource() == button3) game.changePanel("4");
 	}
-
+/**
+ * {@inheritDoc}
+ * Draws images to panel
+ */
 	public void paintComponent(Graphics g)
 	{
 		BufferedImage scaledImage = getScaledImage();

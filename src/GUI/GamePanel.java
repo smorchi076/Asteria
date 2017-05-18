@@ -74,8 +74,9 @@ public class GamePanel extends JPanel implements Runnable
   }
 
   /**
+   * {@inheritDoc}
    * Paints the items in the world onto the screen
-   * @param g draws using graphics 
+   * 
    */
   public void paintComponent(Graphics g)
   {
@@ -240,15 +241,17 @@ public class GamePanel extends JPanel implements Runnable
 		  keys = new ArrayList<Integer>(10);
 	  }
 	  /**
+	   * {@inheritDoc}
 	   * Adds key to set if pressed
-	   * @param e key event
+	   *
 	   */
 	  public void keyPressed(KeyEvent e) {
 		  keys.add(e.getKeyCode());
 	  }
 	  /**
+	   * {@inheritDoc}
 	   * If key is released it is removed from set
-	   * @param e key event
+	   * 
 	   */
 	  public void keyReleased(KeyEvent e) {
 		  Integer code = e.getKeyCode();
@@ -257,7 +260,7 @@ public class GamePanel extends JPanel implements Runnable
 	  }
 	  /**
 	   * Adds key if key is typed
-	   * @param e key event
+	   * 
 	   */
 	  public void keyTyped(KeyEvent e) {
 
@@ -271,10 +274,7 @@ public class GamePanel extends JPanel implements Runnable
 		  return keys.contains(code);
 	  }
   }
-  /**
-   * Generates scaled image for background
-   * @return scaled image
-   */
+  
 	private BufferedImage getScaledImage(){
 		ImageIcon backImage = new ImageIcon("resources/background.png");
 		BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);

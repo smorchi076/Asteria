@@ -10,11 +10,18 @@ import GUI.InstructionPanel;
 import GUI.ModePanel;
 import GUI.ShopPanel;
 import GUI.HomePanel;
-
+/**
+ * Represents the Asteria game
+ * @author sahil
+ *
+ */
 public class Asteria extends JFrame {
 
 JPanel cardPanel;
-	
+	/**
+	 * Creates an instance of the Asteria game
+	 * @param title title of the game displayed
+	 */
 	public Asteria(String title) {
 		super(title);
 		setBounds(100, 100, 800, 600);
@@ -41,12 +48,18 @@ JPanel cardPanel;
 	
 	    setVisible(true);
 	}
-
+	/**
+	 * Where game is created
+	 * 
+	 */
 	public static void main(String[] args)
 	{
 		Asteria game = new Asteria("Asteria");
 	}
-  
+  /**
+   * Changes panel
+   * @param name corresponds to a panel
+   */
 	public void changePanel(String name) {
 		((CardLayout)cardPanel.getLayout()).show(cardPanel,name);
 		requestFocus();
