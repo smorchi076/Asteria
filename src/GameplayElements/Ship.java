@@ -135,7 +135,7 @@ public class Ship extends MovingImage {
 			for(int i=0; i<blasts.length; i++){
 				if(blasts[i]==null || blasts[i].isFizzled()){
 					blasts[i] = new Projectile((int)(getX()), (int)(getY()+getHeight()/2 - 5), super.getDirection(), "resources/bullet.png");
-					shootClock = 20;
+					shootClock = 20-rof;
 					break;
 				}
 			}
@@ -148,10 +148,13 @@ public class Ship extends MovingImage {
 	 */
 	public void dropHp(int amount)
 	{
-		if(invul == 0) {
-			hp = hp - amount;
-			invul = 10;
+		if(shield == 0){
+			if(invul == 0) {
+				hp = hp - amount;
+				invul = 10;
+			}
 		}
+		dropShield(amount);
 	}
 	
 	/**
@@ -168,6 +171,18 @@ public class Ship extends MovingImage {
 	 */
 	public void setHp(int amount) {
 		hp = amount;
+	}
+	
+	public void dropShield(int amount)
+	{
+		if(invul == 0) {
+			shield = shield - amount;
+			invul = 10;
+		}
+		if(shield < 0) {
+			dropHp(0-shield);
+			shield = 0;
+		}
 	}
 	
 	/**
