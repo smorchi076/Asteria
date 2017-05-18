@@ -4,7 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
-
+/**Models a spawner object that creates other ships
+ * 
+ * @author Garrett Cotter
+ *
+ */
 public class Spawner extends MovingImage {
 	
 	private int hp;
@@ -12,6 +16,16 @@ public class Spawner extends MovingImage {
 	private int spawnTimer;
 	private ArrayList<Ship> ships;
 	
+	/**Creates a new spawner object
+	 * 
+	 * @param x the x coordinate
+	 * @param y the y coordinate
+	 * @param img the filename for the image to be used
+	 * @param width the width of the spawner
+	 * @param height the height of the spawner
+	 * @param hp the hp of the spawner
+	 * @param rateOfSpawn the speed at which enemies are spawned
+	 */
 	public Spawner(int x, int y, String img, int width, int height, int hp, int rateOfSpawn) {
 		super(img, x, y, width, height, 0);
 		this.hp = hp;
@@ -19,6 +33,11 @@ public class Spawner extends MovingImage {
 		spawnTimer = 0;
 		ships = new ArrayList<Ship>();
 	}
+	
+	/**Draws the spawner
+	 * @param g graphics used to draw image
+	 * @param io recives information about image as it is being updated
+	 */
 	public void draw(Graphics g, ImageObserver io) {
 		
 		super.draw(g, io);
@@ -33,7 +52,10 @@ public class Spawner extends MovingImage {
 		
 	}
 	
-	
+	/**acts the spawner and all of the ships it has spawned
+	 * 
+	 * @param ship the players ship
+	 */
 	public void act(Ship ship) {
 		
 		if(spawnTimer == 0){
@@ -71,25 +93,35 @@ public class Spawner extends MovingImage {
 			s.act(ship);
 		}
 	}
-
+	/**reduces the spawner's hp by that amount
+	 * 
+	 * @param amount the amount of hp to be lost
+	 */
 	public void dropHp(int amount)
 	{
 		hp = hp - amount;
 	}
 	
+	
+	/**
+	 * 
+	 * @return the spawner's hp
+	 */
 	public int getHp() {
 		return hp;
 	}
-	
+	/**sets the spawners hp
+	 * 
+	 * @param amount the amount to be set to
+	 */
 	public void setHp(int amount) {
 		hp = amount;
 	}
-	
+	/**
+	 * 
+	 * @return all of the ships this spawner has spawned
+	 */
 	public ArrayList<Ship> getShips() {
 		return ships;
-	}
-	
-	public void remove(int index) {
-		ships.remove(index);
 	}
 }

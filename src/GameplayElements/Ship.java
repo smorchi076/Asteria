@@ -7,7 +7,11 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
-
+/**A class modeling a ship object
+ * 
+ * @author Garrett Cotter
+ *
+ */
 public class Ship extends MovingImage {
 	
 	private double vY;
@@ -17,6 +21,17 @@ public class Ship extends MovingImage {
 	private int speed;
 	private int sj;
 	
+	/**Creates a new ship object
+	 * 
+	 * @param x the x coordinate
+	 * @param y the y coordinate
+	 * @param img the filename for the image to be used
+	 * @param width the width of the ship
+	 * @param height the height of the ship
+	 * @param hp the hp of the ship
+	 * @param maxSpeed the maximum speed of the ship
+	 * @param dir the starting direction of the ship
+	 */
 	public Ship(int x, int y, String img, int width, int height, int hp, int maxSpeed, double dir) {
 		super(img, x, y, width, height, 0);
 		vY = 0;
@@ -27,6 +42,10 @@ public class Ship extends MovingImage {
 	}
 
 	// METHODS
+	/**Increases the velocity of the ship
+	 * 
+	 * @param dir the direction of the velocity, positive for forward, negative for backwards
+	 */
 	public void move(double dir) {
 		// JUMP!
 		if(vY > -speed && vY <= 0) {
@@ -40,7 +59,11 @@ public class Ship extends MovingImage {
 		}
 		
 	}
-			
+	/**
+	 * Draws the moving image
+	 * @param g graphics used to draw image
+	 * @param io receives information about image as it is being updated
+	 */
 	public void draw(Graphics g, ImageObserver io) {
 		super.draw(g, io);
 		
@@ -53,7 +76,10 @@ public class Ship extends MovingImage {
 	}
 		
 		
-
+	/**Acts the ship
+	 * 
+	 * @param ship the player's ship
+	 */
 	public void act(Ship ship) {
 		double dir = getDirection();
 		moveByAmount(1*vY*Math.cos(dir),1*vY*Math.sin(dir));
@@ -86,10 +112,9 @@ public class Ship extends MovingImage {
 		willSlow--;
 	}
 	
-	public void turn(Graphics g, ImageObserver io){
-		
-	}
-	
+	/**tells the ship to shoot
+	 * 
+	 */
 	public void shoot(){
 		if(shootClock==0){
 			for(int i=0; i<blasts.length; i++){
@@ -102,28 +127,50 @@ public class Ship extends MovingImage {
 		}
 		
 	}
-	
+	/**reduces the hp of the ship
+	 * 
+	 * @param amount the amount to reduce the hp by
+	 */
 	public void dropHp(int amount)
 	{
 		hp = hp - amount;
 	}
 	
+	/**
+	 * 
+	 * @return the current hp of the ship
+	 */
 	public int getHp() {
 		return hp;
 	}
 	
+	/**sets the hp of the ship
+	 * 
+	 * @param amount the amount to be set to 
+	 */
 	public void setHp(int amount) {
 		hp = amount;
 	}
 	
+	/**
+	 * 
+	 * @return the projectiles of this object
+	 */
 	public Projectile[] getBullets() {
 		return blasts;
 	}
 	
+	/**increases the money of the ship by one
+	 * 
+	 */
 	public void addSpaceJunk() {
 		sj++;
 	}
 	
+	/**
+	 * 
+	 * @return the amount of money the ship has
+	 */
 	public int getSpaceJunk() {
 		return sj;
 	}
