@@ -35,7 +35,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 	Asteria game;
 	JButton button;
 	JButton[] upgradeButtons = new JButton[5];
-	private int[] upgrades = {0, 0, 0, 0, 0};
+	private static int[] upgrades = {0, 0, 0, 0, 0};
 	private static int money = 500;
 
 	/**
@@ -234,6 +234,10 @@ public class ShopPanel extends JPanel implements ActionListener {
 	 */
 	public int getMoney(){
 		return money;
+	}
+	
+	public static int[] getUpgrades(){
+		return upgrades;
 	}
 	
 	

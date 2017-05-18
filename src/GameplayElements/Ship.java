@@ -7,6 +7,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
+
+import GUI.ShopPanel;
 /**A class modeling a ship object
  * 
  * @author Garrett Cotter
@@ -21,6 +23,15 @@ public class Ship extends MovingImage {
 	private int speed;
 	private int sj;
 	private int invul;
+	private int dmg;
+	private int shield;
+	private int rof;
+	private int upgrades[] = {0,0,0,0,0};
+	private final int STARTING_HP = 100;
+	private final int STARTING_SPEED = 5;
+	private final int STARTING_DAMAGE = 1;
+	private final int STARTING_SHIELD = 0;
+	private final int STARTING_ROF = 20;
 	
 	/**Creates a new ship object
 	 * 
@@ -97,7 +108,7 @@ public class Ship extends MovingImage {
 		if(ship != null) {
 			for(Projectile p : ship.getBullets()) {
 				if(p!=null && p.intersects(this) && !p.isFizzled()) {
-					dropHp(1);
+					dropHp(dmg + STARTING_DAMAGE);
 					p.fizzle();
 				}
 			}
@@ -180,5 +191,29 @@ public class Ship extends MovingImage {
 	 */
 	public int getSpaceJunk() {
 		return sj;
+	}
+	/**
+	 * Sets the upgrades of the ship
+	 * @param u
+	 */
+	public void setUpgrades(int[] u){
+		u = ShopPanel.getUpgrades();
+		for(int i = 0; i < u.length; i++){
+			if(i == 0){
+				hp = STARTING_HP + (u[0]*2);
+			}
+			if(i == 1){
+				speed = STARTING_SPEED + (u[1]*2);
+			}
+			if(i == 2){
+				dmg = STARTING_DAMAGE + (u[2]*2);
+			}
+			if(i == 3){
+				shield = STARTING_SHIELD + (u[3]*2);
+			}
+			if(i == 4){
+				rof = STARTING_ROF + (u[4]*2);
+			}
+		}
 	}
 }
