@@ -20,6 +20,7 @@ public class Spawner extends MovingImage {
 		ships = new ArrayList<Ship>();
 	}
 	public void draw(Graphics g, ImageObserver io) {
+		
 		super.draw(g, io);
 		g.setColor(Color.RED);
 		g.fillRect((int)getX(), (int)getY(), (int)getWidth(), 2);
@@ -29,10 +30,12 @@ public class Spawner extends MovingImage {
 		for(int i = 0; i<ships.size(); i++){
 			ships.get(i).draw(g, io);
 		}
+		
 	}
 	
 	
 	public void act(Ship ship) {
+		
 		if(spawnTimer == 0){
 			ships.add(new Ship((int)getX(), (int)getY(), "resources/spacestation.png", 40, 40, 1, 3, 0));
 			ships.get(ships.size()-1).turnToward((int)(ship.getX()), (int)(ship.getY()));
@@ -49,7 +52,8 @@ public class Spawner extends MovingImage {
 			}
 			else if(ships.get(j).intersects(ship)) {
 				ship.dropHp(ships.get(j).getHp());
-				ships.remove(j);
+				
+				
 			}
 		}
 		if(ship != null) {
@@ -59,6 +63,8 @@ public class Spawner extends MovingImage {
 					p.fizzle();
 				}
 			}
+			
+		
 		}
 		spawnTimer--;
 		for(Ship s : ships) {
