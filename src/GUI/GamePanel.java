@@ -16,7 +16,7 @@ import java.util.*;
 
 /**
  * Represents the game world
- * @author sahil
+ * @author Morchi
  *
  */
 public class GamePanel extends JPanel implements Runnable

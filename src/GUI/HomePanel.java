@@ -13,7 +13,7 @@ import java.io.IOException;
 
 /**
  * Represents the main menu of the game
- * @author sahil
+ * @author Morchi
  *
  */
 public class HomePanel extends JPanel implements ActionListener {

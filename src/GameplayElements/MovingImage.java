@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 
 /**
  * Represents a moving image in the game
- * @author sahil
+ * @author Morchi
  *
  */
 public class MovingImage extends Rectangle2D.Double {
