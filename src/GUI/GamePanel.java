@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
+import GameplayElements.Boss1;
 import GameplayElements.MovingImage;
 import GameplayElements.Ship;
 import GameplayElements.Spawner;
@@ -31,6 +32,8 @@ public class GamePanel extends JPanel implements Runnable
   private Ship ship;
   private ArrayList<Shape> obstacles;
   private ArrayList<Spawner> enemies;
+  private Boss1 boss;
+  
   
   private Rectangle2D.Double visibleSpace;
   private Rectangle2D.Double characterSpace;
@@ -56,12 +59,13 @@ public class GamePanel extends JPanel implements Runnable
 	  ratioY = (double)getHeight()/DRAWING_HEIGHT;
 	  
 	  enemies = new ArrayList<Spawner>();
+	  boss = new Boss1(DRAWING_WIDTH/2-20,50,"resources/Boss1.png",100, 100);
 	  //obstacles.add(new Rectangle(200,400,400,50));
 	  //obstacles.add(new Rectangle(0,250,100,50));
 	  //obstacles.add(new Rectangle(700,250,100,50));
 	  //obstacles.add(new Rectangle(375,300,50,100));
 	  //obstacles.add(new Rectangle(300,250,200,50));
-	  enemies.add(new Spawner(DRAWING_WIDTH/2-20,50, "resources/spacestation.png", 80,80, 10, 200));
+	  //enemies.add(new Spawner(DRAWING_WIDTH/2-20,50, "resources/spacestation.png", 80,80, 10, 200));
 	  spawnNewship();
 	  
 	  
@@ -102,6 +106,7 @@ public class GamePanel extends JPanel implements Runnable
     	g2.fill(s);
     }
     ship.draw(g2,this);
+    boss.draw(g2, this);
     g.setColor(Color.RED);
 	g.fillRect( 10,  10, 100, 10);
 	g.setColor(Color.GREEN);
@@ -199,7 +204,8 @@ public class GamePanel extends JPanel implements Runnable
 			}
 		}
 	  	ship.act(null);
-	  	
+	  	boss.act(ship);
+	  	boss.shoot();
 	  	if (!screenRect.intersects(ship))
 	  		spawnNewship();
 	  	

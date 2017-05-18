@@ -1,21 +1,31 @@
 package GameplayElements;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 
 public class Boss1 extends MovingImage{
 
-	private Projectile[] blasts = new Projectile[20];
+	private Projectile[] blasts = new Projectile[40];
 	private int shootClock;
+	private int hp;
+	private double oldX, oldY;
 	
 	public Boss1(int x, int y, String img, int width, int height) {
 		super(img, x, y, width, height, 0);
+		hp = 30;
+		oldX = x;
+		oldY = y;
 	}
 	
 	
 	public void draw(Graphics g, ImageObserver io) {
 		super.draw(g, io);
 		
+		g.setColor(Color.RED);
+		g.fillRect((int)getX(), (int)getY(), (int)getWidth(), 2);
+		g.setColor(Color.GREEN);
+		g.fillRect((int)getX(), (int)getY(), (int)(hp/30.0 * getWidth()), 2);
 		
 		for(int i = 0; i<blasts.length; i++){
 			if(blasts[i]!=null && !blasts[i].isFizzled()){
@@ -27,8 +37,8 @@ public class Boss1 extends MovingImage{
 		if(shootClock==0){
 			for(int i=0; i<blasts.length; i++){
 				if(blasts[i]==null || blasts[i].isFizzled()){
-					blasts[i] = new Projectile((int)(getX()), (int)(getY()+getHeight()/2 - 5), super.getDirection(), "resources/Boss1Projectile.png");
-					shootClock = 2;
+					blasts[i] = new Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + Math.PI, "resources/Boss1Projectile.png");
+					shootClock = 1;
 					break;
 				}
 			}
@@ -37,7 +47,7 @@ public class Boss1 extends MovingImage{
 	}
 	
 	public void act(Ship ship) {
-		super.turnToward((int)ship.getCenterX(), (int)ship.getCenterY());
+		super.turnToward((int)ship.getCenterX() - 30, (int)ship.getCenterY() - 30);
 		if(shootClock>0)
 			shootClock--;
 		for(int i = 0; i<blasts.length; i++){
