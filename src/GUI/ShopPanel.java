@@ -235,12 +235,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 	public int getMoney(){
 		return money;
 	}
-	/**
-	 * Sets the current upgrades to the ship
-	 * @param arr
-	 */
-	public void setUpgrades(int[] arr){
-		
-	}
+	
+	
 
 }
