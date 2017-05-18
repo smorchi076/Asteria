@@ -9,13 +9,10 @@ public class Boss1 extends MovingImage{
 	private Projectile[] blasts = new Projectile[40];
 	private int shootClock;
 	private int hp;
-	private double oldX, oldY;
 	
 	public Boss1(int x, int y, String img, int width, int height) {
 		super(img, x, y, width, height, 0);
 		hp = 30;
-		oldX = x;
-		oldY = y;
 	}
 	
 	
@@ -47,7 +44,14 @@ public class Boss1 extends MovingImage{
 	}
 	
 	public void act(Ship ship) {
-		super.turnToward((int)ship.getCenterX() - 30, (int)ship.getCenterY() - 30);
+		double dir1 = super.getDirection();
+		super.turnToward((int)((ship.getCenterX() - 30)), (int)((ship.getCenterY() - 30)));
+		double dir2 = super.getDirection();
+		if(Math.abs(dir1-dir2) > .01) {
+			super.turn(dir1 - dir2);
+		}
+		double dir3 = super.getDirection();
+		System.out.println(dir1 + " " + dir2 + " " + dir3);
 		if(shootClock>0)
 			shootClock--;
 		for(int i = 0; i<blasts.length; i++){
@@ -58,10 +62,14 @@ public class Boss1 extends MovingImage{
 		if(ship != null) {
 			for(Projectile p : ship.getBullets()) {
 				if(p!=null && p.intersects(this) && !p.isFizzled()) {
-					ship.dropHp(1);
+					dropHp(1);
 					p.fizzle();
 				}
 			}
 		}
+	}
+	public void dropHp(int amount)
+	{
+		hp = hp - amount;
 	}
 }
