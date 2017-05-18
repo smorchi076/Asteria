@@ -52,7 +52,7 @@ public class Spawner extends MovingImage {
 			}
 			else if(ships.get(j).intersects(ship)) {
 				ship.dropHp(ships.get(j).getHp());
-				
+				ships.remove(j);
 				
 			}
 		}
