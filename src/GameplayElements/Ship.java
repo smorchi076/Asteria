@@ -25,7 +25,9 @@ public class Ship extends MovingImage {
 	private int invul;
 	private int dmg;
 	private int shield;
+	private int maxShield;
 	private int rof;
+	private int dmgTaken;
 	private int upgrades[] = {0,0,0,0,0};
 	private final int STARTING_HP = 100;
 	private final int STARTING_SPEED = 5;
@@ -52,6 +54,7 @@ public class Ship extends MovingImage {
 		speed = maxSpeed;
 		sj = 0;
 		invul = 0;
+		dmgTaken = 0;
 	}
 
 	// METHODS
@@ -94,6 +97,9 @@ public class Ship extends MovingImage {
 	 * @param ship the player's ship
 	 */
 	public void act(Ship ship) {
+		if(dmgTaken == 0 && shield < maxShield) {
+			shield += 1;
+		}
 		if(invul > 0)
 			invul--;
 		double dir = getDirection();
@@ -109,6 +115,7 @@ public class Ship extends MovingImage {
 			for(Projectile p : ship.getBullets()) {
 				if(p!=null && p.intersects(this) && !p.isFizzled()) {
 					dropHp(dmg + STARTING_DAMAGE);
+					ship.setDmgTaken();
 					p.fizzle();
 				}
 			}
@@ -142,6 +149,12 @@ public class Ship extends MovingImage {
 		}
 		
 	}
+	
+	
+	public void setDmgTaken() {
+		dmgTaken = 100;
+	}
+	
 	/**reduces the hp of the ship
 	 * 
 	 * @param amount the amount to reduce the hp by
@@ -164,7 +177,7 @@ public class Ship extends MovingImage {
 	public int getHp() {
 		return hp;
 	}
-	
+
 	/**sets the hp of the ship
 	 * 
 	 * @param amount the amount to be set to 
@@ -183,6 +196,11 @@ public class Ship extends MovingImage {
 			dropHp(0-shield);
 			shield = 0;
 		}
+	}
+	
+	public int getShield()
+	{
+		return shield;
 	}
 	
 	/**
@@ -224,7 +242,7 @@ public class Ship extends MovingImage {
 				dmg = STARTING_DAMAGE + (u[2]*2);
 			}
 			if(i == 3){
-				shield = STARTING_SHIELD + (u[3]*2);
+				maxShield = STARTING_SHIELD + (u[3]*2);
 			}
 			if(i == 4){
 				rof = STARTING_ROF + (u[4]*2);
