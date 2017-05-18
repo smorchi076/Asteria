@@ -1,9 +1,11 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,9 +17,13 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Main.Asteria;
+
 
 /**
  * This class represents the Shop screen.
@@ -29,7 +35,8 @@ public class ShopPanel extends JPanel implements ActionListener {
 	Asteria game;
 	JButton button;
 	JButton[] upgradeButtons = new JButton[5];
-	int[] upgrades = {0, 0, 0, 0, 0};
+	private int[] upgrades = {0, 0, 0, 0, 0};
+	private static int money = 500;
 
 	/**
 	 * Creates an instance of the Shop screen with purchasable upgrades
@@ -38,6 +45,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 	public ShopPanel(Asteria game) {
 
 		this.game = game;
+		
 
 		Icon r = new ImageIcon("resources/backToHomeButton.png");
 		button = new JButton(r);
@@ -97,6 +105,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 
 
 	}
+	
 
 	/**
 	 * {@inheritDoc}
@@ -105,6 +114,9 @@ public class ShopPanel extends JPanel implements ActionListener {
 	 */
 	public void paintComponent(Graphics g)
 	{
+		
+		
+		
 		BufferedImage scaledImage = getScaledImage();
 		BufferedImage hp = null;
 		BufferedImage speed = null;
@@ -112,6 +124,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 		BufferedImage shield = null;
 		BufferedImage rof = null;
 		BufferedImage upgradesWord = null;
+		BufferedImage moneyIcon = null;
 
 		try {
 			hp = ImageIO.read(new File("resources/hpIcon.png"));
@@ -120,6 +133,8 @@ public class ShopPanel extends JPanel implements ActionListener {
 			shield = ImageIO.read(new File("resources/shieldIcon.png"));
 			rof = ImageIO.read(new File("resources/rofIcon.png"));
 			upgradesWord = ImageIO.read(new File("resources/upgradesWord.png"));
+			moneyIcon = ImageIO.read(new File("resources/moneyIcon.png"));
+			
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -134,6 +149,13 @@ public class ShopPanel extends JPanel implements ActionListener {
 		g.drawImage(shield, 50, 370, null);
 		g.drawImage(rof, 50, 470, null);
 		g.drawImage(upgradesWord, 240, -20, null);
+		g.drawImage(moneyIcon, 620,-6,null);
+		g.setColor(new Color(0,255,0));
+		Font myFont = new Font("Impact", Font.BOLD, 24);
+		g.setFont(myFont);
+	    g.drawString("$" + money, 705, 40);
+	    
+		
 
 		for(int i=0; i<5; i++){
 			for(int j=0; j<5; j++){
@@ -158,8 +180,24 @@ public class ShopPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == button) game.changePanel("1");
 		for(int i=0; i<upgradeButtons.length; i++){
-			if(e.getSource() == upgradeButtons[i] && upgrades[i]<5) upgrades[i]++;
+			if(e.getSource() == upgradeButtons[i] && upgrades[i]<5){
+				if(money > 0){
+				removeMoney(100);
+				upgrades[i]++;
+				} else {
+					setWarningMsg("Insufficient Funds!");
+				}
+			}
+			
 		}
+	}
+	
+	private void setWarningMsg(String text){
+	    Toolkit.getDefaultToolkit().beep();
+	    JOptionPane optionPane = new JOptionPane(text,JOptionPane.WARNING_MESSAGE);
+	    JDialog dialog = optionPane.createDialog("Warning!");
+	    dialog.setAlwaysOnTop(true);
+	    dialog.setVisible(true);
 	}
 
 	private BufferedImage getScaledImage(){
@@ -170,6 +208,17 @@ public class ShopPanel extends JPanel implements ActionListener {
 		g2d.drawImage(backImage.getImage(), 0, 0,getWidth(),getHeight(), null);
 
 		return image;
+	}
+	
+	public int addMoney(int amount){
+		return money+=amount;
+	}
+	
+	public int removeMoney(int amount){
+		if(money > 0){
+		return money-=amount;
+		}
+		return 0;
 	}
 
 }
