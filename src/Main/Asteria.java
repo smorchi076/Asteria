@@ -13,7 +13,7 @@ import GUI.ShopPanel;
 import GUI.HomePanel;
 /**
  * Represents the Asteria game
- * @author sahil
+ * @author Morchi
  *
  */
 public class Asteria extends JFrame {
