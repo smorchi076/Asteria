@@ -20,6 +20,7 @@ import Main.Asteria;
 
 /**
  * This class represents the Shop screen.
+ * @author Feng
  *
  */
 public class ShopPanel extends JPanel implements ActionListener {
