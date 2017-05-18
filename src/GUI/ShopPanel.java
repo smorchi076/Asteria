@@ -184,6 +184,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 				upgrades[i]++;
 				} else {
 					setWarningMsg("Insufficient Funds!");
+					
 				}
 			}
 			
