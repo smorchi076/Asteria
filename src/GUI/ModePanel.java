@@ -1,6 +1,5 @@
 package GUI;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -18,11 +17,20 @@ import javax.swing.JPanel;
 
 import Main.Asteria;
 
+/**
+ * This class represents the mode selection screen.
+ * @author Feng
+ *
+ */
 public class ModePanel extends JPanel implements ActionListener {
 
 	Asteria game;
 	JButton button, button2;
-
+	
+	/**
+	 * Creates an instance of the mode selection screen
+	 * @param game the game that this panel is corresponding to.
+	 */
 	public ModePanel(Asteria game) {
 
 		this.game = game;
@@ -51,6 +59,11 @@ public class ModePanel extends JPanel implements ActionListener {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * Draws the images
+	 * @param g the Graphics object used to draw the images.
+	 */
 	public void paintComponent(Graphics g)
 	{
 		BufferedImage scaledImage = getScaledImage();
@@ -67,6 +80,11 @@ public class ModePanel extends JPanel implements ActionListener {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * Checks to see if user wants to go back to home screen, 
+	 * or selects a mode
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == button) game.changePanel("1");
 		if(e.getSource() == button2) game.changePanel("2");
