@@ -20,6 +20,7 @@ public class Ship extends MovingImage {
 	private int willSlow;
 	private int speed;
 	private int sj;
+	private int invul;
 	
 	/**Creates a new ship object
 	 * 
@@ -39,6 +40,7 @@ public class Ship extends MovingImage {
 		this.hp = hp;
 		speed = maxSpeed;
 		sj = 0;
+		invul = 0;
 	}
 
 	// METHODS
@@ -81,6 +83,8 @@ public class Ship extends MovingImage {
 	 * @param ship the player's ship
 	 */
 	public void act(Ship ship) {
+		if(invul > 0)
+			invul--;
 		double dir = getDirection();
 		moveByAmount(1*vY*Math.cos(dir),1*vY*Math.sin(dir));
 		if(shootClock>0)
@@ -119,7 +123,7 @@ public class Ship extends MovingImage {
 		if(shootClock==0){
 			for(int i=0; i<blasts.length; i++){
 				if(blasts[i]==null || blasts[i].isFizzled()){
-					blasts[i] = new Projectile((int)(getX()), (int)(getY()+getHeight()/2 - 5), super.getDirection());
+					blasts[i] = new Projectile((int)(getX()), (int)(getY()+getHeight()/2 - 5), super.getDirection(), "resources/bullet.png");
 					shootClock = 20;
 					break;
 				}
@@ -133,7 +137,10 @@ public class Ship extends MovingImage {
 	 */
 	public void dropHp(int amount)
 	{
-		hp = hp - amount;
+		if(invul == 0) {
+			hp = hp - amount;
+			invul = 10;
+		}
 	}
 	
 	/**

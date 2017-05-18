@@ -15,6 +15,7 @@ public class Spawner extends MovingImage {
 	private int spawnRate;
 	private int spawnTimer;
 	private ArrayList<Ship> ships;
+	private int invul;
 	
 	/**Creates a new spawner object
 	 * 
@@ -32,6 +33,7 @@ public class Spawner extends MovingImage {
 		spawnRate = rateOfSpawn;
 		spawnTimer = 0;
 		ships = new ArrayList<Ship>();
+		invul = 0;
 	}
 	
 	/**Draws the spawner
@@ -57,7 +59,8 @@ public class Spawner extends MovingImage {
 	 * @param ship the players ship
 	 */
 	public void act(Ship ship) {
-		
+		if(invul > 0)
+			invul--;
 		if(spawnTimer == 0){
 			ships.add(new Ship((int)getX(), (int)getY(), "resources/spacestation.png", 40, 40, 1, 3, 0));
 			ships.get(ships.size()-1).turnToward((int)(ship.getX()), (int)(ship.getY()));
@@ -99,7 +102,10 @@ public class Spawner extends MovingImage {
 	 */
 	public void dropHp(int amount)
 	{
-		hp = hp - amount;
+		if(invul == 0) {
+			hp = hp - amount;
+			invul = 10;
+		}
 	}
 	
 	

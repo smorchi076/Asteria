@@ -103,9 +103,9 @@ public class GamePanel extends JPanel implements Runnable
     }
     ship.draw(g2,this);
     g.setColor(Color.RED);
-	g.fillRect((int)ship.getCenterX() - DRAWING_WIDTH/2 + 10, (int)ship.getCenterY() - DRAWING_HEIGHT/2 + 10, 100, 10);
+	g.fillRect( 10,  10, 100, 10);
 	g.setColor(Color.GREEN);
-	g.fillRect((int)ship.getCenterX() - DRAWING_WIDTH/2 + 10, (int)ship.getCenterY() - DRAWING_HEIGHT/2 + 10, ship.getHp(), 10);
+	g.fillRect(10,  10, ship.getHp(), 10);
     for(Spawner e : enemies) {
 		e.draw(g2, this);	
 	}
@@ -195,7 +195,7 @@ public class GamePanel extends JPanel implements Runnable
 			}
 			else if(enemies.get(i).intersects(ship)) {
 				ship.dropHp(enemies.get(i).getHp());
-				enemies.remove(i);
+				enemies.get(i).dropHp(1);;
 			}
 		}
 	  	ship.act(null);

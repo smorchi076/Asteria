@@ -20,8 +20,8 @@ public class Projectile extends MovingImage {
 		 * @param y
 		 * @param dir
 		 */
-		public Projectile(int x, int y, double dir) {
-			super("resources/bullet.png", x, y, 20, 15, dir);
+		public Projectile(int x, int y, double dir, String img) {
+			super(img, x, y, 20, 15, dir);
 			// TODO Auto-generated constructor stub
 			isFizzled = false;
 		}
