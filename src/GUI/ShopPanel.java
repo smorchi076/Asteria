@@ -115,8 +115,6 @@ public class ShopPanel extends JPanel implements ActionListener {
 	public void paintComponent(Graphics g)
 	{
 		
-		
-		
 		BufferedImage scaledImage = getScaledImage();
 		BufferedImage hp = null;
 		BufferedImage speed = null;
@@ -180,7 +178,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == button) game.changePanel("1");
 		for(int i=0; i<upgradeButtons.length; i++){
-			if(e.getSource() == upgradeButtons[i] && upgrades[i]<=5){
+			if(e.getSource() == upgradeButtons[i] && upgrades[i]<5){
 				if(money > 0){
 				removeMoney(100);
 				upgrades[i]++;
