@@ -14,7 +14,11 @@ import GameplayElements.Spawner;
 
 import java.util.*;
 
-
+/**
+ * Represents the game world
+ * @author sahil
+ *
+ */
 public class GamePanel extends JPanel implements Runnable
 {
   public static final int DRAWING_WIDTH = 800;
@@ -35,6 +39,9 @@ public class GamePanel extends JPanel implements Runnable
   
   private KeyHandler keyControl;
 
+  /**
+   * Creates a default instance of the game panel
+   */
   public GamePanel () {
 	  super();
 	  
@@ -66,6 +73,10 @@ public class GamePanel extends JPanel implements Runnable
 
   }
 
+  /**
+   * Paints the items in the world onto the screen
+   * @param g draws using graphics 
+   */
   public void paintComponent(Graphics g)
   {
     super.paintComponent(g);  // Call JPanel's paintComponent method to paint the background
@@ -108,7 +119,10 @@ public class GamePanel extends JPanel implements Runnable
 	// TODO Add any custom drawings here
   }
 
-  
+  /**
+   * Moves the background when the image is near the bounds
+   * @param img moving image
+   */
   public void slideWorldToImage(MovingImage img) {
 	  	Point2D.Double center = new Point2D.Double(img.getCenterX(), img.getCenterY());
 		if (!characterSpace.contains(center)) {
@@ -137,15 +151,23 @@ public class GamePanel extends JPanel implements Runnable
 		}
 	  }
   
+  /**
+   * Creates a new instance of a ship
+   */
   public void spawnNewship() {
 	  ship = new Ship(DRAWING_WIDTH/2-20,DRAWING_HEIGHT/2-30, "resources/spaceship.png", 40, 60, 100, 5, 0);
   }
-  
+  /**
+   * Gets the key handler
+   * @return key control
+   */
   public KeyHandler getKeyHandler() {
 	  return keyControl;
   }
 
-
+/**
+ * Runs the thread
+ */
   public void run() {
 	while (true) { // Modify this to allow quitting
 		long startTime = System.currentTimeMillis();
@@ -203,34 +225,56 @@ public class GamePanel extends JPanel implements Runnable
   
 
 
-
+/**
+ * Represents the Key Handler
+ * @author sahil
+ *
+ */
   public class KeyHandler implements KeyListener {
 
 	  private ArrayList<Integer> keys;
-
+	  /**
+	   * Creates default instance of the key handler
+	   */
 	  public KeyHandler() {
 		  keys = new ArrayList<Integer>(10);
 	  }
-
+	  /**
+	   * Adds key to set if pressed
+	   * @param e key event
+	   */
 	  public void keyPressed(KeyEvent e) {
 		  keys.add(e.getKeyCode());
 	  }
-
+	  /**
+	   * If key is released it is removed from set
+	   * @param e key event
+	   */
 	  public void keyReleased(KeyEvent e) {
 		  Integer code = e.getKeyCode();
 		  while(keys.contains(code))
 			  keys.remove(code);
 	  }
-
+	  /**
+	   * Adds key if key is typed
+	   * @param e key event
+	   */
 	  public void keyTyped(KeyEvent e) {
 
 	  }
-	  
+	  /**Returns if key has been pressed or not
+	   * 
+	   * @param code code of key
+	   * @return true if key has been pressed, false otherwise
+	   */
 	  public boolean isPressed(int code) {
 		  return keys.contains(code);
 	  }
   }
-  
+  /**
+   * Generates scaled image for background
+   * @return scaled image
+   */
 	private BufferedImage getScaledImage(){
 		ImageIcon backImage = new ImageIcon("resources/background.png");
 		BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
