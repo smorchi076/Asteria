@@ -190,7 +190,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 				removeMoney(100);
 				upgrades[i]++;
 				ship = new Ship(DRAWING_WIDTH/2-20,DRAWING_HEIGHT/2-30, "resources/spaceship.png", 40, 60, 100, 5, 0);
-				
+				ship.setUpgrades(upgrades);
 				} else {
 					setWarningMsg("Insufficient Funds!");
 					

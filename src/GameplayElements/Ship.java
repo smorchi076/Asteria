@@ -48,7 +48,7 @@ public class Ship extends MovingImage {
 	 */
 	public Ship(int x, int y, String img, int width, int height, int hp, int maxSpeed, double dir) {
 		super(img, x, y, width, height, 0);
-		setUpgrades(upgrades);
+		//setUpgrades(upgrades);
 		vY = 0;
 		willSlow = 0;
 		this.hp = hp;
@@ -253,7 +253,7 @@ public class Ship extends MovingImage {
 			}
 			if(i == 4){
 				rof = STARTING_ROF + (u[4]*2);
-				System.out.print(rof);
+				//System.out.print(rof);
 			}
 		}
 	}

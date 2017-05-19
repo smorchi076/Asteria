@@ -1,6 +1,7 @@
 package Main;
 
 import java.awt.CardLayout;
+import java.awt.Component;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -46,6 +47,8 @@ JPanel cardPanel;
 	    cardPanel.add(panel4, "4");
 	    cardPanel.add(panel5, "5");
 	    add(cardPanel);
+	    
+	    
 	
 	    setVisible(true);
 	}
