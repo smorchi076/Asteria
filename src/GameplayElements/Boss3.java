@@ -70,4 +70,8 @@ public class Boss3 extends MovingImage{
 	{
 		hp = hp - amount;
 	}
+	
+	public int getHp(){
+		return hp;
+	}
 }

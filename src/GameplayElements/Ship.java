@@ -26,15 +26,15 @@ public class Ship extends MovingImage {
 	private int dmg;
 	private int shield;
 	private int maxShield;
-	private int rof=20;
+	private int rof;
 	private int dmgTaken;
 	private int upgrades[] = {0,0,0,0,0};
 	private final int STARTING_HP = 100;
 	private final int STARTING_SPEED = 5;
 	private final int STARTING_DAMAGE = 1;
 	private final int STARTING_SHIELD = 0;
-	private final int STARTING_ROF = 20;
-	int kills = 0;
+	private final int STARTING_ROF = 0;
+	private static int kills = 0;
 	
 	/**Creates a new ship object
 	 * 
@@ -53,10 +53,12 @@ public class Ship extends MovingImage {
 		vY = 0;
 		willSlow = 0;
 		this.hp = hp;
+		rof= 0; 
 		speed = maxSpeed;
 		sj = 0;
 		invul = 0;
 		dmgTaken = 0;
+		System.out.println("test");
 	}
 
 	
@@ -147,6 +149,7 @@ public class Ship extends MovingImage {
 				if(blasts[i]==null || blasts[i].isFizzled()){
 					blasts[i] = new Projectile((int)(getX()), (int)(getY()+getHeight()/2 - 5), super.getDirection(), "resources/bullet.png");
 					shootClock = 20-rof;
+					//System.out.println(rof);
 					break;
 				}
 			}
@@ -254,7 +257,7 @@ public class Ship extends MovingImage {
 			}
 			if(i == 4){
 				rof = STARTING_ROF + (u[4]*2);
-				//System.out.print(rof);
+				System.out.print(rof);
 			}
 		}
 	}

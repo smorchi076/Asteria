@@ -62,14 +62,15 @@ public class GamePanel extends JPanel implements Runnable
 	  ratioY = (double)getHeight()/DRAWING_HEIGHT;
 	  
 	  enemies = new ArrayList<Spawner>();
-	 // boss = new Boss3(DRAWING_WIDTH/2-20,50,"resources/Boss1.png",100, 100);
+	  boss = new Boss3(DRAWING_WIDTH/2-20,50,"resources/Boss1.png",100, 100);
 	  //obstacles.add(new Rectangle(200,400,400,50));
 	  //obstacles.add(new Rectangle(0,250,100,50));
 	  //obstacles.add(new Rectangle(700,250,100,50));
 	  //obstacles.add(new Rectangle(375,300,50,100));
 	  //obstacles.add(new Rectangle(300,250,200,50));
 	  //enemies.add(new Spawner(DRAWING_WIDTH/2-20,50, "resources/spacestation.png", 80,80, 10, 200));
-	  spawnNewship();
+	  if(ship== null)
+		 spawnNewship();
 	  
 	  
 	  addComponentListener(new ComponentAdapter() {
@@ -109,14 +110,14 @@ public class GamePanel extends JPanel implements Runnable
     	g2.fill(s);
     }
     ship.draw(g2,this);
-    //boss.draw(g2, this);
+    boss.draw(g2, this);
     g.setColor(Color.RED);
 	g.fillRect(10,  20, 100, 10);
 	g.setColor(Color.GREEN);
 	g.fillRect(10,  20, ship.getHp(), 10);
 	g.setColor(Color.BLUE);
 	g.fillRect(10,  10, ship.getShield() + 2, 10);
-	System.out.println(ship.getShield());
+	//System.out.println(ship.getShield());
     for(Spawner e : enemies) {
 		e.draw(g2, this);	
 	}
@@ -214,8 +215,11 @@ public class GamePanel extends JPanel implements Runnable
 			}
 		}
 	  	ship.act(null);
-	  	//boss.act(ship);
-	  	//boss.shoot();
+	  	boss.act(ship);
+	  	boss.shoot();
+	  	if(boss.getHp() == 0){
+	  		game.changePanel("7");
+	  	}
 	  	if (!screenRect.intersects(ship))
 	  		spawnNewship();
 	  	
