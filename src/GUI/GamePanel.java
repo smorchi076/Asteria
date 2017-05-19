@@ -292,6 +292,12 @@ public class GamePanel extends JPanel implements Runnable
 	  }
   }
   
+  public static int generateMoney(int amount){
+	return amount;
+	
+	 
+  }
+  
 	private BufferedImage getScaledImage(){
 		ImageIcon backImage = new ImageIcon("resources/background.png");
 		BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);

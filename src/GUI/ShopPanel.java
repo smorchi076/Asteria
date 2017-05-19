@@ -242,7 +242,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 	 * Gets your current amount of money
 	 * @return
 	 */
-	public int getMoney(){
+	public static int getMoney(){
 		return money;
 	}
 	
