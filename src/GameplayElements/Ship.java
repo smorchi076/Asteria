@@ -34,6 +34,7 @@ public class Ship extends MovingImage {
 	private final int STARTING_DAMAGE = 1;
 	private final int STARTING_SHIELD = 0;
 	private final int STARTING_ROF = 20;
+	int kills = 0;
 	
 	/**Creates a new ship object
 	 * 
