@@ -198,6 +198,8 @@ public class GamePanel extends JPanel implements Runnable
 			ship.move(-1);
 		if(keyControl.isPressed(KeyEvent.VK_ESCAPE))
 			game.changePanel("1");
+		if(keyControl.isPressed(KeyEvent.VK_BACK_SLASH))
+			game.changePanel("7");
 		
 		
 		
