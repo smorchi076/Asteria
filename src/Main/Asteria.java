@@ -33,7 +33,7 @@ JPanel cardPanel;
 	    cardPanel.setLayout(cl);
 	    
 		HomePanel panel1 = new HomePanel(this);    
-	    GamePanel panel2 = new GamePanel();
+	    GamePanel panel2 = new GamePanel(this);
 	    InstructionPanel panel3 = new InstructionPanel(this);
 	    ShopPanel panel4 = new ShopPanel(this);
 	    ModePanel panel5 = new ModePanel(this);

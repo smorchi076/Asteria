@@ -22,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import GameplayElements.Ship;
 import Main.Asteria;
 
 
@@ -33,10 +34,16 @@ import Main.Asteria;
 public class ShopPanel extends JPanel implements ActionListener {
 
 	Asteria game;
+	
 	JButton button;
 	JButton[] upgradeButtons = new JButton[5];
+
+	private Ship ship;
 	private static int[] upgrades = {0, 0, 0, 0, 0};
 	private static int money = 500;
+	public static final int DRAWING_WIDTH = 800;
+	public static final int DRAWING_HEIGHT = 600;
+	
 
 	/**
 	 * Creates an instance of the Shop screen with purchasable upgrades
@@ -182,6 +189,8 @@ public class ShopPanel extends JPanel implements ActionListener {
 				if(money > 0){
 				removeMoney(100);
 				upgrades[i]++;
+				ship = new Ship(DRAWING_WIDTH/2-20,DRAWING_HEIGHT/2-30, "resources/spaceship.png", 40, 60, 100, 5, 0);
+				
 				} else {
 					setWarningMsg("Insufficient Funds!");
 					

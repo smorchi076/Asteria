@@ -48,6 +48,7 @@ public class Ship extends MovingImage {
 	 */
 	public Ship(int x, int y, String img, int width, int height, int hp, int maxSpeed, double dir) {
 		super(img, x, y, width, height, 0);
+		setUpgrades(upgrades);
 		vY = 0;
 		willSlow = 0;
 		this.hp = hp;
@@ -56,6 +57,8 @@ public class Ship extends MovingImage {
 		invul = 0;
 		dmgTaken = 0;
 	}
+
+	
 
 	// METHODS
 	/**Increases the velocity of the ship

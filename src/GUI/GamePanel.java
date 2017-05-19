@@ -12,6 +12,7 @@ import GameplayElements.Boss3;
 import GameplayElements.MovingImage;
 import GameplayElements.Ship;
 import GameplayElements.Spawner;
+import Main.Asteria;
 
 import java.util.*;
 
@@ -26,7 +27,7 @@ public class GamePanel extends JPanel implements Runnable
   public static final int DRAWING_HEIGHT = 600;
  
   
-  
+  Asteria game;
   private Rectangle screenRect;
 	
   private Ship ship;
@@ -46,8 +47,10 @@ public class GamePanel extends JPanel implements Runnable
   /**
    * Creates a default instance of the game panel
    */
-  public GamePanel () {
+  public GamePanel (Asteria game) {
 	  super();
+	  
+	  this.game = game;
 	  
 	  keyControl = new KeyHandler(); 
 	  screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
@@ -193,6 +196,8 @@ public class GamePanel extends JPanel implements Runnable
 	  		ship.move(1);
 		if(keyControl.isPressed(KeyEvent.VK_DOWN))
 			ship.move(-1);
+		if(keyControl.isPressed(KeyEvent.VK_ESCAPE))
+			game.changePanel("1");
 		
 		
 		
