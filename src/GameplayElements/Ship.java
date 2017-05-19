@@ -26,7 +26,7 @@ public class Ship extends MovingImage {
 	private int dmg;
 	private int shield;
 	private int maxShield;
-	private int rof;
+	private int rof=20;
 	private int dmgTaken;
 	private int upgrades[] = {0,0,0,0,0};
 	private final int STARTING_HP = 100;
@@ -237,18 +237,23 @@ public class Ship extends MovingImage {
 		for(int i = 0; i < u.length; i++){
 			if(i == 0){
 				hp = STARTING_HP + (u[0]*2);
+				//System.out.print(hp);
 			}
 			if(i == 1){
 				speed = STARTING_SPEED + (u[1]*2);
+				//System.out.print(speed);
 			}
 			if(i == 2){
 				dmg = STARTING_DAMAGE + (u[2]*2);
+				//System.out.print(dmg);
 			}
 			if(i == 3){
 				maxShield = STARTING_SHIELD + (u[3]*2);
+				//System.out.print(dmg);
 			}
 			if(i == 4){
 				rof = STARTING_ROF + (u[4]*2);
+				System.out.print(rof);
 			}
 		}
 	}
