@@ -1,6 +1,8 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -33,7 +35,7 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 	public MissionCompletePanel(Asteria game) {
 
 		this.game = game;
-
+		moneyEarned = GamePanel.generateMoney();
 		Icon r = new ImageIcon("resources/backToHomeButton.png");
 		button = new JButton(r);
 		button.addActionListener(this);
@@ -47,7 +49,7 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 		Icon continueIcon = new ImageIcon("resources/continue.png");
 		button2 = new JButton(continueIcon);
 		button2.addActionListener(this);
-		button2.setBounds(400,225, 130, 130);
+		button2.setBounds(400,350, 130, 130);
 		setLayout(null);
 		add(button2);
 		button2.setContentAreaFilled(false);
@@ -57,7 +59,7 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 		Icon home = new ImageIcon("resources/house.png");
 		button3 = new JButton(home);
 		button3.addActionListener(this);
-		button3.setBounds(230,225 , 130, 130);
+		button3.setBounds(230,350, 130, 130);
 		setLayout(null);
 		add(button3);
 		button3.setContentAreaFilled(false);
@@ -82,7 +84,7 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 		try {
 			completed = ImageIO.read(new File("resources/missionComplete.png"));
 			s = ImageIO.read(new File("resources/asteriaword.png"));
-			t = ImageIO.read(new File("resources/asteriaship.png"));
+			t = ImageIO.read(new File("resources/moneyIcon.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,8 +92,12 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 		super.paintComponent(g);
 		g.drawImage(scaledImage, 0, 0, null);
 		g.drawImage(completed, 100, 100, null);
-		g.drawImage(t, 305, 380, null);
+		g.drawImage(t, 305, 225, null);
 		g.drawImage(s, 255, -20, null);
+		g.setColor(new Color(0,255,0));
+		Font myFont = new Font("Impact", Font.BOLD, 48);
+		g.setFont(myFont);
+		g.drawString("+" + moneyEarned, 400, 275);
 
 	}
 
@@ -131,6 +137,7 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 
 		return image;
 	}
+	
 	
 	
 

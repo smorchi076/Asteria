@@ -37,6 +37,7 @@ public class GamePanel extends JPanel implements Runnable
   private ArrayList<Shape> obstacles;
   private ArrayList<Spawner> enemies;
   private Boss3 boss;
+  private static int killCount;
   
   
   private Rectangle2D.Double visibleSpace;
@@ -54,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable
 	  super();
 	  
 	  this.game = game;
-	  
+	  killCount = 0;
 	  keyControl = new KeyHandler(); 
 	  screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 	  obstacles = new ArrayList<Shape>();
@@ -64,6 +65,7 @@ public class GamePanel extends JPanel implements Runnable
 	  ratioX = (double)getWidth()/DRAWING_WIDTH;
 	  ratioY = (double)getHeight()/DRAWING_HEIGHT;
 	  
+	
 	  enemies = new ArrayList<Spawner>();
 	  boss = new Boss3(DRAWING_WIDTH/2-20,50,"resources/Boss1.png",100, 100);
 	  //obstacles.add(new Rectangle(200,400,400,50));
@@ -211,6 +213,7 @@ public class GamePanel extends JPanel implements Runnable
 			enemies.get(i).act(ship);
 			if(enemies.get(i).getHp() == 0) {
 				enemies.remove(i);
+				killCount++;
 			}
 			else if(enemies.get(i).intersects(ship)) {
 				ship.dropHp(enemies.get(i).getHp());
@@ -256,7 +259,7 @@ public class GamePanel extends JPanel implements Runnable
 
 /**
  * Represents the Key Handler
- * @author sahil
+ * @author Morchi
  *
  */
   public class KeyHandler implements KeyListener {
@@ -303,11 +306,13 @@ public class GamePanel extends JPanel implements Runnable
 	  }
   }
   
-  public static int generateMoney(int amount){
-	return amount;
+  public static int generateMoney(){
+	return killCount*2;
 	
 	 
   }
+  
+ 
   
 	private BufferedImage getScaledImage(){
 		ImageIcon backImage = new ImageIcon("resources/background.png");
