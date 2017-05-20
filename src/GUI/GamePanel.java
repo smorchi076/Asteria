@@ -50,7 +50,7 @@ public class GamePanel extends JPanel implements Runnable
 
 	private double ratioX;
 	private double ratioY;
-	private double scale = 0.7;
+	private double scale = 0.5;
 
 	private KeyHandler keyControl;
 
