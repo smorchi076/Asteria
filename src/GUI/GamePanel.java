@@ -50,6 +50,7 @@ public class GamePanel extends JPanel implements Runnable
 
 	private double ratioX;
 	private double ratioY;
+	private double scale = 0.7;
 
 	private KeyHandler keyControl;
 
@@ -116,7 +117,10 @@ public class GamePanel extends JPanel implements Runnable
 		Graphics2D g2 = (Graphics2D) g;
 		int width = getWidth();
 		int height = getHeight();
-
+		
+		g2.translate(width/2, height/2);
+		g2.scale(scale, scale);
+		g2.translate(-width/2, -height/2);
 
 
 		AffineTransform at = g2.getTransform();
@@ -386,6 +390,7 @@ public class GamePanel extends JPanel implements Runnable
 
 
 	}
-
+	
+	
 
 }
