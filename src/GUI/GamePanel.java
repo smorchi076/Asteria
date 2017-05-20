@@ -228,6 +228,7 @@ public class GamePanel extends JPanel implements Runnable
 	  		
 	  	}
 	  	if(ship.getHp()==0){
+	  		spawnNewship();
 	  		game.changePanel("6");
 	  	}
 	  	if (!screenRect.intersects(ship))
