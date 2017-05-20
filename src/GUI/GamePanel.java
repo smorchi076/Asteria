@@ -38,6 +38,8 @@ public class GamePanel extends JPanel implements Runnable
 	private ArrayList<Spawner> enemies;
 	private Boss3 boss;
 	private static int killCount = 1;
+	private static int level;
+	
 
 
 	private Rectangle2D.Double visibleSpace;
@@ -55,6 +57,7 @@ public class GamePanel extends JPanel implements Runnable
 		super();
 
 		this.game = game;
+		setLevel(1);
 		keyControl = new KeyHandler(); 
 		screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 		obstacles = new ArrayList<Shape>();
@@ -328,6 +331,43 @@ public class GamePanel extends JPanel implements Runnable
 		g2d.drawImage(backImage.getImage(), 0, 0,getWidth(),getHeight(), null);
 
 		return image;
+	}
+
+	public static int getLevel() {
+		return level;
+	}
+
+	public static void setLevel(int level) {
+		GamePanel.level = level;
+		if (level == 2) {
+
+		}
+		if (level == 3) {
+
+		}
+		if (level == 4) {
+
+		}
+		if (level == 5) {
+
+		}
+		if (level == 6) {
+
+		}
+		if (level == 7) {
+
+		}
+		if (level == 8) {
+
+		}
+		if (level == 9) {
+
+		}
+		if (level == 10) {
+
+		}
+		
+		
 	}
 
 
