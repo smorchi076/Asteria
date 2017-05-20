@@ -29,6 +29,9 @@ public class GamePanel extends JPanel implements Runnable
   
   Asteria game;
   private Rectangle screenRect;
+  
+  private boolean rightKey, leftKey, upKey, downKey;
+
 	
   private Ship ship;
   private ArrayList<Shape> obstacles;
@@ -219,6 +222,10 @@ public class GamePanel extends JPanel implements Runnable
 	  	boss.shoot();
 	  	if(boss.getHp() == 0){
 	  		game.changePanel("7");
+	  		
+	  	}
+	  	if(ship.getHp()==0){
+	  		game.changePanel("6");
 	  	}
 	  	if (!screenRect.intersects(ship))
 	  		spawnNewship();
@@ -226,6 +233,8 @@ public class GamePanel extends JPanel implements Runnable
 	  	if(ship.getHp() == 0) {
 	  		//INSERT ENDING HERE!!!!!!!!!
 	  	}
+	  	
+	  
 	  	
 	  	slideWorldToImage(ship);
 	  	

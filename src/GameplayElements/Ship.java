@@ -58,7 +58,7 @@ public class Ship extends MovingImage {
 		sj = 0;
 		invul = 0;
 		dmgTaken = 0;
-		System.out.println("test");
+		
 	}
 
 	
@@ -149,7 +149,6 @@ public class Ship extends MovingImage {
 				if(blasts[i]==null || blasts[i].isFizzled()){
 					blasts[i] = new Projectile((int)(getX()), (int)(getY()+getHeight()/2 - 5), super.getDirection(), "resources/bullet.png");
 					shootClock = 20-rof;
-					System.out.println(rof);
 					break;
 				}
 			}
