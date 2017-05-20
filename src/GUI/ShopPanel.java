@@ -38,9 +38,10 @@ public class ShopPanel extends JPanel implements ActionListener {
 	JButton button;
 	JButton[] upgradeButtons = new JButton[5];
 
-	private Ship ship;
-	private static int[] upgrades = {0, 0, 0, 0, 0};
-	private static int money = 500;
+	//private Ship ship;
+	private int[] upgrades = {0, 0, 0, 0, 0};
+	private int money;
+	private GamePanel gp;
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
 	
@@ -49,11 +50,12 @@ public class ShopPanel extends JPanel implements ActionListener {
 	 * Creates an instance of the Shop screen with purchasable upgrades
 	 * @param game the game that this panel is corresponding to.
 	 */
-	public ShopPanel(Asteria game) {
+	public ShopPanel(Asteria game, GamePanel g) {
 
 		this.game = game;
 		//updateMoney();
-
+		gp = g;
+		money = 500;
 		Icon r = new ImageIcon("resources/backToHomeButton.png");
 		button = new JButton(r);
 		button.addActionListener(this);
@@ -191,8 +193,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 				removeMoney(100);
 				upgrades[i]++;
 				System.out.println(upgrades);
-				ship = new Ship(DRAWING_WIDTH/2-20,DRAWING_HEIGHT/2-30, "resources/spaceship.png", 40, 60, 100, 5, 0);
-				ship.setUpgrades(upgrades);
+				gp.getShip().setUpgrades(upgrades);
 				} else {
 					setWarningMsg("Insufficient Funds!");
 					
@@ -244,16 +245,16 @@ public class ShopPanel extends JPanel implements ActionListener {
 	 * Gets your current amount of money
 	 * @return
 	 */
-	public static int getMoney(){
+	public int getMoney(){
 		return money;
 	}
 	
-	public static int[] getUpgrades(){
+	public int[] getUpgrades(){
 		return upgrades;
 	}
 	
-	public static void updateMoney(){
-		money = money + GamePanel.generateMoney();
+	public void updateMoney(){
+		money = money + gp.generateMoney();
 		
 	}
 	

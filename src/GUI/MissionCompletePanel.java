@@ -27,17 +27,17 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 	
 	Asteria game;
 	JButton button,button2,button3;
-	private int moneyEarned;
+	private GamePanel gp;
 	
 	
 	/**
 	 * Creates an instance of the Instructions screen
 	 * @param game the game that this panel is corresponding to.
 	 */
-	public MissionCompletePanel(Asteria game) {
+	public MissionCompletePanel(Asteria game, GamePanel g) {
 
 		this.game = game;
-		
+		gp = g;
 		
 		Icon r = new ImageIcon("resources/backToHomeButton.png");
 		button = new JButton(r);
@@ -103,7 +103,7 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 		g.setColor(new Color(0,255,0));
 		Font myFont = new Font("Impact", Font.BOLD, 48);
 		g.setFont(myFont);
-		g.drawString("+" + moneyEarned, 400, 275);
+		g.drawString("+" + gp.generateMoney(), 400, 275);
 
 	}
 
