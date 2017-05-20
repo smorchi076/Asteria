@@ -89,6 +89,12 @@ public class Ship extends MovingImage {
 	public void draw(Graphics g, ImageObserver io) {
 		super.draw(g, io);
 		
+		g.setColor(Color.RED);
+		g.fillRect((int) super.x - 30,(int) super.y-15, 100, 10);
+		g.setColor(Color.GREEN);
+		g.fillRect((int) super.x- 30,(int) super.y-15, hp, 10);
+		g.setColor(Color.BLUE);
+		g.fillRect((int) super.x - 30,(int) super.y-25, shield + 2, 10);
 		
 		for(int i = 0; i<blasts.length; i++){
 			if(blasts[i]!=null && !blasts[i].isFizzled()){
