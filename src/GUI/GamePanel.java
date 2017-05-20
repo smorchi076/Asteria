@@ -11,6 +11,7 @@ import javax.swing.*;
 import GameplayElements.Boss1;
 import GameplayElements.Boss2;
 import GameplayElements.Boss3;
+import GameplayElements.Boss4;
 import GameplayElements.MovingImage;
 import GameplayElements.Ship;
 import GameplayElements.Spawner;
@@ -38,7 +39,7 @@ public class GamePanel extends JPanel implements Runnable
 	private Ship ship;
 	private ArrayList<Shape> obstacles;
 	private ArrayList<Spawner> enemies;
-	private Boss2 boss;
+	private Boss4 boss;
 	private static int level;
 	
 
@@ -70,7 +71,7 @@ public class GamePanel extends JPanel implements Runnable
 
 
 		enemies = new ArrayList<Spawner>();
-		boss = new Boss2(DRAWING_WIDTH/2-20,50,"resources/Boss2.png",100, 100);
+		boss = new Boss4(DRAWING_WIDTH/2-20,50,"resources/Boss4.png",100, 100);
 		//obstacles.add(new Rectangle(200,400,400,50));
 		//obstacles.add(new Rectangle(0,250,100,50));
 		//obstacles.add(new Rectangle(700,250,100,50));
@@ -228,7 +229,7 @@ public class GamePanel extends JPanel implements Runnable
 			boss.act(ship);
 			boss.shoot();
 
-			if(boss.getHp() == 0){
+			if(boss.getHp() <= 0){
 				ship.addKill(10);
 				game.changePanel("7");
 
@@ -236,7 +237,7 @@ public class GamePanel extends JPanel implements Runnable
 			if(ship.getHp()==0){
 				spawnNewship();
 				enemies = new ArrayList<Spawner>();
-				boss = new Boss2(DRAWING_WIDTH/2-20,50,"resources/Boss2.png",100, 100);
+				boss = new Boss4(DRAWING_WIDTH/2-20,50,"resources/Boss4.png",100, 100);
 				game.changePanel("6");
 			}
 			if (!screenRect.intersects(ship))
