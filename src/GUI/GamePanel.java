@@ -230,9 +230,7 @@ public class GamePanel extends JPanel implements Runnable
 	  	if (!screenRect.intersects(ship))
 	  		spawnNewship();
 	  	
-	  	if(ship.getHp() == 0) {
-	  		//INSERT ENDING HERE!!!!!!!!!
-	  	}
+	  	
 	  	
 	  
 	  	
