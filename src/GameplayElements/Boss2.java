@@ -25,11 +25,15 @@ public class Boss2 extends MovingImage{
 		g.setColor(Color.RED);
 		g.fillRect((int)getX(), (int)getY(), (int)getWidth(), 2);
 		g.setColor(Color.GREEN);
+		if(waiting != 0){
+			g.setColor(Color.yellow);
+		}
 		g.fillRect((int)getX(), (int)getY(), (int)(hp/10.0 * getWidth()), 2);
 		
 		for(int i = 0; i<blasts.length; i++){
 			if(blasts[i]!=null && !blasts[i].isFizzled()){
 				blasts[i].draw(g, io);
+				
 			}
 		}
 	}

@@ -28,6 +28,8 @@ public class GamePanel extends JPanel implements Runnable
 {
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
+	public static final int ASSUMED_DRAWING_WIDTH = 400; // These numbers are way too small
+	public static final int ASSUMED_DRAWING_HEIGHT = 300; // We are only using them to zoom in on the scene
 
 
 	Asteria game;
@@ -41,7 +43,7 @@ public class GamePanel extends JPanel implements Runnable
 	private ArrayList<Spawner> enemies;
 	private Boss4 boss;
 	private static int level;
-	
+
 
 
 	private Rectangle2D.Double visibleSpace;
@@ -49,6 +51,7 @@ public class GamePanel extends JPanel implements Runnable
 
 	private double ratioX;
 	private double ratioY;
+	private double scale = 0.5;
 
 	private KeyHandler keyControl;
 
@@ -63,11 +66,14 @@ public class GamePanel extends JPanel implements Runnable
 		keyControl = new KeyHandler(); 
 		screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 		obstacles = new ArrayList<Shape>();
-		visibleSpace = new Rectangle2D.Double(0,this.getHeight()-DRAWING_HEIGHT,DRAWING_WIDTH,DRAWING_HEIGHT);
+		visibleSpace = new Rectangle2D.Double(0,DRAWING_HEIGHT-ASSUMED_DRAWING_HEIGHT,ASSUMED_DRAWING_WIDTH,ASSUMED_DRAWING_HEIGHT);
 		characterSpace = new Rectangle2D.Double(visibleSpace.getX()+visibleSpace.getWidth()/5,visibleSpace.getY()+visibleSpace.getHeight()/5,visibleSpace.getWidth()*3/5,visibleSpace.getHeight()*3/5);
+		//visibleSpace = new Rectangle2D.Double(0,this.getHeight()-DRAWING_HEIGHT,DRAWING_WIDTH,DRAWING_HEIGHT);
+		//characterSpace = new Rectangle2D.Double(visibleSpace.getX()+visibleSpace.getWidth()/5,visibleSpace.getY()+visibleSpace.getHeight()/5,visibleSpace.getWidth()*3/5,visibleSpace.getHeight()*3/5);
 
 		ratioX = (double)getWidth()/DRAWING_WIDTH;
 		ratioY = (double)getHeight()/DRAWING_HEIGHT;
+
 
 
 		enemies = new ArrayList<Spawner>();
@@ -81,10 +87,15 @@ public class GamePanel extends JPanel implements Runnable
 		//if(ship== null)
 		spawnNewship();
 
-
+		/*
 		addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent e) {ratioX = (double)e.getComponent().getWidth()/DRAWING_WIDTH;
 			ratioY = (double)e.getComponent().getHeight()/DRAWING_HEIGHT;}	  	
+		});
+		 */
+
+		addComponentListener(new ComponentAdapter() {
+			public void componentResized(ComponentEvent e) {ratioX = (double)e.getComponent().getWidth()/ASSUMED_DRAWING_WIDTH;ratioY = (double)e.getComponent().getHeight()/ASSUMED_DRAWING_HEIGHT;}	  	
 		});
 
 		new Thread(this).start();
@@ -107,7 +118,10 @@ public class GamePanel extends JPanel implements Runnable
 		Graphics2D g2 = (Graphics2D) g;
 		int width = getWidth();
 		int height = getHeight();
-
+		
+		g2.translate(width/2, height/2);
+		g2.scale(scale, scale);
+		g2.translate(-width/2, -height/2);
 
 
 		AffineTransform at = g2.getTransform();
@@ -202,6 +216,12 @@ public class GamePanel extends JPanel implements Runnable
 				ship.turn(ship.getDirection()-.1);
 			if(keyControl.isPressed(KeyEvent.VK_SPACE))
 				ship.shoot();
+			if(keyControl.isPressed(KeyEvent.VK_1))
+				ship.ability1();
+			if(keyControl.isPressed(KeyEvent.VK_2))
+				ship.ability2();
+			if(keyControl.isPressed(KeyEvent.VK_3))
+				ship.ability3();
 			if (keyControl.isPressed(KeyEvent.VK_UP))
 				ship.move(1);
 			if(keyControl.isPressed(KeyEvent.VK_DOWN))
@@ -323,8 +343,8 @@ public class GamePanel extends JPanel implements Runnable
 		}
 	}
 
-	
-	
+
+
 
 
 
@@ -348,7 +368,7 @@ public class GamePanel extends JPanel implements Runnable
 	public static void setLevel(int level) {
 		GamePanel.level = level;
 		if (level == 2) {
-			
+
 		}
 		if (level == 3) {
 
@@ -374,9 +394,10 @@ public class GamePanel extends JPanel implements Runnable
 		if (level == 10) {
 
 		}
-		
-		
-	}
 
+
+	}
+	
+	
 
 }
