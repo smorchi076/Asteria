@@ -158,15 +158,6 @@ private boolean isVisible;
 		return isVisible;
 	}
 	
-	public void moveInLimits(Rectangle2D.Double limits, double x, double y) {
-		double newX = this.x + x;
-		double newY = this.y + y;
-		if (limits.contains(new Rectangle2D.Double(newX,newY,width,height))) {
-			this.x = newX;
-			this.y = newY;
-		}
-	}
-	
 }
 
 
