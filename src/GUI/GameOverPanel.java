@@ -31,7 +31,7 @@ public class GameOverPanel extends JPanel implements ActionListener {
 	public GameOverPanel(Asteria game) {
 
 		this.game = game;
-		moneyEarned = GamePanel.generateMoney();
+		//moneyEarned = GamePanel.generateMoney();
 		Icon r = new ImageIcon("resources/backToHomeButton.png");
 		button = new JButton(r);
 		button.addActionListener(this);

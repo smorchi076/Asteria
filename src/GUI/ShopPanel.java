@@ -52,7 +52,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 	public ShopPanel(Asteria game) {
 
 		this.game = game;
-		
+		//updateMoney();
 
 		Icon r = new ImageIcon("resources/backToHomeButton.png");
 		button = new JButton(r);
@@ -249,6 +249,11 @@ public class ShopPanel extends JPanel implements ActionListener {
 	
 	public static int[] getUpgrades(){
 		return upgrades;
+	}
+	
+	public static void updateMoney(){
+		money = money + GamePanel.generateMoney();
+		
 	}
 	
 	
