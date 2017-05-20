@@ -231,6 +231,8 @@ public class GamePanel extends JPanel implements Runnable
 	  	}
 	  	if(ship.getHp()==0){
 	  		spawnNewship();
+	  		enemies = new ArrayList<Spawner>();
+	  		boss = new Boss3(DRAWING_WIDTH/2-20,50,"resources/Boss1.png",100, 100);
 	  		game.changePanel("6");
 	  	}
 	  	if (!screenRect.intersects(ship))
