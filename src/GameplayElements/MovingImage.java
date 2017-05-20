@@ -74,8 +74,13 @@ private boolean isVisible;
 	 * @param y increment in y direction
 	 */
 	public void moveByAmount(double x, double y) {
-		super.x += x;
-		super.y += y;
+		Rectangle2D.Double limits = new Rectangle2D.Double(0, 0, 800, 600);
+		double newX = this.x + x;
+		double newY = this.y + y;
+		if ((this instanceof Projectile) || limits.contains(new Rectangle2D.Double(newX,newY,width,height))) {
+			this.x = newX;
+			this.y = newY;
+		}
 	}
 	
 	/**

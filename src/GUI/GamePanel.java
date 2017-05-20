@@ -253,11 +253,6 @@ public class GamePanel extends JPanel implements Runnable
 				boss = new Boss2(DRAWING_WIDTH/2-20,50,"resources/Boss2.png",100, 100);
 				game.changePanel("6");
 			}
-			if (!screenRect.intersects(ship))
-				spawnNewship();
-
-
-
 
 
 			slideWorldToImage(ship);
