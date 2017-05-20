@@ -32,15 +32,17 @@ public class Projectile extends MovingImage {
 		 */
 		public void act(Ship enemy) {
 			// FALL!
-			moveByAmount(15*Math.cos(getDirection()-Math.PI),15*Math.sin(getDirection()-Math.PI));
-			if(enemy!=null){
-				if(enemy.intersects(this)){
-					enemy.dropHp(1);
-					fizzle();
+			if(!isFizzled) {
+				moveByAmount(15*Math.cos(getDirection()-Math.PI),15*Math.sin(getDirection()-Math.PI));
+				if(enemy!=null){
+					if(enemy.intersects(this)){
+						enemy.dropHp(1);
+						fizzle();
+					}
 				}
+				if (getX() < 0 || getX() > GamePanel.DRAWING_WIDTH || getY() < 0 || getY() > GamePanel.DRAWING_HEIGHT)
+					fizzle(); 
 			}
-			if (getX() < 0 || getX() > GamePanel.DRAWING_WIDTH || getY() < 0 || getY() > GamePanel.DRAWING_HEIGHT)
-				fizzle();
 		}
 		
 		/**removes the projectile
