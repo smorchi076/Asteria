@@ -121,7 +121,6 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 		if(e.getSource() == button2){
 			game.changePanel("2");
 			GamePanel.setLevel(GamePanel.getLevel()+1);
-			System.out.print(GamePanel.getLevel());
 		}
 		if(e.getSource() == button3){
 			int result = okcancel("Are you sure? All progress will be lost");
