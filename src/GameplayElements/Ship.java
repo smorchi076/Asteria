@@ -156,6 +156,55 @@ public class Ship extends MovingImage {
 		
 	}
 	
+	/**Abilty that allows you to shoot from both sides
+	 * 
+	 */
+	public void ability1(){
+		double dir1 = super.getDirection();
+		super.turnToward((int)((getCenterX() - 30)), (int)((getCenterY() - 30)));
+		double dir2 = super.getDirection();
+		if(Math.abs(dir1-dir2) > .01) {
+			super.turn(dir1 - dir2);
+		}
+		if(shootClock==0){
+			for(int i=0; i<blasts.length; i++){
+				if(blasts[i]==null || blasts[i].isFizzled()){
+					blasts[i] = new Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + Math.PI, "resources/Boss3Projectile.png");
+					shootClock = 20;
+					break;
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Abilty that allows to shoot at a rapid speed 
+	 */
+	public void ability2(){
+		if(shootClock==0){
+			for(int i=0; i<blasts.length; i++){
+				if(blasts[i]==null || blasts[i].isFizzled()){
+					blasts[i] = new Projectile((int)(getX()), (int)(getY()+getHeight()/2 - 5), super.getDirection(), "resources/bullet.png");
+					shootClock = 20-rof-20;
+					break;
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Ability that gives you invunerability
+	 */
+	public void ability3(){
+		if(this != null) {
+			for(Projectile p : this.getBullets()) {
+				if(p!=null && p.intersects(this) && !p.isFizzled()) {
+					p.fizzle();
+				}
+			}
+		}
+	}
+	
 	public void addKill(int amount) {
 		kills += amount;
 	}
