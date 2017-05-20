@@ -124,6 +124,7 @@ public class Boss4 extends MovingImage{
 		return (mini2.getHp() + mini1.getHp());
 	}
 	
+	
 	private void setHp(int amount) {
 		hp = amount;
 		maxHp = amount;
