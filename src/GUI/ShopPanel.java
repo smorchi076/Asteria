@@ -73,6 +73,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 		upgradeButtons[0].setContentAreaFilled(false);
 		upgradeButtons[0].setOpaque(false);
 		upgradeButtons[0].setBorderPainted(false);
+		
 
 		upgradeButtons[1] = new JButton(a);
 		upgradeButtons[1].addActionListener(this);
