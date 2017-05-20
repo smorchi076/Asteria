@@ -40,7 +40,7 @@ JPanel cardPanel;
 	    InstructionPanel panel3 = new InstructionPanel(this);
 	    ShopPanel panel4 = new ShopPanel(this, panel2);
 	    ModePanel panel5 = new ModePanel(this);
-	    GameOverPanel panel6 = new GameOverPanel(this);
+	    GameOverPanel panel6 = new GameOverPanel(this,panel2);
 	    MissionCompletePanel panel7 = new MissionCompletePanel(this, panel2);
 	    
 	    addKeyListener(panel2.getKeyHandler());
