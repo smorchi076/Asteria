@@ -134,11 +134,11 @@ public class GamePanel extends JPanel implements Runnable
 		ship.draw(g2,this);
 		boss.draw(g2, this);
 		g.setColor(Color.RED);
-		g.fillRect(10,  20, 100, 10);
+		g.fillRect((int) ship.getX() - 30,(int) ship.getY()-15, 100, 10);
 		g.setColor(Color.GREEN);
-		g.fillRect(10,  20, ship.getHp(), 10);
+		g.fillRect((int) ship.getX() - 30,(int) ship.getY()-15, ship.getHp(), 10);
 		g.setColor(Color.BLUE);
-		g.fillRect(10,  10, ship.getShield() + 2, 10);
+		g.fillRect((int) ship.getX() - 30,(int) ship.getY()-25, ship.getShield() + 2, 10);
 		//System.out.println(ship.getShield());
 		for(Spawner e : enemies) {
 			e.draw(g2, this);	
