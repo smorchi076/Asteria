@@ -12,7 +12,7 @@ public class Boss2 extends MovingImage{
 	
 	public Boss2(int x, int y, String img, int width, int height) {
 		super(img, x, y, width, height, 0);
-		hp = 30;
+		hp = 10;
 		shooting = 0;
 		waiting = 500;
 		moving = 0;
@@ -25,7 +25,7 @@ public class Boss2 extends MovingImage{
 		g.setColor(Color.RED);
 		g.fillRect((int)getX(), (int)getY(), (int)getWidth(), 2);
 		g.setColor(Color.GREEN);
-		g.fillRect((int)getX(), (int)getY(), (int)(hp/30.0 * getWidth()), 2);
+		g.fillRect((int)getX(), (int)getY(), (int)(hp/10.0 * getWidth()), 2);
 		
 		for(int i = 0; i<blasts.length; i++){
 			if(blasts[i]!=null && !blasts[i].isFizzled()){
@@ -48,6 +48,7 @@ public class Boss2 extends MovingImage{
 	public void act(Ship ship) {
 		if(waiting > 1) {
 			waiting--;
+			moveByAmount(1*Math.cos((super.getDirection()+ Math.PI/2) * (waiting/500.0*(Math.PI*2))),1*Math.sin((super.getDirection()+ Math.PI/2 * (waiting/500.0*(Math.PI*2)))));
 		}
 		else if(moving > 1) {
 			moving--;
@@ -73,11 +74,13 @@ public class Boss2 extends MovingImage{
 				blasts[i].act(ship);
 			}
 		}
-		if(ship != null) {
-			for(Projectile p : ship.getBullets()) {
-				if(p!=null && p.intersects(this) && !p.isFizzled()) {
-					dropHp(1);
-					p.fizzle();
+		if(waiting == 0) {
+			if(ship != null) {
+				for(Projectile p : ship.getBullets()) {
+					if(p!=null && p.intersects(this) && !p.isFizzled()) {
+						dropHp(1);
+						p.fizzle();
+					}
 				}
 			}
 		}
