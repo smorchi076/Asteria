@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements Runnable
   private ArrayList<Shape> obstacles;
   private ArrayList<Spawner> enemies;
   private Boss3 boss;
-  private static int killCount;
+  private static int killCount = 1;
   
   
   private Rectangle2D.Double visibleSpace;
@@ -55,7 +55,6 @@ public class GamePanel extends JPanel implements Runnable
 	  super();
 	  
 	  this.game = game;
-	  killCount = 0;
 	  keyControl = new KeyHandler(); 
 	  screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 	  obstacles = new ArrayList<Shape>();
@@ -216,6 +215,7 @@ public class GamePanel extends JPanel implements Runnable
 				killCount++;
 			}
 			else if(enemies.get(i).intersects(ship)) {
+				
 				ship.dropHp(enemies.get(i).getHp());
 				enemies.get(i).dropHp(1);;
 			}
@@ -223,7 +223,9 @@ public class GamePanel extends JPanel implements Runnable
 	  	ship.act(null);
 	  	boss.act(ship);
 	  	boss.shoot();
+	  	
 	  	if(boss.getHp() == 0){
+	  		killCount+=10;
 	  		game.changePanel("7");
 	  		
 	  	}
@@ -308,10 +310,11 @@ public class GamePanel extends JPanel implements Runnable
   }
   
   public static int generateMoney(){
-	return killCount*2;
-	
+	return killCount*5;
 	 
   }
+  
+ 
   
  
   

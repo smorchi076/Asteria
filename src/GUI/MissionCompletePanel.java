@@ -23,10 +23,12 @@ import Main.Asteria;
 
 public class MissionCompletePanel extends JPanel implements ActionListener {
 	
-	private int moneyEarned;
+	
 	
 	Asteria game;
 	JButton button,button2,button3;
+	private int moneyEarned;
+	
 	
 	/**
 	 * Creates an instance of the Instructions screen
@@ -35,7 +37,8 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 	public MissionCompletePanel(Asteria game) {
 
 		this.game = game;
-		moneyEarned = GamePanel.generateMoney();
+		
+		
 		Icon r = new ImageIcon("resources/backToHomeButton.png");
 		button = new JButton(r);
 		button.addActionListener(this);
@@ -77,11 +80,13 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 	 */
 	public void paintComponent(Graphics g)
 	{
+		
 		BufferedImage scaledImage = getScaledImage();
 		BufferedImage completed = null;
 		BufferedImage s = null;
 		BufferedImage t = null;
 		try {
+			
 			completed = ImageIO.read(new File("resources/missionComplete.png"));
 			s = ImageIO.read(new File("resources/asteriaword.png"));
 			t = ImageIO.read(new File("resources/moneyIcon.png"));
@@ -90,6 +95,7 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 			e.printStackTrace();
 		}
 		super.paintComponent(g);
+		
 		g.drawImage(scaledImage, 0, 0, null);
 		g.drawImage(completed, 100, 100, null);
 		g.drawImage(t, 305, 225, null);

@@ -54,7 +54,7 @@ JPanel cardPanel;
 	    cardPanel.add(panel7, "7");
 	    add(cardPanel);
 	    
-	    
+	  
 	
 	    setVisible(true);
 	}
