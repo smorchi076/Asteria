@@ -49,7 +49,7 @@ public class Boss1 extends MovingImage{
 	
 	public void act(Ship ship) {
 		super.turnToward((int)ship.getCenterX(), (int)ship.getCenterY());
-		if(Math.abs(ship.getCenterX() - this.getCenterX()) > 300 || ship.getCenterY() - this.getCenterY() > 300)
+		if(Math.abs(ship.getCenterX() - this.getCenterX()) > 300 || Math.abs(ship.getCenterY() - this.getCenterY()) > 300)
 			moveByAmount(2*Math.cos((super.getDirection())),2*Math.sin(super.getDirection()));
 		else if(movingLeft > 1) {
 			moveByAmount(2*Math.cos((super.getDirection() + Math.PI/2)),2*Math.sin(super.getDirection()+Math.PI/2));
