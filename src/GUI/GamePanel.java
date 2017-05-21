@@ -90,7 +90,7 @@ public class GamePanel extends JPanel implements Runnable
 		//obstacles.add(new Rectangle(700,250,100,50));
 		//obstacles.add(new Rectangle(375,300,50,100));
 		//obstacles.add(new Rectangle(300,250,200,50));
-		//enemies.add(new Spawner(DRAWING_WIDTH/2-20,50, "resources/spacestation.png", 80,80, 10, 200));
+		
 		//if(ship== null)
 		spawnNewship();
 
@@ -140,6 +140,15 @@ public class GamePanel extends JPanel implements Runnable
 			g2.fill(s);
 		}
 		ship.draw(g2,this);
+		
+		g.setColor(Color.RED);
+		g.fillRect((int) ship.getX() - 30,(int) ship.getY()-15, 100, 10);
+		g.setColor(Color.GREEN);
+		g.fillRect((int) ship.getX()- 30,(int) ship.getY()-15, ship.getHp(), 10);
+		g.setColor(Color.BLUE);
+		g.fillRect((int) ship.getX() - 30,(int) ship.getY()-25, ship.getShield(), 10);
+		
+		
 		if(level == 1)
 			boss1.draw(g2, this);
 		else if(level == 2)
@@ -419,28 +428,33 @@ public class GamePanel extends JPanel implements Runnable
 	public void setLevel(int level) {
 		this.level = level;
 		if(level == 1) {
-			boss1 = new Boss1(DRAWING_WIDTH/2-20,50,"resources/Boss1.png",100, 100);
-			System.out.println("test");
+			enemies = new ArrayList<Spawner>();
+			boss1 = new Boss1(DRAWING_WIDTH/2-20,500,"resources/Boss1.png",100, 100);
+			enemies.add(new Spawner(DRAWING_WIDTH/2-20,50, "resources/spacestation.png", 80,80, 10, 200));
 			isOver = false;
 		}
 		else if (level == 2) {
-			boss2 = new Boss2(DRAWING_WIDTH/2-20,50,"resources/Boss2.png",100, 100);
-			System.out.println("test");
+			enemies = new ArrayList<Spawner>();
+			boss2 = new Boss2(DRAWING_WIDTH/2-20,500,"resources/Boss2.png",100, 100);
+			enemies.add(new Spawner(DRAWING_WIDTH/2-20,50, "resources/spacestation.png", 80,80, 10, 200));
 			isOver = false;
 		}
 		else if (level == 3) {
-			boss3 = new Boss3(DRAWING_WIDTH/2-20,50,"resources/Boss3.png",100, 100);
-			System.out.println("test");
+			enemies = new ArrayList<Spawner>();
+			boss3 = new Boss3(DRAWING_WIDTH/2-20,500,"resources/Boss3.png",100, 100);
+			enemies.add(new Spawner(DRAWING_WIDTH/2-20,50, "resources/spacestation.png", 80,80, 10, 200));
 			isOver = false;
 		}
 		else if (level == 4) {
-			boss4 = new Boss4(DRAWING_WIDTH/2-20,50,"resources/Boss4.png",100, 100);
-			System.out.println("test");
+			enemies = new ArrayList<Spawner>();
+			boss4 = new Boss4(DRAWING_WIDTH/2-20,500,"resources/Boss4.png",100, 100);
+			enemies.add(new Spawner(DRAWING_WIDTH/2-20,50, "resources/spacestation.png", 80,80, 10, 200));
 			isOver = false;
 		}
 		else if (level == 5) {
-			boss5 = new Boss5(DRAWING_WIDTH/2-20,50,"resources/Boss5.png",100, 100);
-			System.out.println("test");
+			enemies = new ArrayList<Spawner>();
+			boss5 = new Boss5(DRAWING_WIDTH/2-20,500,"resources/Boss5.png",100, 100);
+			enemies.add(new Spawner(DRAWING_WIDTH/2-20,50, "resources/spacestation.png", 80,80, 10, 200));
 			isOver = false;
 		}
 		if (level == 6) {
