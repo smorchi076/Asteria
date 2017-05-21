@@ -34,10 +34,11 @@ public class Ship extends MovingImage {
 	private final int STARTING_DAMAGE = 1;
 	private final int STARTING_SHIELD = 0;
 	private final int STARTING_ROF = 0;
-	private int kills = 0;
 	private int twoDirections;
 	private int rapid;
 	private int maxHp;
+	
+	private static int money = 500;
 	
 	/**Creates a new ship object
 	 * 
@@ -196,12 +197,12 @@ public class Ship extends MovingImage {
 			}
 		}
 	}
-	public void addKill(int amount) {
-		kills += amount;
+	public void addMoney(int amount) {
+		money += amount;
 	}
 	
-	public int getKills() {
-		return kills;
+	public int getMoney() {
+		return money;
 	}
 	
 	public void setDmgTaken() {
@@ -299,7 +300,7 @@ public class Ship extends MovingImage {
 	public void setUpgrades(int[] u){
 		for(int i = 0; i < u.length; i++){
 			if(i == 0){
-				hp = STARTING_HP + (u[0]*20);
+				hp += (u[0]*20);
 				maxHp = STARTING_HP + (u[0]*20);
 				//System.out.print(hp);
 			}

@@ -26,7 +26,7 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 	
 	
 	Asteria game;
-	JButton button,button2,button3;
+	JButton button,button2,button3, button4;
 	private GamePanel gp;
 	
 	
@@ -68,7 +68,6 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 		button3.setContentAreaFilled(false);
 		button3.setOpaque(false);
 		button3.setBorderPainted(false);
-		
 		
 
 	}

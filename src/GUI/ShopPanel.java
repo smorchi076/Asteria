@@ -40,7 +40,6 @@ public class ShopPanel extends JPanel implements ActionListener {
 
 	//private Ship ship;
 	private int[] upgrades = {0, 0, 0, 0, 0};
-	private int money;
 	private GamePanel gp;
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
@@ -55,7 +54,6 @@ public class ShopPanel extends JPanel implements ActionListener {
 		this.game = game;
 		//updateMoney();
 		gp = g;
-		money = 500;
 		Icon r = new ImageIcon("resources/backToHomeButton.png");
 		button = new JButton(r);
 		button.addActionListener(this);
@@ -161,7 +159,7 @@ public class ShopPanel extends JPanel implements ActionListener {
 		g.setColor(new Color(0,255,0));
 		Font myFont = new Font("Impact", Font.BOLD, 24);
 		g.setFont(myFont);
-	    g.drawString("$" + money, 705, 40);
+	    g.drawString("$" + gp.generateMoney(), 705, 40);
 	    
 		
 
@@ -189,8 +187,8 @@ public class ShopPanel extends JPanel implements ActionListener {
 		if(e.getSource() == button) game.changePanel("1");
 		for(int i=0; i<upgradeButtons.length; i++){
 			if(e.getSource() == upgradeButtons[i] && upgrades[i]<5){
-				if(money >= 100){
-					removeMoney(100);
+				if(gp.generateMoney() >= 100){
+					gp.addMoney(-100);
 					upgrades[i]++;
 					gp.setUpgrades(upgrades);
 				} else {
@@ -219,43 +217,12 @@ public class ShopPanel extends JPanel implements ActionListener {
 
 		return image;
 	}
-	
-	/**
-	 * Adds money
-	 * @param amount amount to be added
-	 * @return new sum of money
-	 */
-	public int addMoney(int amount){
-		return money+=amount;
-	}
-	
-	/**
-	 * Removes money if money is greater than or equal to 100
-	 * @param amount amount to be removed
-	 * @return new sum of money
-	 */
-	public int removeMoney(int amount){
-		if(money >= 100){
-		return money-=amount;
-		} 
-		return 0;
-	}
-	/**
-	 * Gets your current amount of money
-	 * @return
-	 */
-	public int getMoney(){
-		return money;
-	}
+
 	
 	public int[] getUpgrades(){
 		return upgrades;
 	}
 	
-	public void updateMoney(){
-		money = money + gp.generateMoney();
-		
-	}
 	
 	
 
