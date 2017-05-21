@@ -104,6 +104,7 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 		Font myFont = new Font("Impact", Font.BOLD, 48);
 		g.setFont(myFont);
 		g.drawString("+" + gp.generateMoney(), 400, 275);
+		System.out.println(gp.generateMoney());
 
 	}
 
@@ -115,17 +116,17 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 		if(e.getSource() == button){
 			int result = okcancel("Are you sure? All progress will be lost");
 			if(result == 0){
-			game.changePanel("1");
+				game.changePanel("1");
 			}
 		}
 		if(e.getSource() == button2){
 			game.changePanel("2");
-			GamePanel.setLevel(GamePanel.getLevel()+1);
+			gp.setLevel(gp.getLevel()+1);
 		}
 		if(e.getSource() == button3){
 			int result = okcancel("Are you sure? All progress will be lost");
 			if(result == 0){
-			game.changePanel("1");
+				game.changePanel("1");
 			}
 			
 		}

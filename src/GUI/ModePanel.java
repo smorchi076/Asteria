@@ -26,15 +26,16 @@ public class ModePanel extends JPanel implements ActionListener {
 
 	Asteria game;
 	JButton button, button2;
+	GamePanel gp;
 	
 	/**
 	 * Creates an instance of the mode selection screen
 	 * @param game the game that this panel is corresponding to.
 	 */
-	public ModePanel(Asteria game) {
+	public ModePanel(Asteria game, GamePanel g) {
 
 		this.game = game;
-
+		gp = g;
 		Icon c = new ImageIcon("resources/backToHomeButton.png");
 		button = new JButton(c);
 		button.addActionListener(this);
@@ -87,7 +88,11 @@ public class ModePanel extends JPanel implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == button) game.changePanel("1");
-		if(e.getSource() == button2) game.changePanel("2");
+		if(e.getSource() == button2){
+			game.changePanel("2");
+			gp.setLevel(1);
+			gp.spawnNewship();
+		}
 	}
 
 	private BufferedImage getScaledImage(){

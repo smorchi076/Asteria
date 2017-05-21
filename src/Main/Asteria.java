@@ -39,7 +39,7 @@ JPanel cardPanel;
 	    GamePanel panel2 = new GamePanel(this);
 	    InstructionPanel panel3 = new InstructionPanel(this);
 	    ShopPanel panel4 = new ShopPanel(this, panel2);
-	    ModePanel panel5 = new ModePanel(this);
+	    ModePanel panel5 = new ModePanel(this, panel2);
 	    GameOverPanel panel6 = new GameOverPanel(this,panel2);
 	    MissionCompletePanel panel7 = new MissionCompletePanel(this, panel2);
 	    

@@ -12,6 +12,7 @@ import GameplayElements.Boss1;
 import GameplayElements.Boss2;
 import GameplayElements.Boss3;
 import GameplayElements.Boss4;
+import GameplayElements.Boss5;
 import GameplayElements.MovingImage;
 import GameplayElements.Ship;
 import GameplayElements.Spawner;
@@ -41,8 +42,13 @@ public class GamePanel extends JPanel implements Runnable
 	private Ship ship;
 	private ArrayList<Shape> obstacles;
 	private ArrayList<Spawner> enemies;
-	private Boss4 boss;
-	private static int level;
+	private Boss1 boss1;
+	private Boss2 boss2;
+	private Boss3 boss3;
+	private Boss4 boss4;
+	private Boss5 boss5;
+	private boolean isOver;
+	private int level;
 
 
 
@@ -77,7 +83,8 @@ public class GamePanel extends JPanel implements Runnable
 
 
 		enemies = new ArrayList<Spawner>();
-		boss = new Boss4(DRAWING_WIDTH/2-20,50,"resources/Boss4.png",100, 100);
+		boss1 = new Boss1(DRAWING_WIDTH/2-20,50,"resources/Boss1.png",100, 100);
+		isOver = false;
 		//obstacles.add(new Rectangle(200,400,400,50));
 		//obstacles.add(new Rectangle(0,250,100,50));
 		//obstacles.add(new Rectangle(700,250,100,50));
@@ -133,7 +140,16 @@ public class GamePanel extends JPanel implements Runnable
 			g2.fill(s);
 		}
 		ship.draw(g2,this);
-		boss.draw(g2, this);
+		if(level == 1)
+			boss1.draw(g2, this);
+		else if(level == 2)
+			boss2.draw(g2, this);
+		else if(level == 3)
+			boss3.draw(g2, this);
+		else if(level == 4)
+			boss4.draw(g2, this);
+		else if(level == 5)
+			boss5.draw(g2, this);
 		
 		//System.out.println(ship.getShield());
 		for(Spawner e : enemies) {
@@ -241,18 +257,64 @@ public class GamePanel extends JPanel implements Runnable
 				}
 			}
 			ship.act(null);
-			boss.act(ship);
-			boss.shoot();
-
-			if(boss.getHp() <= 0){
-				ship.addKill(10);
-				game.changePanel("7");
-
+			if(level == 1) {
+				boss1.act(ship);
+				boss1.shoot();
+				if(boss1.getHp() <= 0 && !isOver){
+					ship.addKill(10);
+					game.changePanel("7");
+					isOver = true;
+				}
 			}
+			else if(level == 2) {
+				boss2.act(ship);
+				boss2.shoot();
+				if(boss2.getHp() <= 0 && !isOver){
+					ship.addKill(10);
+					game.changePanel("7");
+					isOver = true;
+				}
+			}else if(level == 3) {
+				boss3.act(ship);
+				boss3.shoot();
+				if(boss3.getHp() <= 0 && !isOver){
+					ship.addKill(10);
+					game.changePanel("7");
+					isOver = true;
+				}
+			}else if(level == 4) {
+				boss4.act(ship);
+				boss4.shoot();
+				if(boss4.getHp() <= 0 && !isOver){
+					ship.addKill(10);
+					game.changePanel("7");
+					isOver = true;
+				}
+			}else if(level == 5) {
+				boss5.act(ship);
+				boss5.shoot();
+				if(boss5.getHp() <= 0 && !isOver){
+					ship.addKill(10);
+					game.changePanel("7");
+					isOver = true;
+				}
+			}
+			
 			if(ship.getHp()==0){
 				spawnNewship();
 				enemies = new ArrayList<Spawner>();
-				boss = new Boss4(DRAWING_WIDTH/2-20,50,"resources/Boss4.png",100, 100);
+				if(level == 1)
+					boss1 = new Boss1(DRAWING_WIDTH/2-20,50,"resources/Boss1.png",100, 100);
+				else if(level == 2)
+					boss2 = new Boss2(DRAWING_WIDTH/2-20,50,"resources/Boss2.png",100, 100);
+				else if(level == 3)
+					boss3 = new Boss3(DRAWING_WIDTH/2-20,50,"resources/Boss2.png",100, 100);
+				else if(level == 4)
+					boss4 = new Boss4(DRAWING_WIDTH/2-20,50,"resources/Boss4.png",100, 100);
+				else if(level == 5)
+					boss5 = new Boss5(DRAWING_WIDTH/2-20,50,"resources/Boss5.png",100, 100);
+				
+				
 				game.changePanel("6");
 			}
 
@@ -278,7 +340,6 @@ public class GamePanel extends JPanel implements Runnable
 	}
 	public int generateMoney(){
 		return ship.getKills();
-
 	}
 
 
@@ -351,23 +412,31 @@ public class GamePanel extends JPanel implements Runnable
 		return image;
 	}
 
-	public static int getLevel() {
+	public int getLevel() {
 		return level;
 	}
 
-	public static void setLevel(int level) {
-		GamePanel.level = level;
-		if (level == 2) {
-
+	public void setLevel(int level) {
+		this.level = level;
+		if(level == 1) {
+			boss1 = new Boss1(DRAWING_WIDTH/2-20,50,"resources/Boss1.png",100, 100);
+			isOver = false;
 		}
-		if (level == 3) {
-
+		else if (level == 2) {
+			boss2 = new Boss2(DRAWING_WIDTH/2-20,50,"resources/Boss2.png",100, 100);
+			isOver = false;
 		}
-		if (level == 4) {
-
+		else if (level == 3) {
+			boss3 = new Boss3(DRAWING_WIDTH/2-20,50,"resources/Boss3.png",100, 100);
+			isOver = false;
 		}
-		if (level == 5) {
-
+		else if (level == 4) {
+			boss4 = new Boss4(DRAWING_WIDTH/2-20,50,"resources/Boss4.png",100, 100);
+			isOver = false;
+		}
+		else if (level == 5) {
+			boss5 = new Boss5(DRAWING_WIDTH/2-20,50,"resources/Boss5.png",100, 100);
+			isOver = false;
 		}
 		if (level == 6) {
 
