@@ -56,7 +56,7 @@ public class Boss5 extends MovingImage{
 			for(Projectile p : ship.getBullets()) {
 				if(p!=null && p.intersects(this) && !p.isFizzled()) {
 					dropHp(ship.getDmg());
-					System.out.println(ship.getDmg());
+					//System.out.println(ship.getDmg());
 					p.fizzle();
 				}
 			}

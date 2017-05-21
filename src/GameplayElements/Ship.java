@@ -135,7 +135,7 @@ public class Ship extends MovingImage {
 			for(Projectile p : ship.getBullets()) {
 				if(p!=null && p.intersects(this) && !p.isFizzled()) {
 					dropHp(ship.getDmg());
-					System.out.println(ship.getDmg());
+					//System.out.println(ship.getDmg());
 					p.fizzle();
 				}
 			}
@@ -309,7 +309,7 @@ public class Ship extends MovingImage {
 			}
 			if(i == 2){
 				dmg = (u[2]);
-				System.out.print(dmg);
+				//System.out.print(dmg);
 			}
 			if(i == 3){
 				maxShield = STARTING_SHIELD + (u[3]*5);
