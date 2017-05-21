@@ -258,6 +258,7 @@ public class VersusPanel extends JPanel implements Runnable
 
 
 			slideWorldToImage(ship);
+			slideWorldToImage(ship2);
 
 
 			repaint();
