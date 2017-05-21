@@ -12,7 +12,7 @@ public class Boss2 extends MovingImage{
 	
 	public Boss2(int x, int y, String img, int width, int height) {
 		super(img, x, y, width, height, 0);
-		hp = 10;
+		hp = 30;
 		shooting = 0;
 		waiting = 500;
 		moving = 0;
@@ -28,7 +28,7 @@ public class Boss2 extends MovingImage{
 		if(waiting != 0){
 			g.setColor(Color.yellow);
 		}
-		g.fillRect((int)getX(), (int)getY(), (int)(hp/10.0 * getWidth()), 2);
+		g.fillRect((int)getX(), (int)getY(), (int)(hp/30.0 * getWidth()), 2);
 		
 		for(int i = 0; i<blasts.length; i++){
 			if(blasts[i]!=null && !blasts[i].isFizzled()){
