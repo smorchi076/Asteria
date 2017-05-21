@@ -62,6 +62,8 @@ public class Ship extends MovingImage {
 		dmgTaken = 0;
 		twoDirections = 0;
 		rapid = 0;
+		maxShield = 0;
+		shield = 0;
 	}
 
 	
@@ -114,6 +116,9 @@ public class Ship extends MovingImage {
 	public void act(Ship ship) {
 		if(dmgTaken == 0 && shield < maxShield) {
 			shield += 1;
+		}
+		if(dmgTaken > 0) {
+			dmgTaken--;
 		}
 		if(invul > 0)
 			invul--;
@@ -292,7 +297,7 @@ public class Ship extends MovingImage {
 				//System.out.print(dmg);
 			}
 			if(i == 3){
-				maxShield = STARTING_SHIELD + (u[3]*2);
+				maxShield = STARTING_SHIELD + (u[3]*10);
 				//System.out.print(dmg);
 			}
 			if(i == 4){
