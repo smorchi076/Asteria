@@ -35,6 +35,8 @@ public class Ship extends MovingImage {
 	private final int STARTING_SHIELD = 0;
 	private final int STARTING_ROF = 0;
 	private int kills = 0;
+	private int twoDirections;
+	private int rapid;
 	
 	/**Creates a new ship object
 	 * 
@@ -58,7 +60,8 @@ public class Ship extends MovingImage {
 		sj = 0;
 		invul = 0;
 		dmgTaken = 0;
-		
+		twoDirections = 0;
+		rapid = 0;
 	}
 
 	
@@ -126,8 +129,7 @@ public class Ship extends MovingImage {
 		if(ship != null) {
 			for(Projectile p : ship.getBullets()) {
 				if(p!=null && p.intersects(this) && !p.isFizzled()) {
-					dropHp(dmg + STARTING_DAMAGE);
-					ship.setDmgTaken();
+					dropHp(ship.dmg + ship.STARTING_DAMAGE);
 					p.fizzle();
 				}
 			}
@@ -144,73 +146,50 @@ public class Ship extends MovingImage {
 		if(willSlow == 0)
 			willSlow = 50;
 		willSlow--;
+		if(twoDirections > 0) {
+			twoDirections--;
+		}
 	}
 	
 	/**tells the ship to shoot
 	 * 
 	 */
 	public void shoot(){
-		if(shootClock==0){
-			for(int i=0; i<blasts.length; i++){
-				if(blasts[i]==null || blasts[i].isFizzled()){
-					blasts[i] = new Projectile((int)(getX()), (int)(getY()+getHeight()/2 - 5), super.getDirection(), "resources/bullet.png");
-					shootClock = 20-rof;
-					break;
+		if(twoDirections == 0) {
+			if(shootClock==0){
+				for(int i=0; i<blasts.length; i++){
+					if(blasts[i]==null || blasts[i].isFizzled()){
+						blasts[i] = new Projectile((int)(getX()), (int)(getY()+getHeight()/2 - 5), super.getDirection(), "resources/bullet.png");
+						shootClock = 20-rof;
+						if(rapid > 0) {
+							shootClock = 1;
+							rapid--;
+						}
+						break;
+					}
 				}
 			}
-		}
-		
-	}
-	
-	/**Abilty that allows you to shoot from both sides
-	 * 
-	 */
-	public void ability1(){
-		double dir1 = super.getDirection();
-		super.turnToward((int)((getCenterX() - 30)), (int)((getCenterY() - 30)));
-		double dir2 = super.getDirection();
-		if(Math.abs(dir1-dir2) > .01) {
-			super.turn(dir1 - dir2);
-		}
-		if(shootClock==0){
-			for(int i=0; i<blasts.length; i++){
-				if(blasts[i]==null || blasts[i].isFizzled()){
-					blasts[i] = new Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + Math.PI, "resources/Boss3Projectile.png");
-					shootClock = 20;
-					break;
-				}
-			}
-		}
-	}
-	
-	/**
-	 * Abilty that allows to shoot at a rapid speed 
-	 */
-	public void ability2(){
-		if(shootClock==0){
-			for(int i=0; i<blasts.length; i++){
-				if(blasts[i]==null || blasts[i].isFizzled()){
-					blasts[i] = new Projectile((int)(getX()), (int)(getY()+getHeight()/2 - 5), super.getDirection(), "resources/bullet.png");
-					shootClock = 20-rof-20;
-					break;
+		} else {
+			if(shootClock==0){
+				for(int i=0; i<blasts.length-1; i+=2){
+					if(blasts[i]==null || blasts[i].isFizzled()){
+						int x1 = (int)(x + width / 2 + Math.cos(getDirection() + Math.PI*26/25) * height);
+						int y1 = (int)(y + height / 2 + Math.sin(getDirection() + Math.PI*26/25) * height);
+						int x2 = (int)(x + width / 2 + Math.cos(getDirection() + Math.PI*24/25) * height);
+						int y2 = (int)(y + height / 2 + Math.sin(getDirection() + Math.PI*24/25) * height);
+						blasts[i] = new Projectile(x1, y1, super.getDirection(), "resources/bullet.png");
+						blasts[i+1] = new Projectile(x2, y2, super.getDirection(), "resources/bullet.png");
+						shootClock = 20-rof;
+						if(rapid > 0) {
+							shootClock = 1;
+							rapid--;
+						}
+						break;
+					}
 				}
 			}
 		}
 	}
-	
-	/**
-	 * Ability that gives you invunerability
-	 */
-	public void ability3(){
-		if(this != null) {
-			for(Projectile p : this.getBullets()) {
-				if(p!=null && p.intersects(this) && !p.isFizzled()) {
-					p.fizzle();
-				}
-			}
-		}
-	}
-	
 	public void addKill(int amount) {
 		kills += amount;
 	}
@@ -229,6 +208,7 @@ public class Ship extends MovingImage {
 	 */
 	public void dropHp(int amount)
 	{
+		setDmgTaken();
 		if(shield == 0){
 			if(invul == 0) {
 				hp = hp - amount;
@@ -320,5 +300,17 @@ public class Ship extends MovingImage {
 				System.out.print(rof);
 			}
 		}
+	}
+	
+	public void abilityOne() {
+		invul = 100;
+	}
+	
+	public void abilityTwo() {
+		twoDirections = 100;
+	}
+	
+	public void abilityThree() {
+		rapid = 30;
 	}
 }
