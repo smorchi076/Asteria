@@ -39,6 +39,8 @@ public class Ship extends MovingImage {
 	private int maxHp;
 	
 	private static int money = 500;
+	private final int STARTING_MONEY = 500; 
+	
 	
 	/**Creates a new ship object
 	 * 
@@ -198,12 +200,14 @@ public class Ship extends MovingImage {
 		}
 	}
 	public void addMoney(int amount) {
-		money += amount;
+		 money += amount;
 	}
 	
 	public int getMoney() {
 		return money;
 	}
+	
+	
 	
 	public void setDmgTaken() {
 		dmgTaken = 100;
@@ -334,5 +338,11 @@ public class Ship extends MovingImage {
 	public void abilityThree() {
 		rapid = 30;
 		shoot();
+	}
+
+
+
+	public  int getStartingMoney() {
+		return STARTING_MONEY;
 	}
 }
