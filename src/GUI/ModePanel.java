@@ -94,6 +94,7 @@ public class ModePanel extends JPanel implements ActionListener {
 			gp.spawnNewship();
 		}
 	}
+	
 
 	private BufferedImage getScaledImage(){
 		ImageIcon backImage = new ImageIcon("resources/homeBackground.png");
