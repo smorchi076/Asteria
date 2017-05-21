@@ -328,9 +328,11 @@ public class Ship extends MovingImage {
 	
 	public void abilityTwo() {
 		twoDirections = 100;
+		shoot();
 	}
 	
 	public void abilityThree() {
 		rapid = 30;
+		shoot();
 	}
 }
