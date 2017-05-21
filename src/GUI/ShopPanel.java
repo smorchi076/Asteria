@@ -189,11 +189,10 @@ public class ShopPanel extends JPanel implements ActionListener {
 		if(e.getSource() == button) game.changePanel("1");
 		for(int i=0; i<upgradeButtons.length; i++){
 			if(e.getSource() == upgradeButtons[i] && upgrades[i]<5){
-				if(money > 0){
-				removeMoney(100);
-				upgrades[i]++;
-				System.out.println(upgrades);
-				gp.getShip().setUpgrades(upgrades);
+				if(money >= 100){
+					removeMoney(100);
+					upgrades[i]++;
+					gp.setUpgrades(upgrades);
 				} else {
 					setWarningMsg("Insufficient Funds!");
 					

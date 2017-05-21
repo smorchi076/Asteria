@@ -60,7 +60,8 @@ public class Boss3 extends MovingImage{
 		if(ship != null) {
 			for(Projectile p : ship.getBullets()) {
 				if(p!=null && p.intersects(this) && !p.isFizzled()) {
-					dropHp(1);
+					dropHp(ship.getDmg());
+					System.out.println(ship.getDmg());
 					p.fizzle();
 				}
 			}

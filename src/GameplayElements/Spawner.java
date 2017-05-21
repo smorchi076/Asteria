@@ -62,7 +62,7 @@ public class Spawner extends MovingImage {
 		if(invul > 0)
 			invul--;
 		if(spawnTimer == 0){
-			ships.add(new Ship((int)getX(), (int)getY(), "resources/spacestation.png", 40, 40, 1, 3, 0));
+			ships.add(new Ship((int)getX(), (int)getY(), "resources/spacestation.png", 40, 40, 1, 3, 0, null));
 			ships.get(ships.size()-1).turnToward((int)(ship.getX()), (int)(ship.getY()));
 			ships.get(ships.size()-1).turn(ships.get(ships.size()-1).getDirection() + Math.PI);
 			spawnTimer = spawnRate;
@@ -72,20 +72,22 @@ public class Spawner extends MovingImage {
 			ships.get(j).turnToward((int)(ship.getX()), (int)(ship.getY()));
 			ships.get(j).turn(ships.get(j).getDirection() + Math.PI);
 			ships.get(j).move(1);
-			if(ships.get(j).getHp() == 0) {
+			if(ships.get(j).getHp() <= 0) {
 				ships.remove(j);
-				ship.addKill(1);
+				ship.addKill(10);
 			}
 			else if(ships.get(j).intersects(ship)) {
 				ship.dropHp(ships.get(j).getHp());
 				ships.remove(j);
+				ship.addKill(10);
 				
 			}
 		}
 		if(ship != null) {
 			for(Projectile p : ship.getBullets()) {
 				if(p!=null && p.intersects(this) && !p.isFizzled()) {
-					dropHp(1);
+					dropHp(ship.getDmg());
+					System.out.println(ship.getDmg());
 					p.fizzle();
 				}
 			}

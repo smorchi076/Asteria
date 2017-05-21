@@ -49,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable
 	private Boss5 boss5;
 	private boolean isOver;
 	private int level;
+	private int[] u;
 
 
 
@@ -79,7 +80,7 @@ public class GamePanel extends JPanel implements Runnable
 
 		ratioX = (double)getWidth()/DRAWING_WIDTH;
 		ratioY = (double)getHeight()/DRAWING_HEIGHT;
-
+		
 
 
 		enemies = new ArrayList<Spawner>();
@@ -144,9 +145,9 @@ public class GamePanel extends JPanel implements Runnable
 		g.setColor(Color.RED);
 		g.fillRect((int) ship.getX() - 30,(int) ship.getY()-15, 100, 10);
 		g.setColor(Color.GREEN);
-		g.fillRect((int) ship.getX()- 30,(int) ship.getY()-15, ship.getHp(), 10);
+		g.fillRect((int) ship.getX()- 30,(int) ship.getY()-15, (int)((double)ship.getHp()/ship.getMaxHp() * 100), 10);
 		g.setColor(Color.BLUE);
-		g.fillRect((int) ship.getX() - 30,(int) ship.getY()-25, ship.getShield(), 10);
+		g.fillRect((int) ship.getX() - 30,(int) ship.getY()-25, (int)((double)ship.getShield()/ship.getMaxShield()*100), 10);
 		
 		
 		if(level == 1)
@@ -212,7 +213,12 @@ public class GamePanel extends JPanel implements Runnable
 	 * Creates a new instance of a ship
 	 */
 	public void spawnNewship() {
-		ship = new Ship(DRAWING_WIDTH/2-20,DRAWING_HEIGHT/2-30, "resources/spaceship.png", 40, 60, 100, 5, 0);
+		ship = new Ship(DRAWING_WIDTH/2-20,DRAWING_HEIGHT/2-30, "resources/spaceship.png", 40, 60, 100, 5, 0, u);
+	}
+	
+	public void setUpgrades(int[] u) {
+		this.u = u;
+		ship.setUpgrades(u);
 	}
 	/**
 	 * Gets the key handler
@@ -255,13 +261,13 @@ public class GamePanel extends JPanel implements Runnable
 
 			for(int i = 0; i < enemies.size(); i++) {
 				enemies.get(i).act(ship);
-				if(enemies.get(i).getHp() == 0) {
+				if(enemies.get(i).getHp() <= 0) {
 					enemies.remove(i);
-					ship.addKill(2);
+					ship.addKill(20);
 				}
 				else if(enemies.get(i).intersects(ship)) {
 
-					ship.dropHp(enemies.get(i).getHp());
+					ship.dropHp(1);
 					enemies.get(i).dropHp(1);;
 				}
 			}
@@ -270,7 +276,7 @@ public class GamePanel extends JPanel implements Runnable
 				boss1.act(ship);
 				boss1.shoot();
 				if(boss1.getHp() <= 0 && !isOver){
-					ship.addKill(10);
+					ship.addKill(100);
 					game.changePanel("7");
 					isOver = true;
 				}
@@ -309,7 +315,7 @@ public class GamePanel extends JPanel implements Runnable
 				}
 			}
 			
-			if(ship.getHp()==0){
+			if(ship.getHp()<=0){
 				spawnNewship();
 				enemies = new ArrayList<Spawner>();
 				if(level == 1)

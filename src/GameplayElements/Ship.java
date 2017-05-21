@@ -37,6 +37,7 @@ public class Ship extends MovingImage {
 	private int kills = 0;
 	private int twoDirections;
 	private int rapid;
+	private int maxHp;
 	
 	/**Creates a new ship object
 	 * 
@@ -49,7 +50,7 @@ public class Ship extends MovingImage {
 	 * @param maxSpeed the maximum speed of the ship
 	 * @param dir the starting direction of the ship
 	 */
-	public Ship(int x, int y, String img, int width, int height, int hp, int maxSpeed, double dir) {
+	public Ship(int x, int y, String img, int width, int height, int hp, int maxSpeed, double dir, int[] u) {
 		super(img, x, y, width, height, 0);
 		//setUpgrades(upgrades);
 		vY = 0;
@@ -62,8 +63,12 @@ public class Ship extends MovingImage {
 		dmgTaken = 0;
 		twoDirections = 0;
 		rapid = 0;
-		maxShield = 0;
+		//maxShield = 0;
 		shield = 0;
+		maxHp = 100;
+		if(u != null) {
+			setUpgrades(u);
+		}
 	}
 
 	
@@ -129,7 +134,8 @@ public class Ship extends MovingImage {
 		if(ship != null) {
 			for(Projectile p : ship.getBullets()) {
 				if(p!=null && p.intersects(this) && !p.isFizzled()) {
-					dropHp(ship.dmg + ship.STARTING_DAMAGE);
+					dropHp(ship.getDmg());
+					System.out.println(ship.getDmg());
 					p.fizzle();
 				}
 			}
@@ -209,13 +215,14 @@ public class Ship extends MovingImage {
 	public void dropHp(int amount)
 	{
 		setDmgTaken();
-		if(shield == 0){
+		if(shield <= 0){
 			if(invul == 0) {
 				hp = hp - amount;
 				invul = 10;
 			}
+		} else {
+			dropShield(amount);
 		}
-		dropShield(amount);
 	}
 	
 	/**
@@ -224,6 +231,10 @@ public class Ship extends MovingImage {
 	 */
 	public int getHp() {
 		return hp;
+	}
+	
+	public int getMaxHp() {
+		return maxHp;
 	}
 
 	/**sets the hp of the ship
@@ -240,7 +251,7 @@ public class Ship extends MovingImage {
 			shield = shield - amount;
 			invul = 10;
 		}
-		if(shield < 0) {
+		if(shield <= 0) {
 			dropHp(0-shield);
 			shield = 0;
 		}
@@ -259,6 +270,10 @@ public class Ship extends MovingImage {
 		return blasts;
 	}
 	
+	
+	public int getDmg() {
+		return dmg + STARTING_DAMAGE;
+	}
 	/**increases the money of the ship by one
 	 * 
 	 */
@@ -273,6 +288,10 @@ public class Ship extends MovingImage {
 	public int getSpaceJunk() {
 		return sj;
 	}
+	
+	public int getMaxShield(){
+		return maxShield;
+	}
 	/**
 	 * Sets the upgrades of the ship
 	 * @param u
@@ -280,7 +299,8 @@ public class Ship extends MovingImage {
 	public void setUpgrades(int[] u){
 		for(int i = 0; i < u.length; i++){
 			if(i == 0){
-				hp = STARTING_HP + (u[0]*2);
+				hp = STARTING_HP + (u[0]*20);
+				maxHp = STARTING_HP + (u[0]*20);
 				//System.out.print(hp);
 			}
 			if(i == 1){
@@ -288,16 +308,15 @@ public class Ship extends MovingImage {
 				//System.out.print(speed);
 			}
 			if(i == 2){
-				dmg = STARTING_DAMAGE + (u[2]*2);
-				//System.out.print(dmg);
+				dmg = (u[2]);
+				System.out.print(dmg);
 			}
 			if(i == 3){
-				maxShield = STARTING_SHIELD + (u[3]*10);
+				maxShield = STARTING_SHIELD + (u[3]*5);
 				//System.out.print(dmg);
 			}
 			if(i == 4){
 				rof = STARTING_ROF + (u[4]*2);
-				System.out.print(rof);
 			}
 		}
 	}
