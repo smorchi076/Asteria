@@ -106,7 +106,11 @@ public class GameOverPanel extends JPanel implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == button) game.changePanel("1");
-		if(e.getSource() == button2) game.changePanel("2");
+		if(e.getSource() == button2) {
+			gp.setLevel(1);
+			game.changePanel("2");
+		}
+		
 		if(e.getSource() == button3) game.changePanel("1");
 	}
 

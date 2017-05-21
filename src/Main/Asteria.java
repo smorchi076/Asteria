@@ -13,6 +13,7 @@ import GUI.InstructionPanel;
 import GUI.MissionCompletePanel;
 import GUI.ModePanel;
 import GUI.ShopPanel;
+import GUI.VersusPanel;
 import GUI.HomePanel;
 /**
  * Represents the Asteria game
@@ -42,6 +43,7 @@ JPanel cardPanel;
 	    ModePanel panel5 = new ModePanel(this, panel2);
 	    GameOverPanel panel6 = new GameOverPanel(this,panel2);
 	    MissionCompletePanel panel7 = new MissionCompletePanel(this, panel2);
+	    VersusPanel panel8 = new VersusPanel(this);
 	    
 	    addKeyListener(panel2.getKeyHandler());
 	
@@ -52,6 +54,7 @@ JPanel cardPanel;
 	    cardPanel.add(panel5, "5");
 	    cardPanel.add(panel6, "6");
 	    cardPanel.add(panel7, "7");
+	    cardPanel.add(panel8, "8");
 	    add(cardPanel);
 	    
 	  
