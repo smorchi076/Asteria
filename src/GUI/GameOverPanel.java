@@ -95,7 +95,7 @@ public class GameOverPanel extends JPanel implements ActionListener {
 		g.setColor(new Color(0,255,0));
 		Font myFont = new Font("Impact", Font.BOLD, 48);
 		g.setFont(myFont);
-		g.drawString("+" + gp.generateMoney(), 400, 275);
+		g.drawString("+" + (gp.generateMoney() - gp.getStartingCash()), 400, 275);
 
 
 	}
