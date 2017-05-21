@@ -28,7 +28,7 @@ public class Ship extends MovingImage {
 	private int maxShield;
 	private int rof;
 	private int dmgTaken;
-	private int upgrades[] = {0,0,0,0,0};
+	//private int upgrades[] = {0,0,0,0,0};
 	private final int STARTING_HP = 100;
 	private final int STARTING_SPEED = 5;
 	private final int STARTING_DAMAGE = 1;
