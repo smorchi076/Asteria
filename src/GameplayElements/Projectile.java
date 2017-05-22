@@ -12,6 +12,7 @@ import GUI.GamePanel;
 public class Projectile extends MovingImage {
 
 		private boolean isFizzled;
+		private int dmg;
 		
 		
 		/**Creates a new Projectile object
@@ -20,7 +21,7 @@ public class Projectile extends MovingImage {
 		 * @param y
 		 * @param dir
 		 */
-		public Projectile(int x, int y, double dir, String img) {
+		public Projectile(int x, int y, double dir, String img, int dmg) {
 			super(img, x, y, 20, 15, dir);
 			// TODO Auto-generated constructor stub
 			isFizzled = false;
@@ -36,7 +37,7 @@ public class Projectile extends MovingImage {
 				moveByAmount(15*Math.cos(getDirection()-Math.PI),15*Math.sin(getDirection()-Math.PI));
 				if(enemy!=null){
 					if(enemy.intersects(this)){
-						enemy.dropHp(1);
+						enemy.dropHp(dmg);
 						fizzle();
 					}
 				}
@@ -69,5 +70,9 @@ public class Projectile extends MovingImage {
 		 */
 		public void draw(Graphics g, ImageObserver io) {
 			super.draw(g, io);
+		}
+		
+		public int getDmg(){
+			return dmg;
 		}
 }

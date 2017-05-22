@@ -168,7 +168,7 @@ public class Ship extends MovingImage {
 			if(shootClock==0){
 				for(int i=0; i<blasts.length; i++){
 					if(blasts[i]==null || blasts[i].isFizzled()){
-						blasts[i] = new Projectile((int)(getX()), (int)(getY()+getHeight()/2 - 5), super.getDirection(), "resources/bullet.png");
+						blasts[i] = new Projectile((int)(getX()), (int)(getY()+getHeight()/2 - 5), super.getDirection(), "resources/bullet.png",getDmg());
 						shootClock = 20-rof;
 						if(rapid > 0) {
 							shootClock = 1;
@@ -186,8 +186,8 @@ public class Ship extends MovingImage {
 						int y1 = (int)(y + height / 2 + Math.sin(getDirection() + Math.PI*26/25) * height);
 						int x2 = (int)(x + width / 2 + Math.cos(getDirection() + Math.PI*24/25) * height);
 						int y2 = (int)(y + height / 2 + Math.sin(getDirection() + Math.PI*24/25) * height);
-						blasts[i] = new Projectile(x1, y1, super.getDirection(), "resources/bullet.png");
-						blasts[i+1] = new Projectile(x2, y2, super.getDirection(), "resources/bullet.png");
+						blasts[i] = new Projectile(x1, y1, super.getDirection(), "resources/bullet.png",getDmg());
+						blasts[i+1] = new Projectile(x2, y2, super.getDirection(), "resources/bullet.png",getDmg());
 						shootClock = 20-rof;
 						if(rapid > 0) {
 							shootClock = 1;
@@ -277,6 +277,7 @@ public class Ship extends MovingImage {
 	
 	
 	public int getDmg() {
+		System.out.println(dmg+STARTING_DAMAGE+" " + hp);
 		return dmg + STARTING_DAMAGE;
 	}
 	/**increases the money of the ship by one
