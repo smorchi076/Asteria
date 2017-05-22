@@ -13,6 +13,7 @@ import GUI.InstructionPanel;
 import GUI.MissionCompletePanel;
 import GUI.ModePanel;
 import GUI.ShopPanel;
+import GUI.VersusPanel;
 import GUI.VersusWinnerPanel;
 import GUI.HomePanel;
 /**
@@ -22,7 +23,7 @@ import GUI.HomePanel;
  */
 public class Asteria extends JFrame {
 
-JPanel cardPanel;
+	JPanel cardPanel;
 	/**
 	 * Creates an instance of the Asteria game
 	 * @param title title of the game displayed
@@ -30,37 +31,40 @@ JPanel cardPanel;
 	public Asteria(String title) {
 		super(title);
 		setBounds(100, 100, 800, 600);
-	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    
-	    cardPanel = new JPanel();
-	    CardLayout cl = new CardLayout();
-	    cardPanel.setLayout(cl);
-	    
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		cardPanel = new JPanel();
+		CardLayout cl = new CardLayout();
+		cardPanel.setLayout(cl);
+
 		HomePanel panel1 = new HomePanel(this);    
-	    GamePanel panel2 = new GamePanel(this);
-	    InstructionPanel panel3 = new InstructionPanel(this);
-	    ShopPanel panel4 = new ShopPanel(this, panel2);
-	    ModePanel panel5 = new ModePanel(this, panel2);
-	    GameOverPanel panel6 = new GameOverPanel(this,panel2);
-	    MissionCompletePanel panel7 = new MissionCompletePanel(this, panel2);
-	    VersusWinnerPanel panel8 = new VersusWinnerPanel(this,panel2);
-	    
-	    addKeyListener(panel2.getKeyHandler());
-	
-	    cardPanel.add(panel1,"1");
-	    cardPanel.add(panel2,"2");
-	    cardPanel.add(panel3, "3");
-	    cardPanel.add(panel4, "4");
-	    cardPanel.add(panel5, "5");
-	    cardPanel.add(panel6, "6");
-	    cardPanel.add(panel7, "7");
-	    cardPanel.add(panel8, "8");
-	    
-	    add(cardPanel);
-	    
-	  
-	
-	    setVisible(true);
+		GamePanel panel2 = new GamePanel(this);
+		InstructionPanel panel3 = new InstructionPanel(this);
+		ShopPanel panel4 = new ShopPanel(this, panel2);
+		ModePanel panel5 = new ModePanel(this, panel2);
+		
+		GameOverPanel panel6 = new GameOverPanel(this,panel2);
+		MissionCompletePanel panel7 = new MissionCompletePanel(this, panel2);
+		VersusPanel panel8 = new VersusPanel(this);
+		VersusWinnerPanel panel9 = new VersusWinnerPanel(this,panel8);
+
+
+		addKeyListener(panel2.getKeyHandler());
+
+		cardPanel.add(panel1, "1");
+		cardPanel.add(panel2, "2");
+		cardPanel.add(panel3, "3");
+		cardPanel.add(panel4, "4");
+		cardPanel.add(panel5, "5");
+		cardPanel.add(panel6, "6");
+		cardPanel.add(panel7, "7");
+		cardPanel.add(panel8, "8");
+		cardPanel.add(panel9, "9");
+		add(cardPanel);
+
+
+
+		setVisible(true);
 	}
 	/**
 	 * Where game is created
@@ -69,13 +73,13 @@ JPanel cardPanel;
 	public static void main(String[] args)
 	{
 		Asteria game = new Asteria("Asteria");
-		
-		
+
+
 	}
-  /**
-   * Changes panel
-   * @param name corresponds to a panel
-   */
+	/**
+	 * Changes panel
+	 * @param name corresponds to a panel
+	 */
 	public void changePanel(String name) {
 		((CardLayout)cardPanel.getLayout()).show(cardPanel,name);
 		requestFocus();
