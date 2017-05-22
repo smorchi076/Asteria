@@ -61,7 +61,8 @@ public class Boss7 extends MovingImage {
 			waiting--;
 		} else if(waiting == 1) {
 			waiting = 75;
-			super.moveByAmount(Math.random()*300 * dx, Math.random()*300*dy);
+			double d = Math.random()*Math.PI*2;
+			moveToLocation(ship.x+Math.cos(d)*(200+Math.random()*50), ship.y+Math.sin(d)*(200+Math.random()*50));
 		}
 		super.turnToward((int)(ship.x - ship.width/2), (int)(ship.y - ship.height/2));
 		/*if(Math.abs(ship.getCenterX() - this.getCenterX()) > 200 || Math.abs(ship.getCenterY() - this.getCenterY()) > 200)
