@@ -39,7 +39,7 @@ public class Boss8 extends MovingImage{
 			for(int i=0; i<blasts.length; i++){
 				if(blasts[i]==null || blasts[i].isFizzled()){
 					blasts[i] = new Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + Math.PI, "resources/Bullet.png");
-					shootClock = 30;
+					shootClock = 15;
 					break;
 				}
 			}	
