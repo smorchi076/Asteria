@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -15,25 +16,28 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Main.Asteria;
 
-public class GameOverPanel extends JPanel implements ActionListener {
-
+public class VersusWinnerPanel extends JPanel implements ActionListener {
+	
+	
+	
 	Asteria game;
-	JButton button,button2,button3;
-	private int moneyEarned;
-	private GamePanel gp;
+	JButton button,button2,button3, button4;
+	private VersusPanel v;
+	
+	
 	/**
 	 * Creates an instance of the Instructions screen
 	 * @param game the game that this panel is corresponding to.
 	 */
-	public GameOverPanel(Asteria game, GamePanel g) {
+	public VersusWinnerPanel(Asteria game, VersusPanel v) {
 
 		this.game = game;
-		this.gp = g;
-		//moneyEarned = GamePanel.generateMoney();
+		this.v = v;
 		Icon r = new ImageIcon("resources/backToHomeButton.png");
 		button = new JButton(r);
 		button.addActionListener(this);
@@ -44,8 +48,8 @@ public class GameOverPanel extends JPanel implements ActionListener {
 		button.setOpaque(false);
 		button.setBorderPainted(false);
 		
-		Icon restart = new ImageIcon("resources/restart.png");
-		button2 = new JButton(restart);
+		Icon continueIcon = new ImageIcon("resources/restart.png");
+		button2 = new JButton(continueIcon);
 		button2.addActionListener(this);
 		button2.setBounds(400,350, 130, 130);
 		setLayout(null);
@@ -64,7 +68,6 @@ public class GameOverPanel extends JPanel implements ActionListener {
 		button3.setOpaque(false);
 		button3.setBorderPainted(false);
 		
-		
 
 	}
 
@@ -75,28 +78,26 @@ public class GameOverPanel extends JPanel implements ActionListener {
 	 */
 	public void paintComponent(Graphics g)
 	{
+		
 		BufferedImage scaledImage = getScaledImage();
-		BufferedImage gameOver = null;
+		BufferedImage completed = null;
 		BufferedImage s = null;
-		BufferedImage t = null;
 		try {
-			gameOver = ImageIO.read(new File("resources/gameOver.png"));
 			s = ImageIO.read(new File("resources/asteriaword.png"));
-			t = ImageIO.read(new File("resources/moneyIcon.png"));
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		super.paintComponent(g);
+		
 		g.drawImage(scaledImage, 0, 0, null);
-		g.drawImage(gameOver, 100, 60, null);
-		g.drawImage(t, 305, 225, null);
+		g.drawImage(completed, 100, 100, null);
 		g.drawImage(s, 255, -20, null);
 		g.setColor(new Color(0,255,0));
-		Font myFont = new Font("Impact", Font.BOLD, 48);
+		Font myFont = new Font("Impact", Font.BOLD, 70);
 		g.setFont(myFont);
-		g.drawString("+" + (gp.generateMoney() - gp.getStartingCash()), 400, 275);
-
+		g.drawString("Player " + v.getWinner() + " wins!", 225, 200);
 
 	}
 
@@ -105,14 +106,23 @@ public class GameOverPanel extends JPanel implements ActionListener {
 	 * Checks to see if user wants to go back to home screen
 	 */
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == button) game.changePanel("1");
-		if(e.getSource() == button2) {
-			gp.setLevel(1);
-			game.changePanel("2");
+		if(e.getSource() == button){
+				game.changePanel("1");
 		}
-		
-		if(e.getSource() == button3) game.changePanel("1");
+		if(e.getSource() == button2){
+			game.changePanel("8");
+			
+		}
+		if(e.getSource() == button3){
+				game.changePanel("1");
+		}
 	}
+	
+	public int okcancel(String theMessage) {
+	    int result = JOptionPane.showConfirmDialog((Component) null, theMessage,
+	        "alert", JOptionPane.OK_CANCEL_OPTION);
+	    return result;
+	  }
 
 	private BufferedImage getScaledImage(){
 		ImageIcon backImage = new ImageIcon("resources/homeBackground.png");
@@ -124,4 +134,7 @@ public class GameOverPanel extends JPanel implements ActionListener {
 		return image;
 	}
 	
+	
+	
+
 }

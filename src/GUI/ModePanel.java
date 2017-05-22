@@ -25,7 +25,7 @@ import Main.Asteria;
 public class ModePanel extends JPanel implements ActionListener {
 
 	Asteria game;
-	JButton button, button2;
+	JButton button, button2,button3;
 	GamePanel gp;
 	
 	/**
@@ -57,6 +57,18 @@ public class ModePanel extends JPanel implements ActionListener {
 		button2.setContentAreaFilled(false);
 		button2.setOpaque(false);
 		button2.setBorderPainted(false);
+		
+		
+		Icon versus = new ImageIcon("resources/versus.png");
+		button3 = new JButton(versus);
+		button3.addActionListener(this);
+		setLayout(null);
+		button3.setBounds(225, 300, 370, 100);
+
+		add(button3);
+		button3.setContentAreaFilled(false);
+		button3.setOpaque(false);
+		button3.setBorderPainted(false);
 
 	}
 
@@ -93,6 +105,7 @@ public class ModePanel extends JPanel implements ActionListener {
 			gp.setLevel(1);
 			gp.spawnNewship();
 		}
+		if(e.getSource() == button3) game.changePanel("8");
 	}
 	
 
