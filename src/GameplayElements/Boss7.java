@@ -36,8 +36,8 @@ public class Boss7 extends MovingImage {
 		if(shootClock==0){
 			for(int i=0; i<blasts.length; i++){
 				if(blasts[i]==null || blasts[i].isFizzled()){
-					blasts[i] = new Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + 2*Math.PI, "resources/Bullet.png");
-					shootClock = 50;
+					blasts[i] = new Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + Math.PI, "resources/Bullet.png");
+					shootClock = 75;
 					break;
 				}
 			}
@@ -46,22 +46,22 @@ public class Boss7 extends MovingImage {
 	}
 	
 	public void act(Ship ship) {
-		if(this.x - ship.x > 0) {
+		if(this.x - ship.getCenterX() > 0) {
 			dx = -1;
 		} else {
 			dx = 1;
 		}
 		if(this.y - ship.y > 0) {
-			dy = 1;
-		} else {
 			dy = -1;
+		} else {
+			dy = 1;
 		}
 		
 		if(waiting > 1) {
 			waiting--;
 		} else if(waiting == 1) {
-			waiting = 50;
-			super.moveToLocation(Math.random()*10 + getX() * dx, Math.random()*10 + getY() * dy);
+			waiting = 75;
+			super.moveByAmount(Math.random()*300 * dx, Math.random()*300*dy);
 		}
 		super.turnToward((int)(ship.x - ship.width/2), (int)(ship.y - ship.height/2));
 		/*if(Math.abs(ship.getCenterX() - this.getCenterX()) > 200 || Math.abs(ship.getCenterY() - this.getCenterY()) > 200)
