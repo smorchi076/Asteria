@@ -13,6 +13,7 @@ import GameplayElements.Boss2;
 import GameplayElements.Boss3;
 import GameplayElements.Boss4;
 import GameplayElements.Boss5;
+import GameplayElements.Boss6;
 import GameplayElements.MovingImage;
 import GameplayElements.Ship;
 import GameplayElements.Spawner;
@@ -47,6 +48,7 @@ public class GamePanel extends JPanel implements Runnable
 	private Boss3 boss3;
 	private Boss4 boss4;
 	private Boss5 boss5;
+	private Boss6 boss6;
 	private boolean isOver;
 	private int level;
 	private int[] u;
@@ -255,7 +257,12 @@ public class GamePanel extends JPanel implements Runnable
 			if(keyControl.isPressed(KeyEvent.VK_ESCAPE))
 				game.changePanel("1");
 			if(keyControl.isPressed(KeyEvent.VK_BACK_SLASH))
-				game.changePanel("7");
+				game.changePanel("9");
+			
+				
+			
+			
+			
 
 
 
@@ -312,6 +319,14 @@ public class GamePanel extends JPanel implements Runnable
 					ship.addMoney(10);
 					game.changePanel("7");
 					isOver = true;
+			} 	
+			} else if(level == 6 && boss6 != null) {
+				boss6.act(ship);
+				boss6.shoot();
+				if(boss6.getHp() <= 0 && !isOver){
+					ship.addMoney(10);
+					game.changePanel("7");
+					isOver = true;
 				}
 			}
 			
@@ -328,6 +343,8 @@ public class GamePanel extends JPanel implements Runnable
 					boss4 = new Boss4(DRAWING_WIDTH/2-20,50,"resources/Boss4.png",100, 100);
 				else if(level == 5)
 					boss5 = new Boss5(DRAWING_WIDTH/2-20,50,"resources/Boss5.png",100, 100);
+				else if(level == 6)
+					boss6 = new Boss6(DRAWING_WIDTH/2-20,50,"resources/Boss6.png",100, 100);
 				
 				
 				game.changePanel("6");
@@ -347,6 +364,8 @@ public class GamePanel extends JPanel implements Runnable
 					Thread.yield();
 			} catch (InterruptedException e) {}
 		}
+		
+		
 
 
 	}
@@ -474,11 +493,14 @@ public class GamePanel extends JPanel implements Runnable
 			enemies.add(new Spawner(DRAWING_WIDTH/2-40,50, "resources/spacestation.png", 80,80, 10, 200));
 			isOver = false;
 		}
-		if (level == 6) {
-
+		else if (level == 6) {
+			enemies = new ArrayList<Spawner>();
+			boss6 = new Boss6(DRAWING_WIDTH/2-20,500,"resources/Boss6.png",100, 100);
+			enemies.add(new Spawner(DRAWING_WIDTH/2-40,50, "resources/spacestation.png", 80,80, 10, 200));
+			isOver = false;
 		}
 		if (level == 7) {
-
+			
 		}
 		if (level == 8) {
 

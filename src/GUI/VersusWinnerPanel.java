@@ -95,9 +95,9 @@ public class VersusWinnerPanel extends JPanel implements ActionListener {
 		g.drawImage(completed, 100, 100, null);
 		g.drawImage(s, 255, -20, null);
 		g.setColor(new Color(0,255,0));
-		Font myFont = new Font("Impact", Font.BOLD, 48);
+		Font myFont = new Font("Impact", Font.BOLD, 70);
 		g.setFont(myFont);
-		g.drawString("Player" + v.getWinner() + "wins!", 400, 275);
+		g.drawString("Player " + v.getWinner() + " wins!", 225, 200);
 
 	}
 
