@@ -6,7 +6,7 @@ public class BossProjectile extends Projectile{
 	
 	private int timer;
 	public BossProjectile(int x, int y, double dir, String img) {
-		super(x,y,dir,img);
+		super(x,y,dir,img,2);
 		timer = 200;
 	}
 	
@@ -17,7 +17,7 @@ public class BossProjectile extends Projectile{
 			moveByAmount(2*Math.cos(getDirection()-Math.PI),2*Math.sin(getDirection()-Math.PI));
 			if(enemy!=null){
 				if(enemy.intersects(this)){
-					enemy.dropHp(2);
+					enemy.dropHp(super.getDmg());
 					fizzle();
 				}
 			}
