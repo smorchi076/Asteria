@@ -129,7 +129,11 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 			
 		}
 	}
-	
+	/**
+	 * Prompts user for ok or cancel
+	 * @param theMessage message
+	 * @return result
+	 */
 	public int okcancel(String theMessage) {
 	    int result = JOptionPane.showConfirmDialog((Component) null, theMessage,
 	        "alert", JOptionPane.OK_CANCEL_OPTION);

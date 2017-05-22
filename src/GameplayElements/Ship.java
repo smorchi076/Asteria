@@ -325,23 +325,33 @@ public class Ship extends MovingImage {
 			}
 		}
 	}
-	
+	/**
+	 * Invincibilty 
+	 */
 	public void abilityOne() {
 		invul = 100;
 	}
-	
+	/**
+	 * Double shot
+	 */
 	public void abilityTwo() {
 		twoDirections = 100;
 		shoot();
 	}
 	
+	/**
+	 * Rapid fire
+	 */
 	public void abilityThree() {
 		rapid = 30;
 		shoot();
 	}
 
 
-
+/**
+ * Returns starting cash
+ * @return starting money
+ */
 	public  int getStartingMoney() {
 		return STARTING_MONEY;
 	}

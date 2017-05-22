@@ -117,7 +117,11 @@ public class VersusWinnerPanel extends JPanel implements ActionListener {
 				game.changePanel("1");
 		}
 	}
-	
+	/**
+	 * Prompts the user to click ok or cancel
+	 * @param theMessage message asked
+	 * @return result 
+	 */
 	public int okcancel(String theMessage) {
 	    int result = JOptionPane.showConfirmDialog((Component) null, theMessage,
 	        "alert", JOptionPane.OK_CANCEL_OPTION);
