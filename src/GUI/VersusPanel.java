@@ -343,6 +343,7 @@ public class VersusPanel extends JPanel implements Runnable
 		 */
 		public boolean isPressed(int code) {
 			return keys.contains(code);
+			
 		}
 	}
 
