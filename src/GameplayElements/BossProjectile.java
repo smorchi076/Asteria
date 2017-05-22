@@ -2,10 +2,10 @@ package GameplayElements;
 
 import GUI.GamePanel;
 
-public class Boss1Projectile extends Projectile{
+public class BossProjectile extends Projectile{
 	
 	private int timer;
-	public Boss1Projectile(int x, int y, double dir, String img) {
+	public BossProjectile(int x, int y, double dir, String img) {
 		super(x,y,dir,img);
 		timer = 200;
 	}
