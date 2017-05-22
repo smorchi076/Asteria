@@ -230,6 +230,7 @@ public class Ship extends MovingImage {
 		}
 	}
 	
+	
 	/**
 	 * 
 	 * @return the current hp of the ship
@@ -277,7 +278,6 @@ public class Ship extends MovingImage {
 	
 	
 	public int getDmg() {
-		System.out.println(dmg+STARTING_DAMAGE+" " + hp);
 		return dmg + STARTING_DAMAGE;
 	}
 	/**increases the money of the ship by one
