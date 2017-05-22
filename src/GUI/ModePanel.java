@@ -102,7 +102,7 @@ public class ModePanel extends JPanel implements ActionListener {
 		if(e.getSource() == button) game.changePanel("1");
 		if(e.getSource() == button2){
 			game.changePanel("2");
-			gp.setLevel(1);
+			gp.setLevel(7);
 			gp.spawnNewship();
 		}
 		if(e.getSource() == button3) game.changePanel("8");

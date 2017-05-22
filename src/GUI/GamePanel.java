@@ -14,6 +14,7 @@ import GameplayElements.Boss3;
 import GameplayElements.Boss4;
 import GameplayElements.Boss5;
 import GameplayElements.Boss6;
+import GameplayElements.Boss7;
 import GameplayElements.MovingImage;
 import GameplayElements.Ship;
 import GameplayElements.Spawner;
@@ -49,6 +50,7 @@ public class GamePanel extends JPanel implements Runnable
 	private Boss4 boss4;
 	private Boss5 boss5;
 	private Boss6 boss6;
+	private Boss7 boss7;
 	private boolean isOver;
 	private int level;
 	private int[] u;
@@ -165,6 +167,8 @@ public class GamePanel extends JPanel implements Runnable
 			boss5.draw(g2, this);
 		else if(level == 6)
 			boss6.draw(g2, this);
+		else if(level == 7)
+			boss7.draw(g2, this);
 		
 		//System.out.println(ship.getShield());
 		for(Spawner e : enemies) {
@@ -331,6 +335,14 @@ public class GamePanel extends JPanel implements Runnable
 					game.changePanel("7");
 					isOver = true;
 				}
+			} else if(level == 7 && boss7 != null) {
+				boss7.act(ship);
+				boss7.shoot();
+				if(boss7.getHp() <= 0 && !isOver){
+					ship.addMoney(10);
+					game.changePanel("7");
+					isOver = true;
+				}
 			}
 			
 			if(ship.getHp()<=0){
@@ -348,7 +360,8 @@ public class GamePanel extends JPanel implements Runnable
 					boss5 = new Boss5(DRAWING_WIDTH/2-20,50,"resources/Boss5.png",100, 100);
 				else if(level == 6)
 					boss6 = new Boss6(DRAWING_WIDTH/2-20,50,"resources/Boss6.png",100, 100);
-				
+				else if(level == 7)
+					boss7 = new Boss7(DRAWING_WIDTH/2-20,50,"resources/Boss7.png",100, 100);
 				
 				game.changePanel("6");
 			}
@@ -503,7 +516,10 @@ public class GamePanel extends JPanel implements Runnable
 			isOver = false;
 		}
 		if (level == 7) {
-			
+			enemies = new ArrayList<Spawner>();
+			boss7 = new Boss7(DRAWING_WIDTH/2-20,500,"resources/Boss7.png",100, 100);
+			enemies.add(new Spawner(DRAWING_WIDTH/2-40,50, "resources/spacestation.png", 80,80, 10, 200));
+			isOver = false;
 		}
 		if (level == 8) {
 
