@@ -56,6 +56,7 @@ public class Boss7 extends MovingImage {
 		} else {
 			dy = -1;
 		}
+		
 		if(waiting > 1) {
 			waiting--;
 		} else if(waiting == 1) {
