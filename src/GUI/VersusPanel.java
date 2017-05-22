@@ -222,11 +222,11 @@ public class VersusPanel extends JPanel implements Runnable
 				ship.turn(ship.getDirection()-.1);
 			if(keyControl.isPressed(KeyEvent.VK_SPACE))
 				ship.shoot();
-			if(keyControl.isPressed(KeyEvent.VK_1))
+			if(keyControl.isPressed(KeyEvent.VK_8))
 				ship.abilityOne();
-			if(keyControl.isPressed(KeyEvent.VK_2))
+			if(keyControl.isPressed(KeyEvent.VK_9))
 				ship.abilityTwo();
-			if(keyControl.isPressed(KeyEvent.VK_3))
+			if(keyControl.isPressed(KeyEvent.VK_0))
 				ship.abilityThree();
 			if (keyControl.isPressed(KeyEvent.VK_UP))
 				ship.move(1);
@@ -245,11 +245,11 @@ public class VersusPanel extends JPanel implements Runnable
 				ship2.turn(ship.getDirection()-.1);
 			if(keyControl.isPressed(KeyEvent.VK_SPACE))
 				ship2.shoot();
-			if(keyControl.isPressed(KeyEvent.VK_8))
+			if(keyControl.isPressed(KeyEvent.VK_1))
 				ship2.abilityOne();
-			if(keyControl.isPressed(KeyEvent.VK_9))
+			if(keyControl.isPressed(KeyEvent.VK_2))
 				ship2.abilityTwo();
-			if(keyControl.isPressed(KeyEvent.VK_0))
+			if(keyControl.isPressed(KeyEvent.VK_3))
 				ship2.abilityThree();
 			if (keyControl.isPressed(KeyEvent.VK_W))
 				ship2.move(1);
