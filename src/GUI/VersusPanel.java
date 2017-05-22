@@ -193,7 +193,8 @@ public class VersusPanel extends JPanel implements Runnable
 	 */
 	public void spawnNewShips() {
 		ship = new Ship(DRAWING_WIDTH/2-5,DRAWING_HEIGHT/2-15, "resources/spaceship.png", 40, 60, 100, 5, 0, u);
-		ship2 = new Ship(DRAWING_WIDTH/2-30,DRAWING_HEIGHT/2-40, "resources/spaceship.png", 40, 60, 100, 5, 0, u);
+		ship2 = new Ship(DRAWING_WIDTH/2-100,DRAWING_HEIGHT/2-200, "resources/spaceship.png", 40, 60, 100, 5, 0, u);
+		ship2.turn(180);
 	}
 	
 	public void setUpgrades(int[] u) {
