@@ -25,6 +25,7 @@ public class Projectile extends MovingImage {
 			super(img, x, y, 20, 15, dir);
 			// TODO Auto-generated constructor stub
 			isFizzled = false;
+			this.dmg = dmg;
 		}
 		
 		/**Acts the projectile
