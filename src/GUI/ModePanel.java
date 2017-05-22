@@ -27,7 +27,6 @@ public class ModePanel extends JPanel implements ActionListener {
 	Asteria game;
 	JButton button, button2,button3;
 	GamePanel gp;
-	int mode;
 	
 	/**
 	 * Creates an instance of the mode selection screen
@@ -102,13 +101,13 @@ public class ModePanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == button) game.changePanel("1");
 		if(e.getSource() == button2){
-			mode = 1;
+			gp.setMode(1);
 			game.changePanel("2");
 			gp.setLevel(8);
 			gp.spawnNewship();
 		}
 		if(e.getSource() == button3){ 
-			mode = 2;
+			gp.setMode(2);
 			game.changePanel("8");
 		}
 	}
@@ -122,10 +121,6 @@ public class ModePanel extends JPanel implements ActionListener {
 		g2d.drawImage(backImage.getImage(), 0, 0,getWidth(),getHeight(), null);
 
 		return image;
-	}
-	
-	public int getMode(){
-		return mode;
 	}
 
 }

@@ -27,14 +27,14 @@ public class VersusWinnerPanel extends JPanel implements ActionListener {
 	
 	Asteria game;
 	JButton button,button2,button3, button4;
-	private VersusPanel v;
+	private GamePanel v;
 	
 	
 	/**
 	 * Creates an instance of the Instructions screen
 	 * @param game the game that this panel is corresponding to.
 	 */
-	public VersusWinnerPanel(Asteria game, VersusPanel panel) {
+	public VersusWinnerPanel(Asteria game, 	GamePanel panel) {
 
 		this.game = game;
 		this.v = panel;
