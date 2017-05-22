@@ -48,7 +48,7 @@ public class Boss6 extends MovingImage {
 		super.turnToward((int)((ship.getCenterX() - ship.width/2)), (int)((ship.getCenterY() - ship.height/2)));
 		if(shootClock>0){
 			shootClock--;
-			moveByAmount(Math.random()*360,Math.random()*360);
+			
 		}
 		
 		for(int i = 0; i<blasts.length; i++){
