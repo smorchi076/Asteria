@@ -40,7 +40,6 @@ public class GamePanel extends JPanel implements Runnable
 
 	private boolean rightKey, leftKey, upKey, downKey;
 
-
 	private Ship ship;
 	private ArrayList<Shape> obstacles;
 	private ArrayList<Spawner> enemies;
@@ -55,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable
 	private int level;
 	private int[] u;
 
+	private int winner;
 
 
 	private Rectangle2D.Double visibleSpace;
@@ -455,14 +455,6 @@ public class GamePanel extends JPanel implements Runnable
 		}
 	}
 
-
-
-
-
-
-
-
-
 	private BufferedImage getScaledImage(){
 		ImageIcon backImage = new ImageIcon("resources/background.png");
 		BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
@@ -531,7 +523,10 @@ public class GamePanel extends JPanel implements Runnable
 
 		}
 
+	}
 
+	public int getWinner() {
+		return winner;
 	}
 	
 	
