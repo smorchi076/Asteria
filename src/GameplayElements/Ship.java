@@ -230,6 +230,7 @@ public class Ship extends MovingImage {
 		}
 	}
 	
+	
 	/**
 	 * 
 	 * @return the current hp of the ship
