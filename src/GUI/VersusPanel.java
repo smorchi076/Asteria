@@ -44,7 +44,7 @@ public class VersusPanel extends JPanel implements Runnable
 	
 	private int level;
 	private int[] u;
-
+	private int winner;
 
 
 	private Rectangle2D.Double visibleSpace;
@@ -61,8 +61,9 @@ public class VersusPanel extends JPanel implements Runnable
 	 */
 	public VersusPanel(Asteria game) {
 		super();
-
+		
 		this.game = game;
+		winner = 1;
 		keyControl = new KeyHandler(); 
 		screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 		
@@ -256,10 +257,19 @@ public class VersusPanel extends JPanel implements Runnable
 				ship2.move(1);
 			if(keyControl.isPressed(KeyEvent.VK_S))
 				ship2.move(-1);
+			
+			
 
 
 			slideWorldToImage(ship);
 			slideWorldToImage(ship2);
+			
+			if(ship.getHp() <= 0 && ship2.getHp() > 0 ){
+				winner = 1;
+			}
+			if(ship2.getHp() <= 0 && ship2.getHp() > 0){
+				winner = 2;
+			}
 
 
 			repaint();
@@ -278,20 +288,10 @@ public class VersusPanel extends JPanel implements Runnable
 	public Ship getShip() {
 		return ship;
 	}
-	public int generateMoney(){
-		return ship.getMoney();
-	}
-	public int calibrateMoney(){
-		int money = ship.getMoney() + generateMoney();
-		return money;
-	}
 	
-	public void addMoney(int amount) {
-		ship.addMoney(amount);
-	}
 	
-	public int getStartingCash(){
-		return ship.getStartingMoney();
+	public int getWinner(){
+		return winner;
 	}
 
 

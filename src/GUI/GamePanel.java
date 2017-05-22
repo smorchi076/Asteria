@@ -356,10 +356,7 @@ public class GamePanel extends JPanel implements Runnable
 	public int generateMoney(){
 		return ship.getMoney();
 	}
-	public int calibrateMoney(){
-		int money = ship.getMoney() + generateMoney();
-		return money;
-	}
+	
 	
 	public void addMoney(int amount) {
 		ship.addMoney(amount);
@@ -368,6 +365,8 @@ public class GamePanel extends JPanel implements Runnable
 	public int getStartingCash(){
 		return ship.getStartingMoney();
 	}
+	
+	
 
 
 
