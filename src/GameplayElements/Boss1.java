@@ -6,7 +6,7 @@ import java.awt.image.ImageObserver;
 
 public class Boss1 extends MovingImage{
 
-	private Boss1Projectile[] blasts = new Boss1Projectile[40];
+	private BossProjectile[] blasts = new BossProjectile[40];
 	private int shootClock;
 	private int hp;
 	private int movingLeft, movingRight, waiting;
@@ -38,7 +38,7 @@ public class Boss1 extends MovingImage{
 		if(shootClock==0){
 			for(int i=0; i<blasts.length; i++){
 				if(blasts[i]==null || blasts[i].isFizzled()){
-					blasts[i] = new Boss1Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + Math.PI, "resources/Bullet.png");
+					blasts[i] = new BossProjectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + Math.PI, "resources/Bullet.png");
 					shootClock = 100;
 					break;
 				}
