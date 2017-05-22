@@ -218,7 +218,10 @@ public class ShopPanel extends JPanel implements ActionListener {
 		return image;
 	}
 
-	
+	/**
+	 * Gets upgrades
+	 * @return upgrades
+	 */
 	public int[] getUpgrades(){
 		return upgrades;
 	}
