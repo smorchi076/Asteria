@@ -87,6 +87,7 @@ public class GamePanel extends JPanel implements Runnable
 
 		enemies = new ArrayList<Spawner>();
 		boss1 = new Boss1(DRAWING_WIDTH/2-20,50,"resources/Boss1.png",100, 100);
+		
 		isOver = false;
 		//obstacles.add(new Rectangle(200,400,400,50));
 		//obstacles.add(new Rectangle(0,250,100,50));
@@ -162,6 +163,8 @@ public class GamePanel extends JPanel implements Runnable
 			boss4.draw(g2, this);
 		else if(level == 5)
 			boss5.draw(g2, this);
+		else if(level == 6)
+			boss6.draw(g2, this);
 		
 		//System.out.println(ship.getShield());
 		for(Spawner e : enemies) {

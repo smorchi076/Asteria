@@ -35,7 +35,8 @@ public class Boss6 extends MovingImage {
 			for(int i=0; i<blasts.length; i++){
 				if(blasts[i]==null || blasts[i].isFizzled()){
 					blasts[i] = new Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + 2*Math.PI, "resources/Boss3Projectile.png");
-					shootClock = 1;
+					blasts[i] = new Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + Math.PI, "resources/Boss3Projectile.png");
+					shootClock = 10;
 					break;
 				}
 			}
@@ -45,8 +46,11 @@ public class Boss6 extends MovingImage {
 	
 	public void act(Ship ship) {
 		super.turnToward((int)((ship.getCenterX() - ship.width/2)), (int)((ship.getCenterY() - ship.height/2)));
-		if(shootClock>0)
+		if(shootClock>0){
 			shootClock--;
+			moveByAmount(Math.random()*360,Math.random()*360);
+		}
+		
 		for(int i = 0; i<blasts.length; i++){
 			if(blasts[i]!=null){
 				blasts[i].act(ship);
