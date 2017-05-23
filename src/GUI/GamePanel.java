@@ -44,7 +44,6 @@ public class GamePanel extends JPanel implements Runnable
 	private boolean rightKey, leftKey, upKey, downKey;
 
 	private Ship ship;
-	private Ship ship2;
 	private ArrayList<Shape> obstacles;
 	private ArrayList<Spawner> enemies;
 	private Boss1 boss1;
@@ -57,16 +56,14 @@ public class GamePanel extends JPanel implements Runnable
 	private Boss8 boss8;
 	private Boss9 boss9;
 	private Boss10 boss10;
-	private boolean isOver, isSetUp;
+	private boolean isOver;
 	private int level;
 	private int[] u;
 
-	private int winner = 0;
-	private int mode = 0;
 	private boolean running;
 
 
-	
+
 	private Rectangle2D.Double visibleSpace;
 	private Rectangle2D.Double characterSpace;
 
@@ -83,7 +80,7 @@ public class GamePanel extends JPanel implements Runnable
 		super();
 
 		this.game = game;
-		if(mode==1) setLevel(1);
+		setLevel(1);
 		keyControl = new KeyHandler(); 
 		screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 		obstacles = new ArrayList<Shape>();
@@ -91,24 +88,14 @@ public class GamePanel extends JPanel implements Runnable
 		characterSpace = new Rectangle2D.Double(visibleSpace.getX()+visibleSpace.getWidth()/5,visibleSpace.getY()+visibleSpace.getHeight()/5,visibleSpace.getWidth()*3/5,visibleSpace.getHeight()*3/5);
 		//visibleSpace = new Rectangle2D.Double(0,this.getHeight()-DRAWING_HEIGHT,DRAWING_WIDTH,DRAWING_HEIGHT);
 		//characterSpace = new Rectangle2D.Double(visibleSpace.getX()+visibleSpace.getWidth()/5,visibleSpace.getY()+visibleSpace.getHeight()/5,visibleSpace.getWidth()*3/5,visibleSpace.getHeight()*3/5);
-		isSetUp = false;
 		ratioX = (double)getWidth()/DRAWING_WIDTH;
 		ratioY = (double)getHeight()/DRAWING_HEIGHT;
-		//setUpGame();
-	}
-	/**
-	 * Sets up the game 
-	 */
-	public void setUpGame(){
+
 		spawnNewship();
-		if(!isSetUp){
-		if(mode==1){
-			enemies = new ArrayList<Spawner>();
-			boss1 = new Boss1(DRAWING_WIDTH/2-20,400,"resources/Boss1.png",100, 100);
+		enemies = new ArrayList<Spawner>();
+		boss1 = new Boss1(DRAWING_WIDTH/2-20,400,"resources/Boss1.png",100, 100);
 
-			isOver = false;
-
-		}
+		isOver = false;
 		//obstacles.add(new Rectangle(200,400,400,50));
 		//obstacles.add(new Rectangle(0,250,100,50));
 		//obstacles.add(new Rectangle(700,250,100,50));
@@ -116,11 +103,7 @@ public class GamePanel extends JPanel implements Runnable
 		//obstacles.add(new Rectangle(300,250,200,50));
 
 		//if(ship== null)
-		isSetUp = true;
-		if(mode==2){
-			//System.out.println("declared");
-			spawnShip2();
-		}
+
 
 		/*
 		addComponentListener(new ComponentAdapter() {
@@ -133,15 +116,9 @@ public class GamePanel extends JPanel implements Runnable
 			public void componentResized(ComponentEvent e) {ratioX = (double)e.getComponent().getWidth()/ASSUMED_DRAWING_WIDTH;ratioY = (double)e.getComponent().getHeight()/ASSUMED_DRAWING_HEIGHT;}	  	
 		});
 
-		}
 		new Thread(this).start();
 	}
 
-
-	private void spawnShip2() {
-		ship2 = new Ship(DRAWING_WIDTH/2-100,DRAWING_HEIGHT/2-200, "resources/spaceship.png", 40, 60, 100, 5, 0, u);
-		ship2.turn(180);
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -185,50 +162,32 @@ public class GamePanel extends JPanel implements Runnable
 		g.setColor(Color.BLUE);
 		g.fillRect((int) ship.getX() - 30,(int) ship.getY()-25, (int)((double)ship.getShield()/ship.getMaxShield()*100), 10);
 
-		if(mode==2){
-			ship2.draw(g2, this);
-			g.setColor(Color.RED);
-			g.fillRect((int) ship2.getX() - 30,(int) ship2.getY()-15, 100, 10);
-			g.setColor(Color.GREEN);
-			g.fillRect((int) ship2.getX()- 30,(int) ship2.getY()-15, (int)((double)ship2.getHp()/ship2.getMaxHp() * 100), 10);
-			g.setColor(Color.BLUE);
-			g.fillRect((int) ship2.getX() - 30,(int) ship2.getY()-25, (int)((double)ship2.getShield()/ship2.getMaxShield()*100), 10);
-		}
+		if(level == 1 && boss1 != null)
+			boss1.draw(g2, this);
+		else if(level == 2 && boss2 != null)
+			boss2.draw(g2, this);
+		else if(level == 3 && boss3 != null)
+			boss3.draw(g2, this);
+		else if(level == 4 && boss4 != null)
+			boss4.draw(g2, this);
+		else if(level == 5 && boss5 != null)
+			boss5.draw(g2, this);
+		else if(level == 6 && boss6 != null)
+			boss6.draw(g2, this);
+		else if(level == 7 && boss7 != null)
+			boss7.draw(g2, this);
+		else if(level == 8 && boss8 != null)
+			boss8.draw(g2, this);
+		else if(level == 9 && boss9 != null)
+			boss9.draw(g2, this);
+		else if(level == 10 && boss10 != null)
+			boss10.draw(g2, this);
 
-		if(mode==1){
-			if(level == 1 && boss1 != null)
-				boss1.draw(g2, this);
-			else if(level == 2 && boss2 != null)
-				boss2.draw(g2, this);
-			else if(level == 3 && boss3 != null)
-				boss3.draw(g2, this);
-			else if(level == 4 && boss4 != null)
-				boss4.draw(g2, this);
-			else if(level == 5 && boss5 != null)
-				boss5.draw(g2, this);
-			else if(level == 6 && boss6 != null)
-				boss6.draw(g2, this);
-			else if(level == 7 && boss7 != null)
-				boss7.draw(g2, this);
-			else if(level == 8 && boss8 != null)
-				boss8.draw(g2, this);
-			else if(level == 9 && boss9 != null)
-				boss9.draw(g2, this);
-			else if(level == 10 && boss10 != null)
-				boss10.draw(g2, this);
-
-			//System.out.println(ship.getShield());
-			for(Spawner e : enemies) {
-				e.draw(g2, this);	
-			}
+		//System.out.println(ship.getShield());
+		for(Spawner e : enemies) {
+			e.draw(g2, this);	
 		}
 		g2.setTransform(at);
-
-
-
-
-
-
 
 		// TODO Add any custom drawings here
 	}
@@ -291,253 +250,176 @@ public class GamePanel extends JPanel implements Runnable
 		running = true;
 		while (running) { // Modify this to allow quitting
 			long startTime = System.currentTimeMillis();
-			if(mode==1){
-				if (keyControl.isPressed(KeyEvent.VK_RIGHT))
-					ship.turn(ship.getDirection()+.1);
-				if (keyControl.isPressed(KeyEvent.VK_LEFT))
-					ship.turn(ship.getDirection()-.1);
-				if(keyControl.isPressed(KeyEvent.VK_SPACE))
-					ship.shoot();
-				if(keyControl.isPressed(KeyEvent.VK_8))
-					ship.abilityOne();
-				if(keyControl.isPressed(KeyEvent.VK_9))
-					ship.abilityTwo();
-				if(keyControl.isPressed(KeyEvent.VK_0))
-					ship.abilityThree();
-				if (keyControl.isPressed(KeyEvent.VK_UP))
-					ship.move(1);
-				if(keyControl.isPressed(KeyEvent.VK_DOWN))
-					ship.move(-1);
-				if(keyControl.isPressed(KeyEvent.VK_ESCAPE)){
-					running = false;
-					game.changePanel("1");
+			if (keyControl.isPressed(KeyEvent.VK_RIGHT))
+				ship.turn(ship.getDirection()+.1);
+			if (keyControl.isPressed(KeyEvent.VK_LEFT))
+				ship.turn(ship.getDirection()-.1);
+			if(keyControl.isPressed(KeyEvent.VK_SPACE))
+				ship.shoot();
+			if(keyControl.isPressed(KeyEvent.VK_8))
+				ship.abilityOne();
+			if(keyControl.isPressed(KeyEvent.VK_9))
+				ship.abilityTwo();
+			if(keyControl.isPressed(KeyEvent.VK_0))
+				ship.abilityThree();
+			if (keyControl.isPressed(KeyEvent.VK_UP))
+				ship.move(1);
+			if(keyControl.isPressed(KeyEvent.VK_DOWN))
+				ship.move(-1);
+			if(keyControl.isPressed(KeyEvent.VK_ESCAPE)){
+				running = false;
+				game.changePanel("1");
+			}
+			if(keyControl.isPressed(KeyEvent.VK_BACK_SLASH))
+				game.changePanel("9");
+
+			for(int i = 0; i < enemies.size(); i++) {
+				enemies.get(i).act(ship);
+				if(enemies.get(i).getHp() <= 0) {
+					enemies.remove(i);
+					ship.addMoney(20);
 				}
-				if(keyControl.isPressed(KeyEvent.VK_BACK_SLASH))
+				else if(enemies.get(i).intersects(ship)) {
+
+					ship.dropHp(1);
+					enemies.get(i).dropHp(1);;
+				}
+			}
+			ship.act(null);
+			if(level == 1 && boss1 != null) {
+				boss1.act(ship);
+				boss1.shoot();
+				if(boss1.getHp() <= 0 && !isOver){
+					ship.addMoney(100);
+					game.changePanel("7");
+					isOver = true;
+					boss1 = null;
+				}
+			}
+			else if(level == 2 && boss2 != null) {
+				boss2.act(ship);
+				boss2.shoot();
+				if(boss2.getHp() <= 0 && !isOver){
+					ship.addMoney(10);
+					game.changePanel("7");
+					isOver = true;
+					boss2 = null;
+				}
+			}else if(level == 3 && boss3 != null) {
+				boss3.act(ship);
+				boss3.shoot();
+				if(boss3.getHp() <= 0 && !isOver){
+					ship.addMoney(10);
+					game.changePanel("7");
+					isOver = true;
+					boss3 = null;
+				}
+			}else if(level == 4 && boss4 != null) {
+				boss4.act(ship);
+				boss4.shoot();
+				if(boss4.getHp() <= 0 && !isOver){
+					ship.addMoney(10);
+					game.changePanel("7");
+					isOver = true;
+					boss4 = null;
+				}
+			}else if(level == 5 && boss5 != null) {
+				boss5.act(ship);
+				boss5.shoot();
+				if(boss5.getHp() <= 0 && !isOver){
+					ship.addMoney(10);
+					game.changePanel("7");
+					isOver = true;
+					boss5 = null;
+				} 	
+			} else if(level == 6 && boss6 != null) {
+				boss6.act(ship);
+				boss6.shoot();
+				if(boss6.getHp() <= 0 && !isOver){
+					ship.addMoney(10);
+					game.changePanel("7");
+					isOver = true;
+					boss6 = null;
+				}
+			} else if(level == 7 && boss7 != null) {
+				boss7.act(ship);
+				boss7.shoot();
+				if(boss7.getHp() <= 0 && !isOver){
+					ship.addMoney(10);
+					game.changePanel("7");
+					isOver = true;
+					boss7 = null;
+				}
+			} else if(level == 8 && boss8 != null) {
+				boss8.act(ship);
+				boss8.shoot();
+				if(boss8.getHp() <= 0 && !isOver){
+					ship.addMoney(10);
+					game.changePanel("7");
+					isOver = true;
+					boss8 = null;
+				}
+			} else if(level == 9 && boss9 != null) {
+				boss9.act(ship);
+				boss9.shoot();
+				if(boss9.getHp() <= 0 && !isOver){
+					ship.addMoney(10);
+					game.changePanel("7");
+					isOver = true;
+					boss9 = null;
+				}
+			} else if(level == 10 && boss10 != null) {
+				boss10.act(ship);
+				boss10.shoot();
+				if(boss10.getHp() <= 0 && !isOver){
+					ship.addMoney(10);
+					isOver = true;
 					game.changePanel("9");
-
-				for(int i = 0; i < enemies.size(); i++) {
-					enemies.get(i).act(ship);
-					if(enemies.get(i).getHp() <= 0) {
-						enemies.remove(i);
-						ship.addMoney(20);
-					}
-					else if(enemies.get(i).intersects(ship)) {
-
-						ship.dropHp(1);
-						enemies.get(i).dropHp(1);;
-					}
+					boss10 = null;
 				}
-				ship.act(null);
-				if(level == 1 && boss1 != null) {
-					boss1.act(ship);
-					boss1.shoot();
-					if(boss1.getHp() <= 0 && !isOver){
-						ship.addMoney(100);
-						game.changePanel("7");
-						isOver = true;
-						boss1 = null;
-					}
-				}
-				else if(level == 2 && boss2 != null) {
-					boss2.act(ship);
-					boss2.shoot();
-					if(boss2.getHp() <= 0 && !isOver){
-						ship.addMoney(10);
-						game.changePanel("7");
-						isOver = true;
-						boss2 = null;
-					}
-				}else if(level == 3 && boss3 != null) {
-					boss3.act(ship);
-					boss3.shoot();
-					if(boss3.getHp() <= 0 && !isOver){
-						ship.addMoney(10);
-						game.changePanel("7");
-						isOver = true;
-						boss3 = null;
-					}
-				}else if(level == 4 && boss4 != null) {
-					boss4.act(ship);
-					boss4.shoot();
-					if(boss4.getHp() <= 0 && !isOver){
-						ship.addMoney(10);
-						game.changePanel("7");
-						isOver = true;
-						boss4 = null;
-					}
-				}else if(level == 5 && boss5 != null) {
-					boss5.act(ship);
-					boss5.shoot();
-					if(boss5.getHp() <= 0 && !isOver){
-						ship.addMoney(10);
-						game.changePanel("7");
-						isOver = true;
-						boss5 = null;
-					} 	
-				} else if(level == 6 && boss6 != null) {
-					boss6.act(ship);
-					boss6.shoot();
-					if(boss6.getHp() <= 0 && !isOver){
-						ship.addMoney(10);
-						game.changePanel("7");
-						isOver = true;
-						boss6 = null;
-					}
-				} else if(level == 7 && boss7 != null) {
-					boss7.act(ship);
-					boss7.shoot();
-					if(boss7.getHp() <= 0 && !isOver){
-						ship.addMoney(10);
-						game.changePanel("7");
-						isOver = true;
-						boss7 = null;
-					}
-				} else if(level == 8 && boss8 != null) {
-					boss8.act(ship);
-					boss8.shoot();
-					if(boss8.getHp() <= 0 && !isOver){
-						ship.addMoney(10);
-						game.changePanel("7");
-						isOver = true;
-						boss8 = null;
-					}
-				} else if(level == 9 && boss9 != null) {
-					boss9.act(ship);
-					boss9.shoot();
-					if(boss9.getHp() <= 0 && !isOver){
-						ship.addMoney(10);
-						game.changePanel("7");
-						isOver = true;
-						boss9 = null;
-					}
-				} else if(level == 10 && boss10 != null) {
-					boss10.act(ship);
-					boss10.shoot();
-					if(boss10.getHp() <= 0 && !isOver){
-						ship.addMoney(10);
-						isOver = true;
-						game.changePanel("9");
-						boss10 = null;
-					}
-				}
+			}
 
-				if(ship.getHp()<=0){
-					spawnNewship();
-					enemies = new ArrayList<Spawner>();
-					if(level == 1)
-						boss1 = new Boss1(DRAWING_WIDTH/2-20,50,"resources/Boss1.png",100, 100);
-					else if(level == 2)
-						boss2 = new Boss2(DRAWING_WIDTH/2-20,50,"resources/Boss2.png",100, 100);
-					else if(level == 3)
-						boss3 = new Boss3(DRAWING_WIDTH/2-20,50,"resources/Boss2.png",100, 100);
-					else if(level == 4)
-						boss4 = new Boss4(DRAWING_WIDTH/2-20,50,"resources/Boss4.png",100, 100);
-					else if(level == 5)
-						boss5 = new Boss5(DRAWING_WIDTH/2-20,50,"resources/Boss5.png",100, 100);
-					else if(level == 6)
-						boss6 = new Boss6(DRAWING_WIDTH/2-20,50,"resources/Boss6.png",100, 100);
-					else if(level == 7)
-						boss7 = new Boss7(DRAWING_WIDTH/2-20,50,"resources/Boss7.png",100, 100);
-					else if(level == 8)
-						boss8 = new Boss8(DRAWING_WIDTH/2-20,50,"resources/Boss8.png",100, 100);
-					else if(level == 9)
-						boss9 = new Boss9(DRAWING_WIDTH/2-20,50,"resources/Boss9.png",100, 100);
-					else if(level == 10)
-						boss10 = new Boss10(DRAWING_WIDTH/2-20,50,"resources/Boss10.png",100, 100);
+			if(ship.getHp()<=0){
+				spawnNewship();
+				enemies = new ArrayList<Spawner>();
+				if(level == 1)
+					boss1 = new Boss1(DRAWING_WIDTH/2-20,50,"resources/Boss1.png",100, 100);
+				else if(level == 2)
+					boss2 = new Boss2(DRAWING_WIDTH/2-20,50,"resources/Boss2.png",100, 100);
+				else if(level == 3)
+					boss3 = new Boss3(DRAWING_WIDTH/2-20,50,"resources/Boss2.png",100, 100);
+				else if(level == 4)
+					boss4 = new Boss4(DRAWING_WIDTH/2-20,50,"resources/Boss4.png",100, 100);
+				else if(level == 5)
+					boss5 = new Boss5(DRAWING_WIDTH/2-20,50,"resources/Boss5.png",100, 100);
+				else if(level == 6)
+					boss6 = new Boss6(DRAWING_WIDTH/2-20,50,"resources/Boss6.png",100, 100);
+				else if(level == 7)
+					boss7 = new Boss7(DRAWING_WIDTH/2-20,50,"resources/Boss7.png",100, 100);
+				else if(level == 8)
+					boss8 = new Boss8(DRAWING_WIDTH/2-20,50,"resources/Boss8.png",100, 100);
+				else if(level == 9)
+					boss9 = new Boss9(DRAWING_WIDTH/2-20,50,"resources/Boss9.png",100, 100);
+				else if(level == 10)
+					boss10 = new Boss10(DRAWING_WIDTH/2-20,50,"resources/Boss10.png",100, 100);
 
-					game.changePanel("6");
-				}
-
-
-				slideWorldToImage(ship);
-
-
-				repaint();
-
-				long waitTime = 17 - (System.currentTimeMillis()-startTime);
-				try {
-					if (waitTime > 0)
-						Thread.sleep(waitTime);
-					else
-						Thread.yield();
-				} catch (InterruptedException e) {}
+				game.changePanel("6");
 			}
 
 
+			slideWorldToImage(ship);
 
 
+			repaint();
 
+			long waitTime = 17 - (System.currentTimeMillis()-startTime);
+			try {
+				if (waitTime > 0)
+					Thread.sleep(waitTime);
+				else
+					Thread.yield();
+			} catch (InterruptedException e) {}
 
-
-
-
-
-
-			if(mode==2){
-				if (keyControl.isPressed(KeyEvent.VK_RIGHT))
-					ship.turn(ship.getDirection()+.1);
-				if (keyControl.isPressed(KeyEvent.VK_LEFT))
-					ship.turn(ship.getDirection()-.1);
-				if(keyControl.isPressed(KeyEvent.VK_SPACE))
-					ship.shoot();
-				if(keyControl.isPressed(KeyEvent.VK_8))
-					ship.abilityOne();
-				if(keyControl.isPressed(KeyEvent.VK_9))
-					ship.abilityTwo();
-				if(keyControl.isPressed(KeyEvent.VK_0))
-					ship.abilityThree();
-				if (keyControl.isPressed(KeyEvent.VK_UP))
-					ship.move(1);
-				if(keyControl.isPressed(KeyEvent.VK_DOWN))
-					ship.move(-1);
-				if(keyControl.isPressed(KeyEvent.VK_ESCAPE))
-					game.changePanel("1");
-				if(keyControl.isPressed(KeyEvent.VK_BACK_SLASH))
-					game.changePanel("8");
-
-
-				if (keyControl.isPressed(KeyEvent.VK_D))
-					ship2.turn(ship.getDirection()+.1);
-				if (keyControl.isPressed(KeyEvent.VK_A))
-					ship2.turn(ship.getDirection()-.1);
-				if(keyControl.isPressed(KeyEvent.VK_Z))
-					ship2.shoot();
-				if(keyControl.isPressed(KeyEvent.VK_1))
-					ship2.abilityOne();
-				if(keyControl.isPressed(KeyEvent.VK_2))
-					ship2.abilityTwo();
-				if(keyControl.isPressed(KeyEvent.VK_3))
-					ship2.abilityThree();
-				if (keyControl.isPressed(KeyEvent.VK_W))
-					ship2.move(1);
-				if(keyControl.isPressed(KeyEvent.VK_S))
-					ship2.move(-1);
-
-
-				if(ship.getHp()<=0){
-					winner = 2;
-					game.changePanel("8");
-				}
-				if(ship2.getHp()<=0){
-					winner = 1;
-					game.changePanel("8");
-				}
-				slideWorldToImage(ship);
-				slideWorldToImage(ship2);
-
-
-
-
-				repaint();
-
-				long waitTime = 17 - (System.currentTimeMillis()-startTime);
-				try {
-					if (waitTime > 0)
-						Thread.sleep(waitTime);
-					else
-						Thread.yield();
-				} catch (InterruptedException e) {}
-			}
 
 		}
 
@@ -550,7 +432,7 @@ public class GamePanel extends JPanel implements Runnable
 		return ship;
 
 	}
-	
+
 	/**
 	 * gets the ship's money
 	 * @return
@@ -566,7 +448,7 @@ public class GamePanel extends JPanel implements Runnable
 	public void addMoney(int amount) {
 		ship.addMoney(amount);
 	}
-	
+
 	/**
 	 * Gets the starting cash
 	 * @return the starting cash
@@ -639,13 +521,6 @@ public class GamePanel extends JPanel implements Runnable
 		return image;
 	}
 
-	/**
-	 * Sets the mode of the game
-	 * @param mode mode 1 is campaign, mode 2 is versus
-	 */
-	public void setMode(int mode){
-		this.mode = mode;
-	}
 	/**
 	 * Gets the current level of the game
 	 * @return level
@@ -721,14 +596,5 @@ public class GamePanel extends JPanel implements Runnable
 		}
 
 	}
-	/**
-	 * gets the winner for versus
-	 * @return winner
-	 */
-	public int getWinner() {
-		return winner;
-	}
-
-
 
 }
