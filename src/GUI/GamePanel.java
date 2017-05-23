@@ -79,7 +79,6 @@ public class GamePanel extends JPanel implements Runnable
 	 */
 	public GamePanel (Asteria game) {
 		super();
-		System.out.println("MODE: " + mode);
 
 		this.game = game;
 		if(mode==1) setLevel(1);
@@ -620,7 +619,6 @@ public class GamePanel extends JPanel implements Runnable
 
 	public void setMode(int mode){
 		this.mode = mode;
-		System.out.println("this is the mode: " + this.mode);
 	}
 
 	public int getLevel() {
