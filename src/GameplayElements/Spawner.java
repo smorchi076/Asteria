@@ -95,8 +95,8 @@ public class Spawner extends MovingImage {
 		
 		}
 		spawnTimer--;
-		for(Ship s : ships) {
-			s.act(ship);
+		for(int i = 0; i < ships.size(); i++) {
+			ships.get(i).act(ship);
 		}
 	}
 	/**reduces the spawner's hp by that amount
