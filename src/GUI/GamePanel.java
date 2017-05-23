@@ -16,6 +16,7 @@ import GameplayElements.Boss5;
 import GameplayElements.Boss6;
 import GameplayElements.Boss7;
 import GameplayElements.Boss8;
+import GameplayElements.Boss9;
 import GameplayElements.MovingImage;
 import GameplayElements.Ship;
 import GameplayElements.Spawner;
@@ -416,9 +417,9 @@ public class GamePanel extends JPanel implements Runnable
 						boss7 = new Boss7(DRAWING_WIDTH/2-20,50,"resources/Boss7.png",100, 100);
 					else if(level == 8)
 						boss8 = new Boss8(DRAWING_WIDTH/2-20,50,"resources/Boss8.png",100, 100);
-					else if(level == 9);
+					else if(level == 9)
 						boss9 = new Boss9(DRAWING_WIDTH/2-20,50,"resources/Boss9.png",100, 100);
-					else if(level == 10);
+					//else if(level == 10);
 						//boss10 = new Boss10(DRAWING_WIDTH/2-20,50,"resources/Boss10.png",100, 100);
 
 						game.changePanel("6");
