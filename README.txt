@@ -83,5 +83,5 @@ MissionFinishPanel (constructor takes in # representing amount of space junk col
 
 Responsibilities List:
 Garrett: Gameplay elements
-Sahil: Map,GUI(HomePanel, ShopPanel, ModePanel, MissionFinishPanel)
+Sahil: GamePanel,GUI(HomePanel, ShopPanel, ModePanel, MissionFinishPanel)
 Gilbert: FileIO, GUI(InstructionPanel, ShopPanel, AbilityPanel, ModePanel),controls
