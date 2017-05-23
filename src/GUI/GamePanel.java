@@ -63,6 +63,7 @@ public class GamePanel extends JPanel implements Runnable
 
 	private int winner = 0;
 	private int mode = 0;
+	private boolean running;
 
 
 	private Rectangle2D.Double visibleSpace;
@@ -284,7 +285,8 @@ public class GamePanel extends JPanel implements Runnable
 	 * Runs the thread
 	 */
 	public void run() {
-		while (true) { // Modify this to allow quitting
+		running = true;
+		while (running) { // Modify this to allow quitting
 			long startTime = System.currentTimeMillis();
 			if(mode==1){
 				if (keyControl.isPressed(KeyEvent.VK_RIGHT))
@@ -303,8 +305,10 @@ public class GamePanel extends JPanel implements Runnable
 					ship.move(1);
 				if(keyControl.isPressed(KeyEvent.VK_DOWN))
 					ship.move(-1);
-				if(keyControl.isPressed(KeyEvent.VK_ESCAPE))
+				if(keyControl.isPressed(KeyEvent.VK_ESCAPE)){
+					running = false;
 					game.changePanel("1");
+				}
 				if(keyControl.isPressed(KeyEvent.VK_BACK_SLASH))
 					game.changePanel("9");
 
