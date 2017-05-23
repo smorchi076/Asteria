@@ -28,6 +28,7 @@ public class ModePanel extends JPanel implements ActionListener {
 	JButton button, button2,button3;
 	GamePanel gp;
 	
+	
 	/**
 	 * Creates an instance of the mode selection screen
 	 * @param game the game that this panel is corresponding to.
