@@ -122,7 +122,6 @@ public class Boss4 extends MovingImage{
 			mini2.setLevel(getLevel()+1);
 			mini1.setHp(maxHp-level*2);
 			mini2.setHp(maxHp-level*2);
-			System.out.println(level);
 			mini1.setD(1);
 			mini2.setD(-1);
 		}
