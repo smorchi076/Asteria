@@ -522,6 +522,7 @@ public class GamePanel extends JPanel implements Runnable
 
 	public Ship getShip() {
 		return ship;
+		
 	}
 	public int generateMoney(){
 		return ship.getMoney();
