@@ -62,7 +62,7 @@ public class Spawner extends MovingImage {
 		if(invul > 0)
 			invul--;
 		if(spawnTimer == 0){
-			ships.add(new Ship((int)getX(), (int)getY(), "resources/spacestation.png", 40, 40, 1, 3, 0, null),0);
+			ships.add(new Ship((int)getX(), (int)getY(), "resources/spacestation.png", 40, 40, 1, 3, 0, null));
 			ships.get(ships.size()-1).turnToward((int)(ship.getX()), (int)(ship.getY()));
 			ships.get(ships.size()-1).turn(ships.get(ships.size()-1).getDirection() + Math.PI);
 			spawnTimer = spawnRate;

@@ -23,7 +23,7 @@ public class Boss10 extends MovingImage {
 		super.draw(g, io);
 		if(hp > 30){
 			g.setColor(Color.BLUE);
-			g.fillRect((int)getX(), (int)getY(), (int)(hp/10 * getWidth()), 2);
+			g.fillRect((int)getX(), (int)getY(), (int)(hp/5 * getWidth()), 2);
 		}
 		g.setColor(Color.RED);
 		g.fillRect((int)getX(), (int)getY(), (int)getWidth(), 2);
