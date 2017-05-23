@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 import GameplayElements.Boss1;
+import GameplayElements.Boss10;
 import GameplayElements.Boss2;
 import GameplayElements.Boss3;
 import GameplayElements.Boss4;
@@ -55,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable
 	private Boss7 boss7;
 	private Boss8 boss8;
 	private Boss9 boss9;
-	//private Boss10 boss10;
+	private Boss10 boss10;
 	private boolean isOver;
 	private int level;
 	private int[] u;
@@ -204,8 +205,8 @@ public class GamePanel extends JPanel implements Runnable
 				boss8.draw(g2, this);
 			else if(level == 9)
 				boss9.draw(g2, this);
-			//else if(level == 10)
-			//boss10.draw(g2, this);
+			else if(level == 10)
+				boss10.draw(g2, this);
 
 			//System.out.println(ship.getShield());
 			for(Spawner e : enemies) {
@@ -388,15 +389,15 @@ public class GamePanel extends JPanel implements Runnable
 						game.changePanel("7");
 					isOver = true;
 					}
-				} //else if(level == 10 && boss10 != null) {
-				//boss10.act(ship);
-				//boss10.shoot();
-				//if(boss10.getHp() <= 0 && !isOver){
-				//ship.addMoney(10);
-				//game.changePanel("7");
-				//isOver = true;
-				//}
-				//}
+				} else if(level == 10 && boss10 != null) {
+					boss10.act(ship);
+					boss10.shoot();
+				if(boss10.getHp() <= 0 && !isOver){
+					ship.addMoney(10);
+					game.changePanel("7");
+					isOver = true;
+					}
+				}
 
 				if(ship.getHp()<=0){
 					spawnNewship();
@@ -419,8 +420,8 @@ public class GamePanel extends JPanel implements Runnable
 						boss8 = new Boss8(DRAWING_WIDTH/2-20,50,"resources/Boss8.png",100, 100);
 					else if(level == 9)
 						boss9 = new Boss9(DRAWING_WIDTH/2-20,50,"resources/Boss9.png",100, 100);
-					//else if(level == 10);
-						//boss10 = new Boss10(DRAWING_WIDTH/2-20,50,"resources/Boss10.png",100, 100);
+					else if(level == 10)
+						boss10 = new Boss10(DRAWING_WIDTH/2-20,50,"resources/Boss10.png",100, 100);
 
 						game.changePanel("6");
 				}
@@ -668,7 +669,7 @@ public class GamePanel extends JPanel implements Runnable
 		}
 		if (level == 10) {
 			enemies = new ArrayList<Spawner>();
-			//boss10 = new Boss4(DRAWING_WIDTH/2-20,400,"resources/Boss10.png",100, 100);
+			boss10 = new Boss10(DRAWING_WIDTH/2-20,400,"resources/Boss10.png",100, 100);
 			enemies.add(new Spawner(DRAWING_WIDTH/2-40,50, "resources/spacestation.png", 80,80, 10, 200));
 			isOver = false;
 		}

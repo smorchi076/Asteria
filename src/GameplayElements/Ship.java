@@ -110,19 +110,19 @@ public class Ship extends MovingImage {
 			g.setColor(Color.ORANGE);
 			g.fillRect((int) super.x - 30,(int) super.y-28, 100, 1);
 			g.setColor(Color.BLUE);
-			g.fillRect((int) super.x - 30,(int) ship2.getY()-28, (int)((double)cd1/1000*100), 1);
+			g.fillRect((int) super.x - 30,(int) super.getY()-28, (int)((double)cd1/1000*100), 1);
 		}
 		if(cd2 > 0) {
 			g.setColor(Color.ORANGE);
 			g.fillRect((int) super.x - 30,(int) super.y-27, 100, 1);
 			g.setColor(Color.BLUE);
-			g.fillRect((int) super.x - 30,(int) ship2.getY()-27, (int)((double)cd2/1000*100), 1);
+			g.fillRect((int) super.x - 30,(int) super.getY()-27, (int)((double)cd2/1000*100), 1);
 		}
 		if(cd3 > 0) {
 			g.setColor(Color.ORANGE);
 			g.fillRect((int) super.x - 30,(int) super.y-26, 100, 1);
 			g.setColor(Color.BLUE);
-			g.fillRect((int) super.x - 30,(int) ship2.getY()-26, (int)((double)cd3/1000*100), 1);
+			g.fillRect((int) super.x - 30,(int) super.getY()-26, (int)((double)cd3/1000*100), 1);
 		}
 		for(int i = 0; i<blasts.length; i++){
 			if(blasts[i]!=null && !blasts[i].isFizzled()){

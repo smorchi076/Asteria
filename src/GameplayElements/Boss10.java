@@ -15,13 +15,16 @@ public class Boss10 extends MovingImage {
 	public Boss10(int x, int y, String img, int width, int height) {
 		super(img, x, y, width, height, 0);
 		hp = 30;
-		waiting = 50;
+		waiting = 300;
 	}
 	
 	
 	public void draw(Graphics g, ImageObserver io) {
 		super.draw(g, io);
-		
+		if(hp > 30){
+			g.setColor(Color.BLUE);
+			g.fillRect((int)getX(), (int)getY(), (int)(hp/10 * getWidth()), 2);
+		}
 		g.setColor(Color.RED);
 		g.fillRect((int)getX(), (int)getY(), (int)getWidth(), 2);
 		g.setColor(Color.GREEN);
@@ -36,7 +39,7 @@ public class Boss10 extends MovingImage {
 		if(shootClock==0){
 			for(int i=0; i<blasts.length; i++){
 				if(blasts[i]==null || blasts[i].isFizzled()){
-					blasts[i] = new Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + Math.PI, "resources/Bullet.png", 20,20,20);
+					blasts[i] = new Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + 2*Math.PI, "resources/Bullet.png", 20,20,20);
 					shootClock = 75;
 					break;
 				}
@@ -58,13 +61,19 @@ public class Boss10 extends MovingImage {
 		}
 		
 		if(waiting > 1) {
+			moveByAmount(1*Math.cos((super.getDirection()+ Math.PI/2) * (waiting/500.0*(Math.PI*2))),1*Math.sin((super.getDirection()+ Math.PI/2 * (waiting/500.0*(Math.PI*2)))));
 			waiting--;
-		} else if(waiting == 1) {
-			waiting = 75;
+		} 
+		if(waiting > 275){
+			hp++;
+		}
+		else if(waiting == 1) {
+			waiting = 275;
 			double d = Math.random()*Math.PI*2;
-			moveToLocation(ship.x+Math.cos(d)*(200+Math.random()*50), ship.y+Math.sin(d)*(200+Math.random()*50));
+			moveToLocation(ship.x+Math.cos(d)*(100+Math.random()*50), ship.y+Math.sin(d)*(100+Math.random()*50));
 		}
 		super.turnToward((int)(ship.x - ship.width/2), (int)(ship.y - ship.height/2));
+		super.turn(super.getDirection()+Math.PI);
 		/*if(Math.abs(ship.getCenterX() - this.getCenterX()) > 200 || Math.abs(ship.getCenterY() - this.getCenterY()) > 200)
 			moveByAmount(2*Math.cos((super.getDirection())),2*Math.sin(super.getDirection()));
 		if(Math.abs(ship.getCenterX() - this.getCenterX()) < 150 || Math.abs(ship.getCenterY() - this.getCenterY()) < 150)
