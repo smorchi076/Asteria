@@ -21,8 +21,8 @@ public class Projectile extends MovingImage {
 		 * @param y
 		 * @param dir
 		 */
-		public Projectile(int x, int y, double dir, String img, int dmg) {
-			super(img, x, y, 20, 15, dir);
+		public Projectile(int x, int y, double dir, String img, int dmg,int w, int h) {
+			super(img, x, y, w, h, dir);
 			// TODO Auto-generated constructor stub
 			isFizzled = false;
 			this.dmg = dmg;
