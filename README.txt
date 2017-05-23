@@ -20,13 +20,13 @@ Run the program and select one of the game modes. In single player campaign mode
 
 Feature List:
 Must Have:
--Intro screens + menus
--Working enemy and boss spawn
--Working spaceship with abilities
--10 level campaign
+-(DONE)Intro screens + menus
+-(DONE)Working enemy and boss spawn
+-(DONE)Working spaceship with abilities
+-(DONE)10 level campaign
 -Versus game mode
--Ability to upgrade spaceship
--In game currency system
+-(DONE)Ability to upgrade spaceship
+-(DONE)In game currency system
 
 
 Want to Have:
