@@ -66,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable
 	private boolean running;
 
 
+	
 	private Rectangle2D.Double visibleSpace;
 	private Rectangle2D.Double characterSpace;
 
