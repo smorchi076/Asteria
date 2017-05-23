@@ -476,7 +476,7 @@ public class GamePanel extends JPanel implements Runnable
 					ship2.turn(ship.getDirection()+.1);
 				if (keyControl.isPressed(KeyEvent.VK_A))
 					ship2.turn(ship.getDirection()-.1);
-				if(keyControl.isPressed(KeyEvent.VK_SPACE))
+				if(keyControl.isPressed(KeyEvent.VK_Z))
 					ship2.shoot();
 				if(keyControl.isPressed(KeyEvent.VK_1))
 					ship2.abilityOne();
