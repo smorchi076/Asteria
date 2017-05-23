@@ -51,15 +51,14 @@ Asteria - Creates a new game
 
 
 Package: Gameplay Elements
-GameObject - A superclass for things that go on the map
 Ship: Spaceship that you control
 Space Junk - the stuff littering the map that grants currency
-Planet - a planet that has gravity affecting the ship, and that can be run into
 Enemy - an enemy ship
 Boss1 - the first boss
 Boss2 - the second boss
-…
-Map - the map representing where everything is
+…etc
+Projectile- Ship projectile
+BossProjectile- Boss projectile
 Spawner - a stationary object that spawns enemies
 MovingImage - An image that can move around the map
 
@@ -69,16 +68,17 @@ FileIO - stores game to text file and saves current state using Serializable
 
 
 Package:GUI
-GameFrame - Represents the overall layout of the game screens
+GamePanel - Represents the overall layout of the campaign
 HomePanel- Holds graphics for the intro screen
-BuyablePanel - A single item in the shop with an image and option to purchase
 InstructionPanel - Contains the instructions for the game	
-GameModePanel - Contains the game modes for the game
-ShipPanel - A JPanel displaying the ship in its current state(with/without upgrades) 
+ModePanel - Contains the game modes for the game
 ShopPanel - A panel containing multiple BuyablePanels
-MapPanel - Hold the graphics for the map
-AbilityPanel - contains the ship’s special abilities at the top of the game screen
-MissionFinishPanel (constructor takes in # representing amount of space junk collected) - displays the mission over screen (whether success or finish)
+MissionCompletePanel - displays the mission over screen if you succeed
+GameOverPanel- displays the mission over screen if you fail
+VersusPanel- displays the versus game
+VersusWinnerPanel- Displays statement based off who won in versus
+WinnerPanel- displays statement if you defeat campaign
+
 
 
 Responsibilities List:
