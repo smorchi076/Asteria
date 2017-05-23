@@ -14,6 +14,7 @@ import GUI.MissionCompletePanel;
 import GUI.ModePanel;
 import GUI.ShopPanel;
 import GUI.VersusWinnerPanel;
+import GUI.WinnerPanel;
 import GUI.HomePanel;
 /**
  * Represents the Asteria game
@@ -45,6 +46,7 @@ public class Asteria extends JFrame {
 		GameOverPanel panel6 = new GameOverPanel(this,panel2);
 		MissionCompletePanel panel7 = new MissionCompletePanel(this, panel2);
 		VersusWinnerPanel panel8 = new VersusWinnerPanel(this,panel2);
+		WinnerPanel panel9 = new WinnerPanel(this);
 
 
 		addKeyListener(panel2.getKeyHandler());
@@ -57,6 +59,7 @@ public class Asteria extends JFrame {
 		cardPanel.add(panel6, "6");
 		cardPanel.add(panel7, "7");
 		cardPanel.add(panel8, "8");
+		cardPanel.add(panel9, "9");
 		
 		add(cardPanel);
 

@@ -400,8 +400,8 @@ public class GamePanel extends JPanel implements Runnable
 					boss10.shoot();
 				if(boss10.getHp() <= 0 && !isOver){
 					ship.addMoney(10);
-					game.changePanel("7");
 					isOver = true;
+					game.changePanel("9");
 					}
 				}
 
