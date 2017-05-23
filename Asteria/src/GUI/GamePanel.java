@@ -662,7 +662,6 @@ public class GamePanel extends JPanel implements Runnable
 			enemies.add(new Spawner(DRAWING_WIDTH/2-40,50, "resources/spacestation.png", 80,80, 10, 200));
 			isOver = false;
 		}
-
 	}
 
 	public int getWinner() {
