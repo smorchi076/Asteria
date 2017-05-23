@@ -60,7 +60,7 @@ public class GamePanel extends JPanel implements Runnable
 	private int level;
 	private int[] u;
 
-	private boolean running;
+	//private boolean running;
 
 
 
@@ -247,8 +247,7 @@ public class GamePanel extends JPanel implements Runnable
 	 * Runs the thread
 	 */
 	public void run() {
-		running = true;
-		while (running) { // Modify this to allow quitting
+		while (true) { // Modify this to allow quitting
 			long startTime = System.currentTimeMillis();
 			if (keyControl.isPressed(KeyEvent.VK_RIGHT))
 				ship.turn(ship.getDirection()+.1);
@@ -267,7 +266,7 @@ public class GamePanel extends JPanel implements Runnable
 			if(keyControl.isPressed(KeyEvent.VK_DOWN))
 				ship.move(-1);
 			if(keyControl.isPressed(KeyEvent.VK_ESCAPE)){
-				running = false;
+				//running = false;
 				game.changePanel("1");
 			}
 			if(keyControl.isPressed(KeyEvent.VK_BACK_SLASH))
