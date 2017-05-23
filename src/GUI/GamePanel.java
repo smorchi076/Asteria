@@ -93,7 +93,7 @@ public class GamePanel extends JPanel implements Runnable
 		isSetUp = false;
 		ratioX = (double)getWidth()/DRAWING_WIDTH;
 		ratioY = (double)getHeight()/DRAWING_HEIGHT;
-		setUpGame();
+		//setUpGame();
 	}
 
 	public void setUpGame(){
