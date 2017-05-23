@@ -95,7 +95,9 @@ public class GamePanel extends JPanel implements Runnable
 		ratioY = (double)getHeight()/DRAWING_HEIGHT;
 		//setUpGame();
 	}
-
+	/**
+	 * Sets up the game 
+	 */
 	public void setUpGame(){
 		spawnNewship();
 		if(!isSetUp){
@@ -539,20 +541,35 @@ public class GamePanel extends JPanel implements Runnable
 		}
 
 	}
-
+	/**
+	 * Gets the ship
+	 * @return ship
+	 */
 	public Ship getShip() {
 		return ship;
 
 	}
+	
+	/**
+	 * gets the ship's money
+	 * @return
+	 */
 	public int generateMoney(){
 		return ship.getMoney();
 	}
 
-
+	/**
+	 * adds money to total
+	 * @param amount amount to be added
+	 */
 	public void addMoney(int amount) {
 		ship.addMoney(amount);
 	}
-
+	
+	/**
+	 * Gets the starting cash
+	 * @return the starting cash
+	 */
 	public int getStartingCash(){
 		return ship.getStartingMoney();
 	}
@@ -621,14 +638,24 @@ public class GamePanel extends JPanel implements Runnable
 		return image;
 	}
 
+	/**
+	 * Sets the mode of the game
+	 * @param mode mode 1 is campaign, mode 2 is versus
+	 */
 	public void setMode(int mode){
 		this.mode = mode;
 	}
-
+	/**
+	 * Gets the current level of the game
+	 * @return level
+	 */
 	public int getLevel() {
 		return level;
 	}
-
+	/**
+	 * Sets the level of the game
+	 * @param level level of the game
+	 */
 	public void setLevel(int level) {
 		this.level = level;
 		if(level == 1) {
@@ -693,7 +720,10 @@ public class GamePanel extends JPanel implements Runnable
 		}
 
 	}
-
+	/**
+	 * gets the winner for versus
+	 * @return winner
+	 */
 	public int getWinner() {
 		return winner;
 	}
