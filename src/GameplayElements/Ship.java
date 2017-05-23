@@ -305,6 +305,9 @@ public class Ship extends MovingImage {
 		return blasts;
 	}
 	
+	public int getInvulnerabilityLength() {
+		return invul;
+	}
 	
 	public int getDmg() {
 		return dmg + STARTING_DAMAGE;
@@ -323,6 +326,7 @@ public class Ship extends MovingImage {
 	public int getSpaceJunk() {
 		return sj;
 	}
+	
 	
 	public int getMaxShield(){
 		return maxShield;
