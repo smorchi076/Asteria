@@ -6,7 +6,6 @@ import java.awt.Component;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import FileIO.FileIO;
 import GUI.GameOverPanel;
 import GUI.GamePanel;
 import GUI.InstructionPanel;

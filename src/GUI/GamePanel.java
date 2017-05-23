@@ -93,12 +93,12 @@ public class GamePanel extends JPanel implements Runnable
 		isSetUp = false;
 		ratioX = (double)getWidth()/DRAWING_WIDTH;
 		ratioY = (double)getHeight()/DRAWING_HEIGHT;
-		setUpGame();
+		//setUpGame();
 	}
 
 	public void setUpGame(){
 		spawnNewship();
-		//if(!isSetUp){
+		if(!isSetUp){
 		if(mode==1){
 			enemies = new ArrayList<Spawner>();
 			boss1 = new Boss1(DRAWING_WIDTH/2-20,400,"resources/Boss1.png",100, 100);
@@ -131,7 +131,7 @@ public class GamePanel extends JPanel implements Runnable
 		});
 
 		new Thread(this).start();
-		//}
+		}
 	}
 
 
