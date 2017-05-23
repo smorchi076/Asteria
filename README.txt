@@ -24,17 +24,17 @@ Must Have:
 -(DONE)Working enemy and boss spawn
 -(DONE)Working spaceship with abilities
 -(DONE)10 level campaign
--Versus game mode
 -(DONE)Ability to upgrade spaceship
 -(DONE)In game currency system
 
 
 Want to Have:
+-(IN PROGRESS)Versus game mode
 -Multiple ships
 -More ship upgrades
 -Ship skins
 -2-player team co-op game mode
--Save game in a file using serializable
+-(IN PROGRESS) Save game in a file using serializable
 
 Stretch features:
 -Network play
