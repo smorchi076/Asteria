@@ -115,7 +115,7 @@ public class GamePanel extends JPanel implements Runnable
 		//if(ship== null)
 		isSetUp = true;
 		if(mode==2){
-			System.out.println("declared");
+			//System.out.println("declared");
 			spawnShip2();
 		}
 
