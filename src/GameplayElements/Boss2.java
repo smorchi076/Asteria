@@ -41,7 +41,7 @@ public class Boss2 extends MovingImage{
 		if(shooting>0){
 			for(int i=0; i<blasts.length; i++){
 				if(blasts[i]==null || blasts[i].isFizzled()){
-					blasts[i] = new Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + Math.PI + (Math.random()*Math.PI/2 - Math.PI/4), "resources/Bullet.png", 2);
+					blasts[i] = new Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + Math.PI + (Math.random()*Math.PI/2 - Math.PI/4), "resources/Bullet.png", 2,20,15);
 					break;
 				}
 			}
