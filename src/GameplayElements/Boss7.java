@@ -4,6 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 
+/**
+ * Represents Boss 7
+ * @author Cotter
+ *
+ */
 public class Boss7 extends MovingImage {
 	
 	private Projectile[] blasts = new Projectile[40];
@@ -12,13 +17,23 @@ public class Boss7 extends MovingImage {
 	private int waiting;
 	private double dx, dy;
 	
+	/**
+	 * Creates boss 7
+	 * @param x x coord
+	 * @param y y coord
+	 * @param img image
+	 * @param width width
+	 * @param height height
+	 */
 	public Boss7(int x, int y, String img, int width, int height) {
 		super(img, x, y, width, height, 0);
 		hp = 30;
 		waiting = 50;
 	}
 	
-	
+	/**
+	 * Draws
+	 */
 	public void draw(Graphics g, ImageObserver io) {
 		super.draw(g, io);
 		
@@ -32,6 +47,10 @@ public class Boss7 extends MovingImage {
 			}
 		}
 	}
+	
+	/**
+	 * Shoots
+	 */
 	public void shoot(){
 		if(shootClock==0){
 			for(int i=0; i<blasts.length; i++){
@@ -45,6 +64,10 @@ public class Boss7 extends MovingImage {
 		
 	}
 	
+	/**
+	 * Movement of boss 7
+	 * @param ship ship
+	 */
 	public void act(Ship ship) {
 		if(this.x - ship.getCenterX() > 0) {
 			dx = -1;
@@ -86,11 +109,18 @@ public class Boss7 extends MovingImage {
 			}
 		}
 	}
+	/**
+	 * drop hp
+	 * @param amount amt dropped
+	 */
 	public void dropHp(int amount)
 	{
 		hp = hp - amount;
 	}
-	
+	/**
+	 * get hp
+	 * @return hp
+	 */
 	public int getHp(){
 		return hp;
 	}

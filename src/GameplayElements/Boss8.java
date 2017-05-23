@@ -4,6 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 
+/**
+ * Represents Boss 8
+ * @author Cotter
+ *
+ */
 public class Boss8 extends MovingImage{
 
 	private Projectile[] blasts = new Projectile[40];
@@ -11,7 +16,14 @@ public class Boss8 extends MovingImage{
 	private int hp, waiting;
 	private double d,x,y;
 	
-	
+	/**
+	 * Creates boss 8
+	 * @param x x coord
+	 * @param y y coord
+	 * @param img image
+	 * @param width width
+	 * @param height height
+	 */
 	public Boss8(int x, int y, String img, int width, int height) {
 		super(img, x, y, width, height, 0);
 		hp = 15;
@@ -19,7 +31,9 @@ public class Boss8 extends MovingImage{
 		d = 1;
 	}
 	
-	
+	/**
+	 * Draws
+	 */
 	public void draw(Graphics g, ImageObserver io) {
 		super.draw(g, io);
 
@@ -34,6 +48,9 @@ public class Boss8 extends MovingImage{
 			}
 		}
 	}
+	/**
+	 * Shoots
+	 */
 	public void shoot(){
 		if(shootClock==0){
 			for(int i=0; i<blasts.length; i++){
@@ -45,7 +62,10 @@ public class Boss8 extends MovingImage{
 			}	
 		}
 	}
-	
+	/**
+	 * Movement of boss 8
+	 * @param ship ship
+	 */
 	public void act(Ship ship) {
 		super.turnToward((int)(ship.x - ship.width/2), (int)(ship.y - ship.height/2));
 		if(waiting > 0) {
@@ -85,11 +105,18 @@ public class Boss8 extends MovingImage{
 			}
 		}
 	}
+	/**
+	 * drop hp
+	 * @param amount amt dropped
+	 */
 	public void dropHp(int amount)
 	{
 		hp = hp - amount;
 	}
-	
+	/**
+	 * get hp
+	 * @return hp
+	 */
 	public int getHp(){
 		return hp;
 	}
