@@ -38,7 +38,7 @@ public class Boss9 extends MovingImage {
 		if(shootClock==0){
 			for(int i=0; i<blasts.length; i++){
 				if(blasts[i]==null || blasts[i].isFizzled()){
-					blasts[i] = new Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + Math.PI, "resources/Bullet.png",30,40,30);
+					blasts[i] = new Projectile((int)(getCenterX())-10, (int)(getCenterY()), super.getDirection() + 2*Math.PI, "resources/Bullet.png",30,40,30);
 					shootClock = 150;
 					break;
 				}
