@@ -142,9 +142,11 @@ public class Ship extends MovingImage {
 		}
 		if(cd2 > 0) {
 			cd2--;
+			shoot();
 		} 
 		if(cd3 > 0) {
 			cd3--;
+			shoot();
 		}
 		if(dmgTaken == 0 && shield < maxShield) {
 			shield += 1;
