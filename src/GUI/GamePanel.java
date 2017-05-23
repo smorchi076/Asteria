@@ -59,8 +59,8 @@ public class GamePanel extends JPanel implements Runnable
 	private int level;
 	private int[] u;
 
-	private int winner = 1;
-	private int mode = 1;
+	private int winner = 0;
+	private int mode = 0;
 
 
 	private Rectangle2D.Double visibleSpace;
@@ -77,9 +77,10 @@ public class GamePanel extends JPanel implements Runnable
 	 */
 	public GamePanel (Asteria game) {
 		super();
+		System.out.println("MODE: " + mode);
 
 		this.game = game;
-		setLevel(1);
+		if(mode==1) setLevel(1);
 		keyControl = new KeyHandler(); 
 		screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 		obstacles = new ArrayList<Shape>();
@@ -90,13 +91,17 @@ public class GamePanel extends JPanel implements Runnable
 
 		ratioX = (double)getWidth()/DRAWING_WIDTH;
 		ratioY = (double)getHeight()/DRAWING_HEIGHT;
+		setUpGame();
+	}
+	
+	public void setUpGame(){
 
-
-
+		if(mode==1){
 		enemies = new ArrayList<Spawner>();
 		boss1 = new Boss1(DRAWING_WIDTH/2-20,400,"resources/Boss1.png",100, 100);
 
 		isOver = false;
+		}
 		//obstacles.add(new Rectangle(200,400,400,50));
 		//obstacles.add(new Rectangle(0,250,100,50));
 		//obstacles.add(new Rectangle(700,250,100,50));
@@ -105,7 +110,10 @@ public class GamePanel extends JPanel implements Runnable
 
 		//if(ship== null)
 		spawnNewship();
-		if(mode==2) spawnShip2();
+		if(mode==2){
+			System.out.println("declared");
+			spawnShip2();
+		}
 
 		/*
 		addComponentListener(new ComponentAdapter() {
@@ -461,7 +469,7 @@ public class GamePanel extends JPanel implements Runnable
 				if(keyControl.isPressed(KeyEvent.VK_ESCAPE))
 					game.changePanel("1");
 				if(keyControl.isPressed(KeyEvent.VK_BACK_SLASH))
-					game.changePanel("9");
+					game.changePanel("8");
 
 
 				if (keyControl.isPressed(KeyEvent.VK_D))
@@ -593,6 +601,7 @@ public class GamePanel extends JPanel implements Runnable
 
 	public void setMode(int mode){
 		this.mode = mode;
+		System.out.println("this is the mode: " + this.mode);
 	}
 
 	public int getLevel() {
