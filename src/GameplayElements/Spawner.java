@@ -76,7 +76,7 @@ public class Spawner extends MovingImage {
 				ships.remove(j);
 				ship.addMoney(10);
 			}
-			else if(ships.get(j) != null && ships.get(j).intersects(ship)) {
+			else if(ships.get(j) != null && ships.get(j).intersects(ship) && j!=0) {
 				ship.dropHp(ships.get(j).getHp());
 				ships.remove(j);
 				ship.addMoney(10);
