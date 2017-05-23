@@ -132,6 +132,7 @@ public class GamePanel extends JPanel implements Runnable
 
 	}
 
+
 	private void spawnShip2() {
 		ship2 = new Ship(DRAWING_WIDTH/2-100,DRAWING_HEIGHT/2-200, "resources/spaceship.png", 40, 60, 100, 5, 0, u);
 		ship2.turn(180);
@@ -172,6 +173,9 @@ public class GamePanel extends JPanel implements Runnable
 		g.setColor(Color.RED);
 		g.fillRect((int) ship.getX() - 30,(int) ship.getY()-15, 100, 10);
 		g.setColor(Color.GREEN);
+		if(ship.getInvulnerabilityLength() > 0){
+			g.setColor(Color.ORANGE);
+		}
 		g.fillRect((int) ship.getX()- 30,(int) ship.getY()-15, (int)((double)ship.getHp()/ship.getMaxHp() * 100), 10);
 		g.setColor(Color.BLUE);
 		g.fillRect((int) ship.getX() - 30,(int) ship.getY()-25, (int)((double)ship.getShield()/ship.getMaxShield()*100), 10);
