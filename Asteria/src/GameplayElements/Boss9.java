@@ -18,6 +18,7 @@ public class Boss9 extends MovingImage{
 	}
 	
 	
+	
 	public void draw(Graphics g, ImageObserver io) {
 		super.draw(g, io);
 
