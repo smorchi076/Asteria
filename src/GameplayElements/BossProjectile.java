@@ -6,7 +6,7 @@ public class BossProjectile extends Projectile{
 	
 	private int timer;
 	public BossProjectile(int x, int y, double dir, String img) {
-		super(x,y,dir,img,2);
+		super(x,y,dir,img,2,20,15);
 		timer = 200;
 	}
 	
