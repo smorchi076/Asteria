@@ -21,7 +21,7 @@ import GUI.HomePanel;
  *
  */
 public class Asteria extends JFrame {
-
+//ASTERIA
 	JPanel cardPanel;
 	/**
 	 * Creates an instance of the Asteria game
