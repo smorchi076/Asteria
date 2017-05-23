@@ -48,6 +48,7 @@ public class Boss9 extends MovingImage {
 	
 	public void act(Ship ship) {
 		super.turnToward((int)(ship.x - ship.width/2), (int)(ship.y - ship.height/2));
+		super.turn(super.getDirection()+Math.PI);
 		moveByAmount(.5*Math.cos((super.getDirection())),.5*Math.sin(super.getDirection()));
 		if(shootClock>0)
 			shootClock--;
