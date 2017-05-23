@@ -103,6 +103,7 @@ public class MissionCompletePanel extends JPanel implements ActionListener {
 		Font myFont = new Font("Impact", Font.BOLD, 48);
 		g.setFont(myFont);
 		g.drawString("+" + (gp.generateMoney()), 400, 275);
+		
 
 	}
 
