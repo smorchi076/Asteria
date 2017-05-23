@@ -14,7 +14,7 @@ public class Boss8 extends MovingImage{
 	
 	public Boss8(int x, int y, String img, int width, int height) {
 		super(img, x, y, width, height, 0);
-		hp = 30;
+		hp = 15;
 		waiting = 0;
 		d = 1;
 	}
@@ -26,7 +26,7 @@ public class Boss8 extends MovingImage{
 		g.setColor(Color.RED);
 		g.fillRect((int)getX(), (int)getY(), (int)getWidth(), 2);
 		g.setColor(Color.GREEN);
-		g.fillRect((int)getX(), (int)getY(), (int)((double)hp/30 * getWidth()), 2);
+		g.fillRect((int)getX(), (int)getY(), (int)((double)hp/15 * getWidth()), 2);
 
 		for(int i = 0; i<blasts.length; i++){
 			if(blasts[i]!=null && !blasts[i].isFizzled()){
