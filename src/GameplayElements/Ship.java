@@ -37,6 +37,7 @@ public class Ship extends MovingImage {
 	private int twoDirections;
 	private int rapid;
 	private int maxHp;
+	private int cd1,cd2,cd3;
 	
 	private static int money = 500;
 	private final int STARTING_MONEY = 500; 
@@ -69,6 +70,9 @@ public class Ship extends MovingImage {
 		//maxShield = 0;
 		shield = 0;
 		maxHp = 100;
+		cd1 = 0;
+		cd2 = 0;
+		cd3 = 0;
 		if(u != null) {
 			setUpgrades(u);
 		}
@@ -102,8 +106,24 @@ public class Ship extends MovingImage {
 	public void draw(Graphics g, ImageObserver io) {
 		super.draw(g, io);
 		
-		
-		
+		if(cd1 > 0) {
+			g.setColor(Color.ORANGE);
+			g.fillRect((int) super.x - 30,(int) super.y-28, 100, 1);
+			g.setColor(Color.BLUE);
+			g.fillRect((int) super.x - 30,(int) ship2.getY()-28, (int)((double)cd1/1000*100), 1);
+		}
+		if(cd2 > 0) {
+			g.setColor(Color.ORANGE);
+			g.fillRect((int) super.x - 30,(int) super.y-27, 100, 1);
+			g.setColor(Color.BLUE);
+			g.fillRect((int) super.x - 30,(int) ship2.getY()-27, (int)((double)cd2/1000*100), 1);
+		}
+		if(cd3 > 0) {
+			g.setColor(Color.ORANGE);
+			g.fillRect((int) super.x - 30,(int) super.y-26, 100, 1);
+			g.setColor(Color.BLUE);
+			g.fillRect((int) super.x - 30,(int) ship2.getY()-26, (int)((double)cd3/1000*100), 1);
+		}
 		for(int i = 0; i<blasts.length; i++){
 			if(blasts[i]!=null && !blasts[i].isFizzled()){
 				blasts[i].draw(g, io);
@@ -117,6 +137,15 @@ public class Ship extends MovingImage {
 	 * @param ship the player's ship
 	 */
 	public void act(Ship ship) {
+		if(cd1 > 0) {
+			cd1--;
+		}
+		if(cd2 > 0) {
+			cd2--;
+		} 
+		if(cd3 > 0) {
+			cd3--;
+		}
 		if(dmgTaken == 0 && shield < maxShield) {
 			shield += 1;
 		}
@@ -330,22 +359,29 @@ public class Ship extends MovingImage {
 	 * Invincibilty 
 	 */
 	public void abilityOne() {
-		invul = 100;
+		if(cd1 == 0) {
+			invul = 100;
+			cd1 = 1000;
+		}
 	}
 	/**
 	 * Double shot
 	 */
 	public void abilityTwo() {
-		twoDirections = 100;
-		shoot();
+		if(cd2 == 0) {
+			twoDirections = 100;
+			cd2 = 1000;
+		}
 	}
 	
 	/**
 	 * Rapid fire
 	 */
 	public void abilityThree() {
-		rapid = 30;
-		shoot();
+		if(cd3 == 0) {
+			rapid = 30;
+			cd3 = 1000;
+		}
 	}
 
 
