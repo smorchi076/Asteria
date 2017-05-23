@@ -664,7 +664,6 @@ public class GamePanel extends JPanel implements Runnable
 		}
 	}
 
-	
 	public int getWinner() {
 		return winner;
 	}
