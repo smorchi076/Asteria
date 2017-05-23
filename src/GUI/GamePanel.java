@@ -57,7 +57,7 @@ public class GamePanel extends JPanel implements Runnable
 	private Boss8 boss8;
 	private Boss9 boss9;
 	private Boss10 boss10;
-	private boolean isOver;
+	private boolean isOver, isSetUp;
 	private int level;
 	private int[] u;
 
@@ -90,19 +90,20 @@ public class GamePanel extends JPanel implements Runnable
 		characterSpace = new Rectangle2D.Double(visibleSpace.getX()+visibleSpace.getWidth()/5,visibleSpace.getY()+visibleSpace.getHeight()/5,visibleSpace.getWidth()*3/5,visibleSpace.getHeight()*3/5);
 		//visibleSpace = new Rectangle2D.Double(0,this.getHeight()-DRAWING_HEIGHT,DRAWING_WIDTH,DRAWING_HEIGHT);
 		//characterSpace = new Rectangle2D.Double(visibleSpace.getX()+visibleSpace.getWidth()/5,visibleSpace.getY()+visibleSpace.getHeight()/5,visibleSpace.getWidth()*3/5,visibleSpace.getHeight()*3/5);
-
+		isSetUp = false;
 		ratioX = (double)getWidth()/DRAWING_WIDTH;
 		ratioY = (double)getHeight()/DRAWING_HEIGHT;
 		setUpGame();
 	}
 	
 	public void setUpGame(){
-
+		if(!isSetUp){
 		if(mode==1){
 		enemies = new ArrayList<Spawner>();
 		boss1 = new Boss1(DRAWING_WIDTH/2-20,400,"resources/Boss1.png",100, 100);
 
 		isOver = false;
+		isSetUp = true;
 		}
 		//obstacles.add(new Rectangle(200,400,400,50));
 		//obstacles.add(new Rectangle(0,250,100,50));
@@ -127,9 +128,9 @@ public class GamePanel extends JPanel implements Runnable
 		addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent e) {ratioX = (double)e.getComponent().getWidth()/ASSUMED_DRAWING_WIDTH;ratioY = (double)e.getComponent().getHeight()/ASSUMED_DRAWING_HEIGHT;}	  	
 		});
-
+		
 		new Thread(this).start();
-
+		}
 	}
 
 
