@@ -130,8 +130,8 @@ public class GamePanel extends JPanel implements Runnable
 			public void componentResized(ComponentEvent e) {ratioX = (double)e.getComponent().getWidth()/ASSUMED_DRAWING_WIDTH;ratioY = (double)e.getComponent().getHeight()/ASSUMED_DRAWING_HEIGHT;}	  	
 		});
 
-		new Thread(this).start();
 		}
+		new Thread(this).start();
 	}
 
 
