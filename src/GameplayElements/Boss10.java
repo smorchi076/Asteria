@@ -23,12 +23,12 @@ public class Boss10 extends MovingImage {
 		super.draw(g, io);
 		if(hp > 30){
 			g.setColor(Color.BLUE);
-			g.fillRect((int)getX(), (int)getY(), (int)(hp/5 * getWidth()), 2);
+			g.fillRect((int)(getX()+getWidth()/8), (int)getY(), (int)(hp/40 * getWidth()), 2);
 		}
 		g.setColor(Color.RED);
-		g.fillRect((int)getX(), (int)getY(), (int)getWidth(), 2);
+		g.fillRect((int)getX(), (int)getY(), (int)getWidth()/8, 2);
 		g.setColor(Color.GREEN);
-		g.fillRect((int)getX(), (int)getY(), (int)(hp/30.0 * getWidth()), 2);
+		g.fillRect((int)getX(), (int)getY(), (int)(hp/240.0 * getWidth()), 2);
 		for(int i = 0; i<blasts.length; i++){
 			if(blasts[i]!=null && !blasts[i].isFizzled()){
 				blasts[i].draw(g, io);
