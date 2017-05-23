@@ -104,7 +104,7 @@ public class GamePanel extends JPanel implements Runnable
 		boss1 = new Boss1(DRAWING_WIDTH/2-20,400,"resources/Boss1.png",100, 100);
 
 		isOver = false;
-		isSetUp = true;
+		
 		}
 		//obstacles.add(new Rectangle(200,400,400,50));
 		//obstacles.add(new Rectangle(0,250,100,50));
@@ -113,7 +113,7 @@ public class GamePanel extends JPanel implements Runnable
 		//obstacles.add(new Rectangle(300,250,200,50));
 
 		//if(ship== null)
-		
+		isSetUp = true;
 		if(mode==2){
 			System.out.println("declared");
 			spawnShip2();
@@ -125,7 +125,7 @@ public class GamePanel extends JPanel implements Runnable
 			ratioY = (double)e.getComponent().getHeight()/DRAWING_HEIGHT;}	  	
 		});
 		 */
-
+	
 		addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent e) {ratioX = (double)e.getComponent().getWidth()/ASSUMED_DRAWING_WIDTH;ratioY = (double)e.getComponent().getHeight()/ASSUMED_DRAWING_HEIGHT;}	  	
 		});
@@ -506,7 +506,8 @@ public class GamePanel extends JPanel implements Runnable
 					winner = 1;
 					game.changePanel("8");
 				}
-
+				slideWorldToImage(ship);
+				slideWorldToImage(ship2);
 
 				
 
