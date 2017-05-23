@@ -29,19 +29,19 @@ Must Have:
 
 
 Want to Have:
--(IN PROGRESS)Versus game mode
--Multiple ships
--More ship upgrades
--Ship skins
--2-player team co-op game mode
--(IN PROGRESS) Save game in a file using serializable
+-(IN PROGRESS, NOT COMPLETED)Versus game mode
+-(NOT DONE)Multiple ships
+-(NOT DONE)More ship upgrades
+-(NOT DONE)Ship skins
+-(NOT DONE)2-player team co-op game mode
+-(IN PROGRESS, NOT COMPLETED) Save game in a file using serializable
 
 Stretch features:
--Network play
--Custom map creator
--3D graphics and detailed textures
--Have greater rewards such as chests containing currency, and upgrades
--Planets with gravity mechanic
+-(NOT DONE)Network play
+-(NOT DONE)Custom map creator
+-(NOT DONE)3D graphics and detailed textures
+-(NOT DONE)Have greater rewards such as chests containing currency, and upgrades
+-(NOT DONE)Planets with gravity mechanic
 
 Class List:
 
