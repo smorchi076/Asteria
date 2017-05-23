@@ -39,8 +39,8 @@ public class Ship extends MovingImage {
 	private int maxHp;
 	private int cd1,cd2,cd3;
 	
-	private static int money = 500;
-	private final int STARTING_MONEY = 500; 
+	private int money = 0;
+	private final int STARTING_MONEY = 0; 
 	
 	
 	/**Creates a new ship object
