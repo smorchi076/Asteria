@@ -3,14 +3,25 @@ package GameplayElements;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
-
+/**
+ * Represents first boss
+ * @author morchi
+ *
+ */
 public class Boss1 extends MovingImage{
 
 	private BossProjectile[] blasts = new BossProjectile[40];
 	private int shootClock;
 	private int hp;
 	private int movingLeft, movingRight, waiting;
-	
+	/**
+	 * Boss 1
+	 * @param x x coord
+	 * @param y y coord
+	 * @param img image
+	 * @param width width
+	 * @param height height
+	 */
 	public Boss1(int x, int y, String img, int width, int height) {
 		super(img, x, y, width, height, 0);
 		hp = 30;
@@ -19,7 +30,9 @@ public class Boss1 extends MovingImage{
 		waiting = 0;
 	}
 	
-	
+	/**
+	 * Draws on graphics g
+	 */
 	public void draw(Graphics g, ImageObserver io) {
 		super.draw(g, io);
 		
@@ -34,6 +47,9 @@ public class Boss1 extends MovingImage{
 			}
 		}
 	}
+	/**
+	 * shoots
+	 */
 	public void shoot(){
 		if(shootClock==0){
 			for(int i=0; i<blasts.length; i++){
@@ -47,6 +63,10 @@ public class Boss1 extends MovingImage{
 		
 	}
 	
+	/**
+	 * Movement of boss 1
+	 * @param ship ship
+	 */
 	public void act(Ship ship) {
 		super.turnToward((int)ship.getCenterX(), (int)ship.getCenterY());
 		if(Math.abs(ship.getCenterX() - this.getCenterX()) > 300 || Math.abs(ship.getCenterY() - this.getCenterY()) > 300)
@@ -95,11 +115,19 @@ public class Boss1 extends MovingImage{
 			}
 		}
 	}
+	
+	/**
+	 * drops hp
+	 * @param amount hp drop
+	 */
 	public void dropHp(int amount)
 	{
 		hp = hp - amount;
 	}
-	
+	/**
+	 * Gets hp
+	 * @return hp
+	 */
 	public int getHp(){
 		return hp;
 	}

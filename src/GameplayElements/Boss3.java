@@ -4,18 +4,32 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 
+/**
+ * Represents the boss 3
+ * @author sahil
+ *
+ */
 public class Boss3 extends MovingImage{
 
 	private Projectile[] blasts = new Projectile[40];
 	private int shootClock;
 	private int hp;
-	
+	/**
+	 * Creates boss 3
+	 * @param x x coord
+	 * @param y y coord
+	 * @param img image
+	 * @param width width 
+	 * @param height height
+	 */
 	public Boss3(int x, int y, String img, int width, int height) {
 		super(img, x, y, width, height, 0);
 		hp = 50;
 	}
 	
-	
+	/**
+	 * Draws
+	 */
 	public void draw(Graphics g, ImageObserver io) {
 		super.draw(g, io);
 		
@@ -30,6 +44,9 @@ public class Boss3 extends MovingImage{
 			}
 		}
 	}
+	/**
+	 * Shoots
+	 */
 	public void shoot(){
 		if(shootClock==0){
 			for(int i=0; i<blasts.length; i++){
@@ -42,7 +59,10 @@ public class Boss3 extends MovingImage{
 		}
 		
 	}
-	
+	/**
+	 * Movement of boss 3
+	 * @param ship ship
+	 */
 	public void act(Ship ship) {
 		double dir1 = super.getDirection();
 		super.turnToward((int)((ship.getCenterX() - 30)), (int)((ship.getCenterY() - 30)));
@@ -67,11 +87,19 @@ public class Boss3 extends MovingImage{
 			}
 		}
 	}
+	/**
+	 * drop hp
+	 * @param amount amount dropped
+	 */
 	public void dropHp(int amount)
 	{
 		hp = hp - amount;
 	}
 	
+	/**
+	 * gets the hp
+	 * @return hp
+	 */
 	public int getHp(){
 		return hp;
 	}

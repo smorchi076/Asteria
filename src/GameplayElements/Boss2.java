@@ -3,13 +3,24 @@ package GameplayElements;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
-
+/**
+ * Represents Boss 2
+ * @author morchi
+ *
+ */
 public class Boss2 extends MovingImage{
 
 	private Projectile[] blasts = new Projectile[80];
 	private int hp;
 	private int shooting, waiting, moving;
-	
+	/**
+	 * Creates Boss 2
+	 * @param x
+	 * @param y
+	 * @param img
+	 * @param width
+	 * @param height
+	 */
 	public Boss2(int x, int y, String img, int width, int height) {
 		super(img, x, y, width, height, 0);
 		hp = 30;
@@ -18,7 +29,9 @@ public class Boss2 extends MovingImage{
 		moving = 0;
 	}
 	
-	
+	/**
+	 * Draws 
+	 */
 	public void draw(Graphics g, ImageObserver io) {
 		super.draw(g, io);
 		
@@ -37,6 +50,9 @@ public class Boss2 extends MovingImage{
 			}
 		}
 	}
+	/**
+	 * Shooting mechanic
+	 */
 	public void shoot(){
 		if(shooting>0){
 			for(int i=0; i<blasts.length; i++){
@@ -48,7 +64,10 @@ public class Boss2 extends MovingImage{
 		}
 		
 	}
-	
+	/**
+	 * Movement of boss
+	 * @param ship ship
+	 */
 	public void act(Ship ship) {
 		if(waiting > 1) {
 			waiting--;
@@ -90,11 +109,18 @@ public class Boss2 extends MovingImage{
 			}
 		}
 	}
+	/**
+	 * drops hp
+	 * @param amount amt dropped
+	 */
 	public void dropHp(int amount)
 	{
 		hp = hp - amount;
 	}
-	
+	/**
+	 * Gets the hp
+	 * @return hp
+	 */
 	public int getHp(){
 		return hp;
 	}

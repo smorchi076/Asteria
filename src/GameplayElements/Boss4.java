@@ -4,6 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 
+/**
+ * Represents boss 4
+ * @author morchi
+ *
+ */
 public class Boss4 extends MovingImage{
 
 	private Projectile[] blasts = new Projectile[40];
@@ -13,7 +18,14 @@ public class Boss4 extends MovingImage{
 	private boolean isDead;
 	private Boss4 mini1, mini2;
 	
-	
+	/**
+	 * Creates boss 4
+	 * @param x x coord
+	 * @param y y coord
+	 * @param img image 
+	 * @param width width
+	 * @param height height
+	 */
 	public Boss4(int x, int y, String img, int width, int height) {
 		super(img, x, y, width, height, 0);
 		hp = 10;
@@ -23,7 +35,9 @@ public class Boss4 extends MovingImage{
 		level = 1;
 	}
 	
-	
+	/**
+	 * Draws
+	 */
 	public void draw(Graphics g, ImageObserver io) {
 		if(mini1 != null) {
 			mini1.draw(g, io);
@@ -45,6 +59,9 @@ public class Boss4 extends MovingImage{
 			}
 		}
 	}
+	/**
+	 * Shoots 
+	 */
 	public void shoot(){
 		if(hp>0) {
 			if(shootClock==0){
@@ -58,7 +75,10 @@ public class Boss4 extends MovingImage{
 			}
 		}
 	}
-	
+	/**
+	 * Movement of boss 4
+	 * @param ship ship
+	 */
 	public void act(Ship ship) {
 		if(hp < 0) {
 			hp = 0;
@@ -111,11 +131,19 @@ public class Boss4 extends MovingImage{
 			isDead = true;
 		}
 	}
+	/**
+	 * drop hp
+	 * @param amount amt hp drops
+	 */
 	public void dropHp(int amount)
 	{
 		hp = hp - amount;
 	}
 	
+	/**
+	 * gets hp
+	 * @return hp
+	 */
 	public int getHp(){
 		if(hp < 0) {
 			hp = 0;
