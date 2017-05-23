@@ -97,6 +97,7 @@ public class GamePanel extends JPanel implements Runnable
 	}
 	
 	public void setUpGame(){
+		spawnNewship();
 		if(!isSetUp){
 		if(mode==1){
 		enemies = new ArrayList<Spawner>();
@@ -112,7 +113,7 @@ public class GamePanel extends JPanel implements Runnable
 		//obstacles.add(new Rectangle(300,250,200,50));
 
 		//if(ship== null)
-		spawnNewship();
+		
 		if(mode==2){
 			System.out.println("declared");
 			spawnShip2();
@@ -507,8 +508,7 @@ public class GamePanel extends JPanel implements Runnable
 				}
 
 
-				slideWorldToImage(ship);
-				slideWorldToImage(ship2);
+				
 
 
 				repaint();
