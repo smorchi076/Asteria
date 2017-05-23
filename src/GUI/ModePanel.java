@@ -108,13 +108,11 @@ public class ModePanel extends JPanel implements ActionListener {
 		}
 
 		if(e.getSource() == button3){ 
-			
+
 			game.changePanel("10");
 		}
 
-		if(e.getSource() == button3){
-			game.changePanel("2");
-		}
+		
 	}
 	
 
