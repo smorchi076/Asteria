@@ -53,7 +53,7 @@ public class GamePanel extends JPanel implements Runnable
 	private Boss6 boss6;
 	private Boss7 boss7;
 	private Boss8 boss8;
-	//private Boss9 boss9;
+	private Boss9 boss9;
 	//private Boss10 boss10;
 	private boolean isOver;
 	private int level;
@@ -201,8 +201,8 @@ public class GamePanel extends JPanel implements Runnable
 				boss7.draw(g2, this);
 			else if(level == 8)
 				boss8.draw(g2, this);
-			else if(level == 9);
-			//boss9.draw(g2, this);
+			else if(level == 9)
+				boss9.draw(g2, this);
 			//else if(level == 10)
 			//boss10.draw(g2, this);
 
@@ -379,15 +379,15 @@ public class GamePanel extends JPanel implements Runnable
 						game.changePanel("7");
 						isOver = true;
 					}
-				}// else if(level == 9 && boss9 != null) {
-				//boss9.act(ship);
-				//boss9.shoot();
-				//if(boss9.getHp() <= 0 && !isOver){
-				//	ship.addMoney(10);
-				//	game.changePanel("7");
-				//	isOver = true;
-				//}
-				//} else if(level == 10 && boss10 != null) {
+				} else if(level == 9 && boss9 != null) {
+					boss9.act(ship);
+					boss9.shoot();
+					if(boss9.getHp() <= 0 && !isOver){
+						ship.addMoney(10);
+						game.changePanel("7");
+					isOver = true;
+					}
+				} //else if(level == 10 && boss10 != null) {
 				//boss10.act(ship);
 				//boss10.shoot();
 				//if(boss10.getHp() <= 0 && !isOver){
@@ -417,8 +417,8 @@ public class GamePanel extends JPanel implements Runnable
 					else if(level == 8)
 						boss8 = new Boss8(DRAWING_WIDTH/2-20,50,"resources/Boss8.png",100, 100);
 					else if(level == 9);
-					//boss9 = new Boss9(DRAWING_WIDTH/2-20,50,"resources/Boss9.png",100, 100);
-					else if(level == 10)
+						boss9 = new Boss9(DRAWING_WIDTH/2-20,50,"resources/Boss9.png",100, 100);
+					else if(level == 10);
 						//boss10 = new Boss10(DRAWING_WIDTH/2-20,50,"resources/Boss10.png",100, 100);
 
 						game.changePanel("6");
@@ -660,7 +660,7 @@ public class GamePanel extends JPanel implements Runnable
 		}
 		if (level == 9) {
 			enemies = new ArrayList<Spawner>();
-			//boss9 = new Boss9(DRAWING_WIDTH/2-20,400,"resources/Boss9.png",100, 100);
+			boss9 = new Boss9(DRAWING_WIDTH/2-20,400,"resources/Boss9.png",100, 100);
 			enemies.add(new Spawner(DRAWING_WIDTH/2-40,50, "resources/spacestation.png", 80,80, 10, 200));
 			isOver = false;
 		}
