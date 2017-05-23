@@ -95,16 +95,16 @@ public class GamePanel extends JPanel implements Runnable
 		ratioY = (double)getHeight()/DRAWING_HEIGHT;
 		setUpGame();
 	}
-	
+
 	public void setUpGame(){
 		spawnNewship();
 		//if(!isSetUp){
 		if(mode==1){
-		enemies = new ArrayList<Spawner>();
-		boss1 = new Boss1(DRAWING_WIDTH/2-20,400,"resources/Boss1.png",100, 100);
+			enemies = new ArrayList<Spawner>();
+			boss1 = new Boss1(DRAWING_WIDTH/2-20,400,"resources/Boss1.png",100, 100);
 
-		isOver = false;
-		
+			isOver = false;
+
 		}
 		//obstacles.add(new Rectangle(200,400,400,50));
 		//obstacles.add(new Rectangle(0,250,100,50));
@@ -125,11 +125,11 @@ public class GamePanel extends JPanel implements Runnable
 			ratioY = (double)e.getComponent().getHeight()/DRAWING_HEIGHT;}	  	
 		});
 		 */
-	
+
 		addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent e) {ratioX = (double)e.getComponent().getWidth()/ASSUMED_DRAWING_WIDTH;ratioY = (double)e.getComponent().getHeight()/ASSUMED_DRAWING_HEIGHT;}	  	
 		});
-		
+
 		new Thread(this).start();
 		//}
 	}
@@ -193,25 +193,25 @@ public class GamePanel extends JPanel implements Runnable
 		}
 
 		if(mode==1){
-			if(level == 1)
+			if(level == 1 && boss1 != null)
 				boss1.draw(g2, this);
-			else if(level == 2)
+			else if(level == 2 && boss2 != null)
 				boss2.draw(g2, this);
-			else if(level == 3)
+			else if(level == 3 && boss3 != null)
 				boss3.draw(g2, this);
-			else if(level == 4)
+			else if(level == 4 && boss4 != null)
 				boss4.draw(g2, this);
-			else if(level == 5)
+			else if(level == 5 && boss5 != null)
 				boss5.draw(g2, this);
-			else if(level == 6)
+			else if(level == 6 && boss6 != null)
 				boss6.draw(g2, this);
-			else if(level == 7)
+			else if(level == 7 && boss7 != null)
 				boss7.draw(g2, this);
-			else if(level == 8)
+			else if(level == 8 && boss8 != null)
 				boss8.draw(g2, this);
-			else if(level == 9)
+			else if(level == 9 && boss9 != null)
 				boss9.draw(g2, this);
-			else if(level == 10)
+			else if(level == 10 && boss10 != null)
 				boss10.draw(g2, this);
 
 			//System.out.println(ship.getShield());
@@ -329,6 +329,7 @@ public class GamePanel extends JPanel implements Runnable
 						ship.addMoney(100);
 						game.changePanel("7");
 						isOver = true;
+						boss1 = null;
 					}
 				}
 				else if(level == 2 && boss2 != null) {
@@ -338,6 +339,7 @@ public class GamePanel extends JPanel implements Runnable
 						ship.addMoney(10);
 						game.changePanel("7");
 						isOver = true;
+						boss2 = null;
 					}
 				}else if(level == 3 && boss3 != null) {
 					boss3.act(ship);
@@ -346,6 +348,7 @@ public class GamePanel extends JPanel implements Runnable
 						ship.addMoney(10);
 						game.changePanel("7");
 						isOver = true;
+						boss3 = null;
 					}
 				}else if(level == 4 && boss4 != null) {
 					boss4.act(ship);
@@ -354,6 +357,7 @@ public class GamePanel extends JPanel implements Runnable
 						ship.addMoney(10);
 						game.changePanel("7");
 						isOver = true;
+						boss4 = null;
 					}
 				}else if(level == 5 && boss5 != null) {
 					boss5.act(ship);
@@ -362,6 +366,7 @@ public class GamePanel extends JPanel implements Runnable
 						ship.addMoney(10);
 						game.changePanel("7");
 						isOver = true;
+						boss5 = null;
 					} 	
 				} else if(level == 6 && boss6 != null) {
 					boss6.act(ship);
@@ -370,6 +375,7 @@ public class GamePanel extends JPanel implements Runnable
 						ship.addMoney(10);
 						game.changePanel("7");
 						isOver = true;
+						boss6 = null;
 					}
 				} else if(level == 7 && boss7 != null) {
 					boss7.act(ship);
@@ -378,6 +384,7 @@ public class GamePanel extends JPanel implements Runnable
 						ship.addMoney(10);
 						game.changePanel("7");
 						isOver = true;
+						boss7 = null;
 					}
 				} else if(level == 8 && boss8 != null) {
 					boss8.act(ship);
@@ -386,6 +393,7 @@ public class GamePanel extends JPanel implements Runnable
 						ship.addMoney(10);
 						game.changePanel("7");
 						isOver = true;
+						boss8 = null;
 					}
 				} else if(level == 9 && boss9 != null) {
 					boss9.act(ship);
@@ -393,15 +401,17 @@ public class GamePanel extends JPanel implements Runnable
 					if(boss9.getHp() <= 0 && !isOver){
 						ship.addMoney(10);
 						game.changePanel("7");
-					isOver = true;
+						isOver = true;
+						boss9 = null;
 					}
 				} else if(level == 10 && boss10 != null) {
 					boss10.act(ship);
 					boss10.shoot();
-				if(boss10.getHp() <= 0 && !isOver){
-					ship.addMoney(10);
-					isOver = true;
-					game.changePanel("9");
+					if(boss10.getHp() <= 0 && !isOver){
+						ship.addMoney(10);
+						isOver = true;
+						game.changePanel("9");
+						boss10 = null;
 					}
 				}
 
@@ -429,7 +439,7 @@ public class GamePanel extends JPanel implements Runnable
 					else if(level == 10)
 						boss10 = new Boss10(DRAWING_WIDTH/2-20,50,"resources/Boss10.png",100, 100);
 
-						game.changePanel("6");
+					game.changePanel("6");
 				}
 
 
@@ -509,7 +519,7 @@ public class GamePanel extends JPanel implements Runnable
 				slideWorldToImage(ship);
 				slideWorldToImage(ship2);
 
-				
+
 
 
 				repaint();
@@ -529,7 +539,7 @@ public class GamePanel extends JPanel implements Runnable
 
 	public Ship getShip() {
 		return ship;
-		
+
 	}
 	public int generateMoney(){
 		return ship.getMoney();

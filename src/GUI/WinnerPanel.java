@@ -65,7 +65,7 @@ public class WinnerPanel extends JPanel implements ActionListener {
 		}
 		super.paintComponent(g);
 		g.drawImage(scaledImage, 0, 0, null);
-		g.drawImage(i, 190, 60, null);
+		g.drawImage(i, 200, 60, null);
 
 	}
 
